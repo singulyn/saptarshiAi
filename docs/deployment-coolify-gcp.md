@@ -6,7 +6,13 @@ This repository is ready for Coolify Docker Compose deployment from the root `do
 
 On the GCP VM firewall, expose only the ports Coolify/proxy needs publicly, normally `80` and `443`. Do not expose SQL Server `1433` or Redis `6379` to the internet.
 
-Create a Docker Compose application/service stack in Coolify from the Git repository and keep the compose path as:
+Use this GitHub repository as the source:
+
+```text
+https://github.com/singulyn/saptarshiAi.git
+```
+
+Create a Docker Compose application/service stack in Coolify from that GitHub repository and keep the compose path as:
 
 ```text
 docker-compose.yml
@@ -18,6 +24,14 @@ Coolify should build the `admin-mvc` service from:
 deploy/docker/admin-mvc.Dockerfile
 ```
 
+The compose build context defaults to:
+
+```text
+https://github.com/singulyn/saptarshiAi.git#main
+```
+
+For local development, override `SAPTARIX_BUILD_CONTEXT=.` before running Compose.
+
 ## Required Environment Variables
 
 Set these variables in Coolify before deploying:
@@ -26,6 +40,7 @@ Set these variables in Coolify before deploying:
 SAPTARIX_SQL_PASSWORD=<strong SQL Server sa password>
 SAPTARIX_SQL_DATABASE=SaptariX_Platform
 MSSQL_PID=Express
+SAPTARIX_BUILD_CONTEXT=https://github.com/singulyn/saptarshiAi.git#main
 ```
 
 Use a strong `SAPTARIX_SQL_PASSWORD`. For licensed SQL Server deployments, change `MSSQL_PID` to the licensed edition. `Express` is the default to avoid accidentally deploying an unlicensed paid edition.

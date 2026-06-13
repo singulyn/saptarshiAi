@@ -1,7 +1,7 @@
 services:
   admin-mvc:
     build:
-      context: .
+      context: "${SAPTARIX_BUILD_CONTEXT:-https://github.com/singulyn/saptarshiAi.git#main}"
       dockerfile: deploy/docker/admin-mvc.Dockerfile
     restart: unless-stopped
     environment:
