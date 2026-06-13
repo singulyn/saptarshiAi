@@ -1,0 +1,91 @@
+@model UiComponentPageDto
+
+@{
+    var navigationIcons = new (string Label, string Icon)[]
+    {
+        ("Dashboard", "fa-solid fa-gauge"),
+        ("Organizations", "fa-solid fa-building"),
+        ("Users", "fa-solid fa-users"),
+        ("Roles", "fa-solid fa-user-shield"),
+        ("Permissions", "fa-solid fa-key"),
+        ("Settings", "fa-solid fa-gear")
+    };
+
+    var actionIcons = new (string Label, string Icon)[]
+    {
+        ("View", "fa-solid fa-eye"),
+        ("Edit", "fa-solid fa-pen-to-square"),
+        ("Delete", "fa-solid fa-trash"),
+        ("Save", "fa-solid fa-floppy-disk"),
+        ("Search", "fa-solid fa-magnifying-glass"),
+        ("Filter", "fa-solid fa-filter"),
+        ("Add/Create", "fa-solid fa-plus"),
+        ("Close/Cancel", "fa-solid fa-xmark")
+    };
+
+    var statusIcons = new (string Label, string Icon, string BadgeClass)[]
+    {
+        ("Success", "fa-solid fa-circle-check", "text-bg-success"),
+        ("Warning", "fa-solid fa-triangle-exclamation", "text-bg-warning"),
+        ("Info", "fa-solid fa-circle-info", "text-bg-info")
+    };
+}
+
+<section class="page-section ui-kit-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+
+    <div class="row g-3">
+        <div class="col-12 col-xl-6">
+            <div class="card ui-demo-card h-100">
+                <div class="card-header"><h2 class="ui-card-title">Navigation Icons</h2></div>
+                <div class="card-body">
+                    <div class="row g-2">
+                        @foreach (var icon in navigationIcons)
+                        {
+                            <div class="col-12 col-sm-6">
+                                <div class="d-flex align-items-center gap-2 border rounded-1 px-3 py-2">
+                                    <i class="@icon.Icon" aria-hidden="true"></i>
+                                    <span>@icon.Label</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-6">
+            <div class="card ui-demo-card h-100">
+                <div class="card-header"><h2 class="ui-card-title">Action Icons</h2></div>
+                <div class="card-body ui-button-cloud">
+                    @foreach (var icon in actionIcons)
+                    {
+                        <button type="button" class="btn btn-light btn-sm fa-icon-btn" aria-label="@icon.Label" title="@icon.Label">
+                            <i class="@icon.Icon" aria-hidden="true"></i>
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card ui-demo-card mt-3">
+        <div class="card-header"><h2 class="ui-card-title">Status Icons</h2></div>
+        <div class="card-body ui-button-cloud">
+            @foreach (var icon in statusIcons)
+            {
+                <span class="badge @icon.BadgeClass">
+                    <i class="@icon.Icon" aria-hidden="true"></i>
+                    @icon.Label
+                </span>
+            }
+        </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        @foreach (var example in Model.Examples)
+        {
+            <div class="col-12 col-lg-4"><partial name="UIComponents/_UiCodePreview" model="example" /></div>
+        }
+    </div>
+</section>

@@ -1,0 +1,1 @@
+{ "name": "Files", "displayName": "Files", "version": "0.1.0", "enabled": false, "dependsOn": ["Organization", "Identity", "AccessControl"] }

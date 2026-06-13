@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Platform\SaptariX.Platform.Identity\SaptariX.Platform.Identity.csproj" />
+    <ProjectReference Include="..\..\Platform\SaptariX.Platform.Organization\SaptariX.Platform.Organization.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

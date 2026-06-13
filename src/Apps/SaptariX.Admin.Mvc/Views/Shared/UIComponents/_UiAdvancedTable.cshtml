@@ -1,0 +1,26 @@
+<div class="card ui-demo-card ui-table-demo-card">
+    <div class="card-header ui-card-header ui-table-card-header">
+        <div>
+            <h3 class="ui-card-title">Advanced Table</h3>
+            <p class="ui-card-subtitle">Compact filters, loading state, pagination, and row actions.</p>
+        </div>
+        <div class="ui-table-toolbar">
+            <input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search table records" />
+            <select class="form-select form-select-sm" aria-label="Filter by status">
+                <option>All</option>
+                <option>Active</option>
+                <option>Inactive</option>
+                <option>Pending</option>
+            </select>
+        </div>
+    </div>
+    <div class="ui-table-loading d-none" data-ui-table-loading>
+        <span class="spinner-border spinner-border-sm"></span>
+        Loading records
+    </div>
+    <partial name="UIComponents/_UiBasicTable" />
+    <div class="ui-table-footer">
+        <span>Showing 1-3 of 18 records</span>
+        <partial name="UIComponents/_UiPagination" />
+    </div>
+</div>

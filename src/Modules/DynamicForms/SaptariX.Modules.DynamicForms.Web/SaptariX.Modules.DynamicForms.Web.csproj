@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\SaptariX.Plugin.Abstractions\SaptariX.Plugin.Abstractions.csproj" />
+    <ProjectReference Include="..\SaptariX.Modules.DynamicForms.Application\SaptariX.Modules.DynamicForms.Application.csproj" />
+    <ProjectReference Include="..\SaptariX.Modules.DynamicForms.Infrastructure\SaptariX.Modules.DynamicForms.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\SaptariX.Elsa\SaptariX.Elsa.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,39 @@
+@model SaptariX.Modules.DynamicForms.Web.Models.DynamicFormsPageViewModel
+@{
+    ViewData["Title"] = "Dynamic Forms";
+    ViewData["ActiveMenu"] = "/DynamicForms";
+}
+
+<section class="page-section">
+    <div class="section-header">
+        <div>
+            <p class="section-kicker">Builder</p>
+            <h1>Dynamic Forms</h1>
+        </div>
+        <a class="btn btn-primary btn-sm" href="#">New form</a>
+    </div>
+
+    <div class="table-responsive admin-table-frame">
+        <table class="table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Submissions</th>
+                    <th>Updated</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var form in Model.Forms)
+                {
+                    <tr>
+                        <td>@form.Name</td>
+                        <td><span class="badge text-bg-light">@form.Status</span></td>
+                        <td>@form.SubmissionCount</td>
+                        <td>@form.UpdatedAtUtc.ToLocalTime().ToString("dd MMM yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

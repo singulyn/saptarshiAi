@@ -1,0 +1,308 @@
+<div class="card users-card organizations-card">
+    <div class="card-header users-card-header organizations-card-header">
+        <div>
+            <h2 class="users-card-title">Organization List</h2>
+            <p class="users-card-subtitle">Search, filter, sort, and manage organization setup surfaces.</p>
+        </div>
+    </div>
+
+    <div class="card-body organizations-list-body p-0">
+        <form class="organizations-filter sx-table-filter-row" data-organizations-filter-form>
+            <div class="input-group input-group-sm sx-table-filter-search organizations-filter-search">
+                <span class="input-group-text">Search</span>
+                <input class="form-control form-control-sm" type="search" name="Search" placeholder="Name, code, email, or domain" autocomplete="off" />
+            </div>
+            <select class="form-select form-select-sm sx-table-filter-select" name="Status" aria-label="Status filter">
+                <option value="">All statuses</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+                <option value="Suspended">Suspended</option>
+                <option value="Trial">Trial</option>
+                <option value="Archived">Archived</option>
+            </select>
+            <select class="form-select form-select-sm sx-table-filter-select" name="Type" aria-label="Organization type filter">
+                <option value="">All types</option>
+                <option value="Platform">Platform</option>
+                <option value="Customer">Customer</option>
+                <option value="Partner">Partner</option>
+                <option value="Internal">Internal</option>
+                <option value="Vendor">Vendor</option>
+                <option value="Demo">Demo</option>
+                <option value="Trial">Trial</option>
+            </select>
+            <select class="form-select form-select-sm sx-table-filter-select" name="Plan" aria-label="Plan filter">
+                <option value="">All plans</option>
+                <option value="Free">Free</option>
+                <option value="Starter">Starter</option>
+                <option value="Professional">Professional</option>
+                <option value="Enterprise">Enterprise</option>
+                <option value="Custom">Custom</option>
+            </select>
+            <select class="form-select form-select-sm sx-table-filter-select" name="Industry" aria-label="Industry filter">
+                <option value="">All industries</option>
+                <option value="Technology">Technology</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Finance">Finance</option>
+                <option value="Education">Education</option>
+                <option value="Retail">Retail</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Logistics">Logistics</option>
+                <option value="Other">Other</option>
+            </select>
+            <input class="form-control form-control-sm" type="text" name="CreatedRange" placeholder="Created date range" aria-label="Created date range placeholder" />
+            <div class="sx-table-filter-actions organizations-filter-actions">
+                <button class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" type="submit">Apply</button>
+                <button class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-orange" type="button" data-organizations-reset-filters>Reset</button>
+            </div>
+        </form>
+
+        <div class="users-loading-state d-none" data-organizations-loading>
+            <div class="spinner-border spinner-border-sm text-primary" role="status" aria-hidden="true"></div>
+            <span>Loading organizations</span>
+        </div>
+
+        <div class="table-responsive users-table-wrapper organizations-table-wrapper" data-organizations-list-host>
+            <table class="table table-hover align-middle users-table organizations-table mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col"><button type="button" class="users-sort-button sx-sort-header">Organization Name</button></th>
+                        <th scope="col"><button type="button" class="users-sort-button sx-sort-header">Code</button></th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Primary Email</th>
+                        <th scope="col">Plan</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Apps</th>
+                        <th scope="col">Users</th>
+                        <th scope="col"><button type="button" class="users-sort-button sx-sort-header">Created Date</button></th>
+                        <th scope="col" class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody data-organizations-table-body>
+                    <tr data-organization-row
+                        data-organization-id="platform"
+                        data-organization-name="SaptariX Platform"
+                        data-code="PLATFORM"
+                        data-type="Platform"
+                        data-email="platform@saptarix.local"
+                        data-domain="platform.saptarix.local"
+                        data-plan="Enterprise"
+                        data-status="Active"
+                        data-industry="Technology"
+                        data-created="13 Jun 2026"
+                        data-is-system="true"
+                        data-search="saptarix platform platform platform@saptarix.local platform.saptarix.local technology">
+                        <td>
+                            <div class="users-person">
+                                <span class="users-avatar" aria-hidden="true">S</span>
+                                <div>
+                                    <strong>SaptariX Platform</strong>
+                                    <span>platform.saptarix.local</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="users-nowrap"><strong>PLATFORM</strong></td>
+                        <td><span class="badge text-bg-light users-role-badge">Platform</span></td>
+                        <td class="users-nowrap">platform@saptarix.local</td>
+                        <td><span class="badge text-bg-dark">Enterprise</span></td>
+                        <td><span class="badge text-bg-success">Active</span></td>
+                        <td>11</td>
+                        <td>24</td>
+                        <td class="users-nowrap">13 Jun 2026</td>
+                        <td>
+                            <div class="users-actions organizations-actions">
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="view" data-organization-id="platform" aria-label="View SaptariX Platform"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="edit" data-organization-id="platform" aria-label="Edit SaptariX Platform"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="apps" data-organization-id="platform" aria-label="Apps and products for SaptariX Platform"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="modules" data-organization-id="platform" aria-label="Modules for SaptariX Platform"><i class="fa-solid fa-table" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="domains" data-organization-id="platform" aria-label="Domains for SaptariX Platform"><i class="fa-solid fa-globe" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="settings" data-organization-id="platform" aria-label="Settings for SaptariX Platform"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-organization-action="delete" data-organization-id="platform" aria-label="Delete SaptariX Platform"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-organization-row
+                        data-organization-id="northwind"
+                        data-organization-name="Northwind Health"
+                        data-code="NORTHWIND"
+                        data-type="Customer"
+                        data-email="ops@northwind.example"
+                        data-domain="northwind.saptarix.app"
+                        data-plan="Professional"
+                        data-status="Active"
+                        data-industry="Healthcare"
+                        data-created="12 Jun 2026"
+                        data-is-system="false"
+                        data-search="northwind health northwind ops@northwind.example northwind.saptarix.app healthcare">
+                        <td>
+                            <div class="users-person">
+                                <span class="users-avatar" aria-hidden="true">N</span>
+                                <div>
+                                    <strong>Northwind Health</strong>
+                                    <span>northwind.saptarix.app</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="users-nowrap"><strong>NORTHWIND</strong></td>
+                        <td><span class="badge text-bg-light users-role-badge">Customer</span></td>
+                        <td class="users-nowrap">ops@northwind.example</td>
+                        <td><span class="badge text-bg-primary">Professional</span></td>
+                        <td><span class="badge text-bg-success">Active</span></td>
+                        <td>8</td>
+                        <td>46</td>
+                        <td class="users-nowrap">12 Jun 2026</td>
+                        <td>
+                            <div class="users-actions organizations-actions">
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="view" data-organization-id="northwind" aria-label="View Northwind Health"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="edit" data-organization-id="northwind" aria-label="Edit Northwind Health"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="apps" data-organization-id="northwind" aria-label="Apps and products for Northwind Health"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="modules" data-organization-id="northwind" aria-label="Modules for Northwind Health"><i class="fa-solid fa-table" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="domains" data-organization-id="northwind" aria-label="Domains for Northwind Health"><i class="fa-solid fa-globe" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="settings" data-organization-id="northwind" aria-label="Settings for Northwind Health"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-organization-action="delete" data-organization-id="northwind" aria-label="Delete Northwind Health"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-organization-row
+                        data-organization-id="bluepeak"
+                        data-organization-name="Bluepeak Logistics"
+                        data-code="BLUEPEAK"
+                        data-type="Partner"
+                        data-email="admin@bluepeak.example"
+                        data-domain="bluepeak.example.com"
+                        data-plan="Enterprise"
+                        data-status="Trial"
+                        data-industry="Logistics"
+                        data-created="10 Jun 2026"
+                        data-is-system="false"
+                        data-search="bluepeak logistics bluepeak admin@bluepeak.example bluepeak.example.com logistics">
+                        <td>
+                            <div class="users-person">
+                                <span class="users-avatar" aria-hidden="true">B</span>
+                                <div>
+                                    <strong>Bluepeak Logistics</strong>
+                                    <span>bluepeak.example.com</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="users-nowrap"><strong>BLUEPEAK</strong></td>
+                        <td><span class="badge text-bg-light users-role-badge">Partner</span></td>
+                        <td class="users-nowrap">admin@bluepeak.example</td>
+                        <td><span class="badge text-bg-dark">Enterprise</span></td>
+                        <td><span class="badge text-bg-info">Trial</span></td>
+                        <td>6</td>
+                        <td>18</td>
+                        <td class="users-nowrap">10 Jun 2026</td>
+                        <td>
+                            <div class="users-actions organizations-actions">
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="view" data-organization-id="bluepeak" aria-label="View Bluepeak Logistics"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="edit" data-organization-id="bluepeak" aria-label="Edit Bluepeak Logistics"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="apps" data-organization-id="bluepeak" aria-label="Apps and products for Bluepeak Logistics"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="modules" data-organization-id="bluepeak" aria-label="Modules for Bluepeak Logistics"><i class="fa-solid fa-table" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="domains" data-organization-id="bluepeak" aria-label="Domains for Bluepeak Logistics"><i class="fa-solid fa-globe" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="settings" data-organization-id="bluepeak" aria-label="Settings for Bluepeak Logistics"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-organization-action="delete" data-organization-id="bluepeak" aria-label="Delete Bluepeak Logistics"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-organization-row
+                        data-organization-id="atlas"
+                        data-organization-name="Atlas Retail Group"
+                        data-code="ATLAS"
+                        data-type="Customer"
+                        data-email="it@atlasretail.example"
+                        data-domain="atlas.saptarix.app"
+                        data-plan="Starter"
+                        data-status="Inactive"
+                        data-industry="Retail"
+                        data-created="08 Jun 2026"
+                        data-is-system="false"
+                        data-search="atlas retail group atlas it@atlasretail.example atlas.saptarix.app retail">
+                        <td>
+                            <div class="users-person">
+                                <span class="users-avatar" aria-hidden="true">A</span>
+                                <div>
+                                    <strong>Atlas Retail Group</strong>
+                                    <span>atlas.saptarix.app</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="users-nowrap"><strong>ATLAS</strong></td>
+                        <td><span class="badge text-bg-light users-role-badge">Customer</span></td>
+                        <td class="users-nowrap">it@atlasretail.example</td>
+                        <td><span class="badge text-bg-secondary">Starter</span></td>
+                        <td><span class="badge text-bg-secondary">Inactive</span></td>
+                        <td>4</td>
+                        <td>9</td>
+                        <td class="users-nowrap">08 Jun 2026</td>
+                        <td>
+                            <div class="users-actions organizations-actions">
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="view" data-organization-id="atlas" aria-label="View Atlas Retail Group"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="edit" data-organization-id="atlas" aria-label="Edit Atlas Retail Group"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="apps" data-organization-id="atlas" aria-label="Apps and products for Atlas Retail Group"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="modules" data-organization-id="atlas" aria-label="Modules for Atlas Retail Group"><i class="fa-solid fa-table" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="domains" data-organization-id="atlas" aria-label="Domains for Atlas Retail Group"><i class="fa-solid fa-globe" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="settings" data-organization-id="atlas" aria-label="Settings for Atlas Retail Group"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-organization-action="delete" data-organization-id="atlas" aria-label="Delete Atlas Retail Group"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-organization-row
+                        data-organization-id="demo"
+                        data-organization-name="SaptariX Demo Workspace"
+                        data-code="DEMO"
+                        data-type="Demo"
+                        data-email="demo@saptarix.local"
+                        data-domain="demo.saptarix.app"
+                        data-plan="Free"
+                        data-status="Suspended"
+                        data-industry="Other"
+                        data-created="06 Jun 2026"
+                        data-is-system="false"
+                        data-search="saptarix demo workspace demo demo@saptarix.local demo.saptarix.app other">
+                        <td>
+                            <div class="users-person">
+                                <span class="users-avatar" aria-hidden="true">D</span>
+                                <div>
+                                    <strong>SaptariX Demo Workspace</strong>
+                                    <span>demo.saptarix.app</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="users-nowrap"><strong>DEMO</strong></td>
+                        <td><span class="badge text-bg-light users-role-badge">Demo</span></td>
+                        <td class="users-nowrap">demo@saptarix.local</td>
+                        <td><span class="badge text-bg-light users-role-badge">Free</span></td>
+                        <td><span class="badge text-bg-warning">Suspended</span></td>
+                        <td>3</td>
+                        <td>5</td>
+                        <td class="users-nowrap">06 Jun 2026</td>
+                        <td>
+                            <div class="users-actions organizations-actions">
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="view" data-organization-id="demo" aria-label="View SaptariX Demo Workspace"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="edit" data-organization-id="demo" aria-label="Edit SaptariX Demo Workspace"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="apps" data-organization-id="demo" aria-label="Apps and products for SaptariX Demo Workspace"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="modules" data-organization-id="demo" aria-label="Modules for SaptariX Demo Workspace"><i class="fa-solid fa-table" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="domains" data-organization-id="demo" aria-label="Domains for SaptariX Demo Workspace"><i class="fa-solid fa-globe" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="settings" data-organization-id="demo" aria-label="Settings for SaptariX Demo Workspace"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-organization-action="delete" data-organization-id="demo" aria-label="Delete SaptariX Demo Workspace"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-none" data-organizations-empty>
+            <partial name="_OrganizationEmptyState" />
+        </div>
+
+        <div class="users-table-footer">
+            <span data-organizations-count>5 organizations</span>
+            <div class="sx-pagination">
+                <button type="button" class="btn btn-outline-secondary btn-sm" disabled>Previous</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm active" aria-current="page">1</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" disabled>Next</button>
+            </div>
+        </div>
+    </div>
+</div>

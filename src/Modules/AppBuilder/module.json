@@ -1,0 +1,1 @@
+{ "name": "AppBuilder", "displayName": "App Builder", "version": "0.1.0", "enabled": false, "dependsOn": ["Organization", "Identity", "AccessControl"] }

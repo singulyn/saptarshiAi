@@ -1,0 +1,169 @@
+@using SaptariX.Plugin.Abstractions.Navigation
+@using SaptariX.Platform.AccessControl
+@using SaptariX.Plugin.Abstractions.Identity
+@using SaptariX.Plugin.Abstractions.Organization
+@inject IMenuRegistry MenuRegistry
+@inject IPermissionAuthorizationService PermissionAuthorizationService
+@inject ICurrentUserService CurrentUserService
+@inject ICurrentOrganizationService CurrentOrganizationService
+@{
+    var activeMenu = ViewData["ActiveMenu"]?.ToString() ?? Context.Request.Path.Value ?? "/Dashboard";
+    var items = MenuRegistry.GetItems().Where(CanShow).ToList();
+    var childrenByParent = items
+        .Where(x => !string.IsNullOrWhiteSpace(x.Parent))
+        .GroupBy(x => x.Parent!)
+        .ToDictionary(x => x.Key, x => x.OrderBy(y => y.Order).ThenBy(y => y.Text).ToList());
+    var rootItems = items.Where(x => string.IsNullOrWhiteSpace(x.Parent)).OrderBy(x => x.Order).ThenBy(x => x.Text).ToList();
+}
+
+@functions {
+    private bool IsFontAwesomeIcon(string iconCssClass)
+    {
+        return iconCssClass.StartsWith("fa-", StringComparison.OrdinalIgnoreCase)
+            || iconCssClass.Contains(" fa-", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private bool CanShow(MenuItemDefinition item)
+    {
+        if (User.IsInRole("SuperAdmin") || User.IsInRole("Developer"))
+        {
+            return true;
+        }
+
+        if (string.IsNullOrWhiteSpace(item.Permission))
+        {
+            return true;
+        }
+
+        return PermissionAuthorizationService
+            .HasPermissionAsync(
+                CurrentUserService.UserId.GetValueOrDefault(),
+                CurrentOrganizationService.OrganizationId.GetValueOrDefault(),
+                item.Permission)
+            .GetAwaiter()
+            .GetResult();
+    }
+
+    private bool IsActive(MenuItemDefinition item, string activeMenu)
+    {
+        if (item.Url.StartsWith("#", StringComparison.Ordinal))
+        {
+            return false;
+        }
+
+        return activeMenu.Equals(item.Url, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private bool HasActiveChild(MenuItemDefinition item, string activeMenu, IReadOnlyDictionary<string, List<MenuItemDefinition>> childrenByParent)
+    {
+        if (!childrenByParent.TryGetValue(item.Text, out var children))
+        {
+            return false;
+        }
+
+        return children.Any(child => IsActive(child, activeMenu) || HasActiveChild(child, activeMenu, childrenByParent));
+    }
+}
+
+<aside class="app-sidebar sx-app-sidebar shadow" data-bs-theme="dark">
+    <div class="sidebar-brand">
+        <a class="brand-link" href="/Dashboard">
+            <img src="~/vendor/adminlte/img/AdminLTELogo.png" alt="SaptariX" class="brand-image opacity-75 shadow" />
+            <span class="brand-text fw-semibold">SaptariX</span>
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <nav class="mt-2">
+            <ul class="nav sidebar-menu flex-column" role="menu">
+                @foreach (var item in rootItems)
+                {
+                    var hasChildren = childrenByParent.ContainsKey(item.Text);
+                    var isOpen = IsActive(item, activeMenu) || HasActiveChild(item, activeMenu, childrenByParent);
+                    var itemUrl = hasChildren ? "#" : item.Url;
+                    <li class="nav-item @(hasChildren && isOpen ? "menu-open" : string.Empty)">
+                        <a class="nav-link @(isOpen ? "active" : string.Empty)" href="@itemUrl" data-lte-toggle="@(hasChildren ? "treeview" : null)" aria-expanded="@(hasChildren ? isOpen.ToString().ToLowerInvariant() : null)">
+                            <span class="nav-icon text-token">
+                                @if (IsFontAwesomeIcon(item.IconCssClass))
+                                {
+                                    <i class="@item.IconCssClass" aria-hidden="true"></i>
+                                }
+                                else
+                                {
+                                    @item.IconCssClass
+                                }
+                            </span>
+                            <p>@item.Text</p>
+                        </a>
+                        @if (hasChildren)
+                        {
+                            <ul class="nav nav-treeview sx-sidebar-children">
+                                @foreach (var child in childrenByParent[item.Text])
+                                {
+                                    var childHasChildren = childrenByParent.ContainsKey(child.Text);
+                                    var childOpen = IsActive(child, activeMenu) || HasActiveChild(child, activeMenu, childrenByParent);
+                                    var childUrl = childHasChildren ? "#" : child.Url;
+                                    <li class="nav-item @(childHasChildren && childOpen ? "menu-open" : string.Empty)">
+                                        <a class="nav-link @(childOpen ? "active" : string.Empty)" href="@childUrl" data-lte-toggle="@(childHasChildren ? "treeview" : null)" aria-expanded="@(childHasChildren ? childOpen.ToString().ToLowerInvariant() : null)">
+                                            <span class="nav-icon text-token">
+                                                @if (IsFontAwesomeIcon(child.IconCssClass))
+                                                {
+                                                    <i class="@child.IconCssClass" aria-hidden="true"></i>
+                                                }
+                                                else
+                                                {
+                                                    @child.IconCssClass
+                                                }
+                                            </span>
+                                            <p>@child.Text</p>
+                                        </a>
+                                        @if (childHasChildren)
+                                        {
+                                            <ul class="nav nav-treeview sx-sidebar-children sx-sidebar-grandchildren">
+                                                @foreach (var grandChild in childrenByParent[child.Text])
+                                                {
+                                                    var grandChildActive = IsActive(grandChild, activeMenu);
+                                                    <li class="nav-item">
+                                                        <a class="nav-link @(grandChildActive ? "active" : string.Empty)" href="@grandChild.Url">
+                                                            <span class="nav-icon text-token">
+                                                                @if (IsFontAwesomeIcon(grandChild.IconCssClass))
+                                                                {
+                                                                    <i class="@grandChild.IconCssClass" aria-hidden="true"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    @grandChild.IconCssClass
+                                                                }
+                                                            </span>
+                                                            <p>@grandChild.Text</p>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+</aside>
+<script>
+    (() => {
+        try {
+            const state = JSON.parse(sessionStorage.getItem("saptarix.admin.sidebar.state") || "{}");
+            const wrapper = document.querySelector(".app-sidebar .sidebar-wrapper");
+            const sidebar = document.querySelector(".app-sidebar");
+            if (wrapper && Number.isFinite(state.wrapperTop)) {
+                wrapper.scrollTop = state.wrapperTop;
+            }
+            if (sidebar && Number.isFinite(state.sidebarTop)) {
+                sidebar.scrollTop = state.sidebarTop;
+            }
+        } catch {
+            // Sidebar state is progressive enhancement only.
+        }
+    })();
+</script>

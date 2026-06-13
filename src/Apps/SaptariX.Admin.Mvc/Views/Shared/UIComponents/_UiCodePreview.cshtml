@@ -1,0 +1,19 @@
+@model SaptariX.Modules.UIKit.Contracts.UiComponentExampleDto
+
+<div class="ui-code-preview" data-ui-code-preview>
+    <div class="ui-code-preview-header">
+        <div>
+            <h3>@Model.Title</h3>
+            <p>@Model.Usage</p>
+        </div>
+        <div class="btn-group btn-group-sm" role="group" aria-label="@Model.Title preview controls">
+            <button class="btn btn-outline-secondary active" type="button" data-ui-preview-toggle="preview">Preview</button>
+            <button class="btn btn-outline-secondary" type="button" data-ui-preview-toggle="code">Code</button>
+            <button class="btn btn-outline-primary" type="button" data-ui-copy-code>Copy</button>
+        </div>
+    </div>
+    <div class="ui-code-preview-body" data-ui-preview-panel>
+        <div class="ui-preview-note">@Model.Note</div>
+    </div>
+    <pre class="ui-code-block d-none" data-ui-code-panel><code>@Model.Code</code></pre>
+</div>

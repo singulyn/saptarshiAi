@@ -1,0 +1,22 @@
+@model UiComponentPageDto
+
+<section class="page-section ui-kit-page sx-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+    <partial name="UIComponents/_UiToastHost" />
+
+    <partial name="UIComponents/_UiInlineCreateTable" />
+
+    <div class="card sx-card">
+        <div class="card-body">
+            <h2 class="sx-card-title">When To Use This Pattern</h2>
+            <p class="sx-card-subtitle">Use Inline Create + Table for small entities such as role category, permission category, status master, product type, payment method, country/state/city, tags, department, and designation.</p>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        @foreach (var example in Model.Examples)
+        {
+            <div class="col-12 col-lg-4"><partial name="UIComponents/_UiCodePreview" model="example" /></div>
+        }
+    </div>
+</section>

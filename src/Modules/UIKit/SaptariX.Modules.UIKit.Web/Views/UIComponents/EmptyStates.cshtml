@@ -1,0 +1,30 @@
+@model UiComponentPageDto
+
+<section class="page-section ui-kit-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+
+    <div class="row g-3">
+        @foreach (var state in new[] { "No records found", "No users yet", "No permissions assigned", "No reports available", "Search returned no result", "Module disabled", "Error loading data" })
+        {
+            <div class="col-12 col-md-6 col-xl-4">
+                <div class="card ui-demo-card h-100">
+                    <div class="card-body">
+                        <div class="ui-empty-state">
+                            <i class="ui-empty-icon fa-solid fa-inbox" aria-hidden="true"></i>
+                            <strong>@state</strong>
+                            <span>Use concise copy and one optional action.</span>
+                            <button class="btn btn-outline-primary btn-sm" type="button">Action</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="row g-3 mt-1">
+        @foreach (var example in Model.Examples)
+        {
+            <div class="col-12 col-lg-4"><partial name="UIComponents/_UiCodePreview" model="example" /></div>
+        }
+    </div>
+</section>

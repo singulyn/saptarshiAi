@@ -1,0 +1,72 @@
+.sx-select-menu,
+.dropdown-menu {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.sx-select-menu::-webkit-scrollbar,
+.dropdown-menu::-webkit-scrollbar {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+.sx-scrollbar-premium,
+.sx-table-wrapper,
+.table-responsive,
+.users-table-wrapper,
+.ui-code-block,
+.offcanvas-body,
+.ui-drawer-body,
+.user-permission-body {
+  scrollbar-color: var(--sx-scrollbar-thumb) var(--sx-scrollbar-track);
+  scrollbar-width: thin;
+}
+
+.sx-scrollbar-premium::-webkit-scrollbar,
+.sx-table-wrapper::-webkit-scrollbar,
+.table-responsive::-webkit-scrollbar,
+.users-table-wrapper::-webkit-scrollbar,
+.ui-code-block::-webkit-scrollbar,
+.offcanvas-body::-webkit-scrollbar,
+.ui-drawer-body::-webkit-scrollbar,
+.user-permission-body::-webkit-scrollbar {
+  height: var(--sx-scrollbar-size);
+  width: var(--sx-scrollbar-size);
+}
+
+.sx-scrollbar-premium::-webkit-scrollbar-track,
+.sx-table-wrapper::-webkit-scrollbar-track,
+.table-responsive::-webkit-scrollbar-track,
+.users-table-wrapper::-webkit-scrollbar-track,
+.ui-code-block::-webkit-scrollbar-track,
+.offcanvas-body::-webkit-scrollbar-track,
+.ui-drawer-body::-webkit-scrollbar-track,
+.user-permission-body::-webkit-scrollbar-track {
+  background: var(--sx-scrollbar-track);
+  border-radius: var(--sx-scrollbar-radius);
+}
+
+.sx-scrollbar-premium::-webkit-scrollbar-thumb,
+.sx-table-wrapper::-webkit-scrollbar-thumb,
+.table-responsive::-webkit-scrollbar-thumb,
+.users-table-wrapper::-webkit-scrollbar-thumb,
+.ui-code-block::-webkit-scrollbar-thumb,
+.offcanvas-body::-webkit-scrollbar-thumb,
+.ui-drawer-body::-webkit-scrollbar-thumb,
+.user-permission-body::-webkit-scrollbar-thumb {
+  background: var(--sx-scrollbar-thumb);
+  border: 1px solid var(--sx-scrollbar-track);
+  border-radius: var(--sx-scrollbar-radius);
+}
+
+.sx-scrollbar-premium::-webkit-scrollbar-thumb:hover,
+.sx-table-wrapper::-webkit-scrollbar-thumb:hover,
+.table-responsive::-webkit-scrollbar-thumb:hover,
+.users-table-wrapper::-webkit-scrollbar-thumb:hover,
+.ui-code-block::-webkit-scrollbar-thumb:hover,
+.offcanvas-body::-webkit-scrollbar-thumb:hover,
+.ui-drawer-body::-webkit-scrollbar-thumb:hover,
+.user-permission-body::-webkit-scrollbar-thumb:hover {
+  background: var(--sx-scrollbar-thumb-hover);
+}

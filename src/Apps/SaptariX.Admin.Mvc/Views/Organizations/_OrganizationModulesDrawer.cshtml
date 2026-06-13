@@ -1,0 +1,55 @@
+<div class="offcanvas offcanvas-end ui-drawer organization-drawer"
+     tabindex="-1"
+     id="organizationModulesDrawer"
+     aria-labelledby="organizationModulesDrawerTitle"
+     data-organization-drawer="modules">
+    <div class="offcanvas-header ui-drawer-header">
+        <div>
+            <p class="section-kicker mb-1">Organization</p>
+            <h2 class="offcanvas-title" id="organizationModulesDrawerTitle">Organization Module Access</h2>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body ui-drawer-body">
+        <div class="ui-user-summary organization-drawer-summary">
+            <span class="users-avatar users-avatar-lg" data-organization-drawer-avatar>M</span>
+            <div>
+                <strong data-organization-drawer-name>Select organization</strong>
+                <span data-organization-drawer-meta>Module enablement preview</span>
+            </div>
+        </div>
+
+        <div class="input-group input-group-sm user-permission-search">
+            <span class="input-group-text">Search</span>
+            <input class="form-control" type="search" placeholder="Search modules" data-organization-drawer-search autocomplete="off" />
+        </div>
+
+        <div class="organization-drawer-command-row">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-organization-select-all-modules>Select All</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-organization-clear-modules>Clear All</button>
+        </div>
+
+        <div class="organization-check-grid" data-organization-modules-list>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">Identity</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">AccessControl</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">Users</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">Roles</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">Permissions</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">DynamicForms</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" /> <span class="form-check-label">DynamicTables</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">Workflow</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">Reports</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" /> <span class="form-check-label">Notifications</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" /> <span class="form-check-label">Files</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" /> <span class="form-check-label">Payments</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" /> <span class="form-check-label">Billing</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" /> <span class="form-check-label">AiAssistant</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" /> <span class="form-check-label">CMS</span></label>
+            <label class="form-check organization-drawer-row" data-drawer-row><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">AppBuilder</span></label>
+        </div>
+    </div>
+    <div class="ui-drawer-footer">
+        <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" data-organization-drawer-save>Save Modules</button>
+        <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-orange" data-bs-dismiss="offcanvas">Cancel</button>
+    </div>
+</div>

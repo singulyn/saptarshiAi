@@ -1,0 +1,88 @@
+@using SaptariX.Admin.Mvc.ViewModels.Users
+@model UserFormViewModel
+
+<div class="card users-card users-form-card">
+    <div class="card-header users-card-header">
+        <div>
+            <h2 class="users-card-title" data-users-form-heading>Create User</h2>
+            <p class="users-card-subtitle">Profile, role, and account status.</p>
+        </div>
+    </div>
+    <div class="card-body">
+        <form id="userForm" class="users-form" data-users-form novalidate>
+            <input type="hidden" name="Id" value="@Model.Id" data-users-id />
+            <input type="hidden" name="OrganizationId" value="@Model.OrganizationId" />
+
+            <div class="row g-3">
+                <div class="col-12 col-lg-3">
+                    <div class="users-profile-placeholder">
+                        <div class="users-profile-image" aria-hidden="true">
+                            <i class="fa-solid fa-users" aria-hidden="true"></i>
+                        </div>
+                        <span>Profile image</span>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9">
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <label class="form-label" asp-for="FirstName"></label>
+                            <input class="form-control form-control-sm" asp-for="FirstName" name="FirstName" autocomplete="given-name" required />
+                            <span class="text-danger small" asp-validation-for="FirstName" data-users-field-error="FirstName"></span>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label" asp-for="LastName"></label>
+                            <input class="form-control form-control-sm" asp-for="LastName" name="LastName" autocomplete="family-name" required />
+                            <span class="text-danger small" asp-validation-for="LastName" data-users-field-error="LastName"></span>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label" asp-for="Email"></label>
+                            <input class="form-control form-control-sm" asp-for="Email" name="Email" autocomplete="email" required />
+                            <span class="text-danger small" asp-validation-for="Email" data-users-field-error="Email"></span>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label" asp-for="MobileNumber">Mobile Number</label>
+                            <input class="form-control form-control-sm" asp-for="MobileNumber" name="MobileNumber" autocomplete="tel" />
+                            <span class="text-danger small" asp-validation-for="MobileNumber" data-users-field-error="MobileNumber"></span>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label" asp-for="Role"></label>
+                            <select class="form-select form-select-sm" asp-for="Role" name="Role" required>
+                                @foreach (var role in Model.Roles)
+                                {
+                                    <option value="@role">@role</option>
+                                }
+                            </select>
+                            <span class="text-danger small" asp-validation-for="Role" data-users-field-error="Role"></span>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label" asp-for="Status"></label>
+                            <select class="form-select form-select-sm" asp-for="Status" name="Status" required>
+                                @foreach (var status in Model.Statuses)
+                                {
+                                    <option value="@status">@status</option>
+                                }
+                            </select>
+                            <span class="text-danger small" asp-validation-for="Status" data-users-field-error="Status"></span>
+                        </div>
+                        <div class="col-12 col-md-6" data-users-create-only>
+                            <label class="form-label" asp-for="Password"></label>
+                            <input class="form-control form-control-sm" asp-for="Password" name="Password" type="password" autocomplete="new-password" data-users-password />
+                            <span class="text-danger small" asp-validation-for="Password" data-users-field-error="Password"></span>
+                        </div>
+                        <div class="col-12 col-md-6" data-users-create-only>
+                            <label class="form-label" asp-for="ConfirmPassword">Confirm Password</label>
+                            <input class="form-control form-control-sm" asp-for="ConfirmPassword" name="ConfirmPassword" type="password" autocomplete="new-password" data-users-confirm-password />
+                            <span class="text-danger small" asp-validation-for="ConfirmPassword" data-users-field-error="ConfirmPassword"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="users-form-actions">
+                <button type="submit" class="btn btn-primary btn-sm" data-users-submit>Create User</button>
+                <button type="reset" class="btn btn-outline-secondary btn-sm" data-users-reset>Reset</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm d-none" data-users-cancel-edit>Cancel Edit</button>
+            </div>
+        </form>
+    </div>
+</div>

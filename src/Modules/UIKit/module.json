@@ -1,0 +1,9 @@
+{
+  "name": "UIKit",
+  "displayName": "UI Components",
+  "version": "1.0.0",
+  "description": "Internal AdminLTE v4 UI Kit for developer and SuperAdmin users.",
+  "permissions": [
+    "Developer.UIComponents.View"
+  ]
+}

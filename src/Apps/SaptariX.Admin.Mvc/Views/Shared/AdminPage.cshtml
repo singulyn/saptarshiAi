@@ -1,0 +1,28 @@
+@model SaptariX.Admin.Mvc.Models.AdminPageViewModel
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["ActiveMenu"] = Model.ActiveMenu;
+}
+
+<section class="page-section">
+    <div class="section-header">
+        <div>
+            <p class="section-kicker">@Model.Kicker</p>
+            <h1>@Model.Title</h1>
+            <p class="section-summary">@Model.Summary</p>
+        </div>
+        <span class="permission-pill">@Model.Permission</span>
+    </div>
+
+    <div class="row g-3">
+        @foreach (var item in Model.Items)
+        {
+            <div class="col-12 col-md-6 col-xl-4">
+                <div class="info-tile">
+                    <span class="tile-marker"></span>
+                    <span>@item</span>
+                </div>
+            </div>
+        }
+    </div>
+</section>

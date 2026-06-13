@@ -1,0 +1,56 @@
+@media (max-width: 991.98px) {
+  .sx-filter-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sx-filter-actions,
+  .sx-inline-create-fields {
+    grid-column: 1 / -1;
+  }
+
+  .sx-inline-create-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767.98px) {
+  .sx-toolbar,
+  .sx-table-footer,
+  .sx-pagination,
+  .sx-filter-actions,
+  .sx-sticky-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .sx-filter-bar,
+  .sx-inline-create-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .sx-filter-actions .btn,
+  .sx-pagination .btn,
+  .sx-toolbar-actions .btn,
+  .sx-inline-create-fields .btn {
+    width: 100%;
+  }
+
+  .table > :not(caption) > * > * {
+    padding: 7px 10px;
+  }
+
+  .sx-table-filter-row {
+    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: stretch;
+  }
+
+  .sx-table-filter-search,
+  .sx-table-filter-select,
+  .sx-table-filter-row .sx-select,
+  .sx-table-filter-actions,
+  .sx-table-filter-row .btn {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+}

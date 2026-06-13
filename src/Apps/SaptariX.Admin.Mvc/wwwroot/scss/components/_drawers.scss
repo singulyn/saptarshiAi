@@ -1,0 +1,20 @@
+.sx-drawer-md {
+  width: min(var(--sx-drawer-md), 100vw);
+}
+
+.sx-drawer-lg {
+  width: min(var(--sx-drawer-lg), 100vw);
+}
+
+.sx-sticky-footer {
+  align-items: center;
+  background: var(--sx-surface);
+  border-top: 1px solid var(--sx-border);
+  bottom: 0;
+  display: flex;
+  gap: var(--sx-space-2);
+  justify-content: flex-end;
+  padding: var(--sx-space-3) var(--sx-space-4);
+  position: sticky;
+  z-index: 2;
+}

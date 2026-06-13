@@ -1,0 +1,97 @@
+# Current Progress
+
+Created in this run:
+
+- Solution and project structure.
+- Admin MVC with AdminLTE v4 assets and dashboard shell.
+- Core domain/application/contracts/plugin abstractions.
+- Organization, Identity, AccessControl, ModuleRegistry platform projects.
+- SQL Server/Dapper persistence implementation.
+- Elsa-ready workflow boundary with sample activities.
+- Redis-ready cache abstraction.
+- DynamicForms module with MVC UI and SQL scripts.
+- Future FastAPI, Node.js, and Java service placeholders.
+- SQL scripts, docs, README, handover files, and status tracking.
+- Users module identity services, DTOs, Dapper repositories, SQL scripts, MVC controller, Razor views, and module JavaScript.
+- UI Kit module projects, controller, Razor pages, reusable partials, CSS, JS, menu provider, and permission provider.
+- Global `saptarix-ui.scss` source tree and compiled `saptarix-ui.css`.
+- UI Kit enterprise table, inline-create table, and filter toolbar partials.
+- UI Kit Table Patterns, Inline Create Tables, and Filter Toolbars pages.
+- UI Kit control accent update so primary buttons, outline-primary states, checked switches, checkboxes, radios, links, and root primary tokens use sidebar color `#000d0f`.
+- Global Bootstrap select enhancer that reuses the premium `sx-select` dropdown UI for normal `.form-select` controls without breaking form posts.
+- Reusable premium scrollbar layer for dropdown, table, code, and drawer scroll areas.
+- Global focus/validation cleanup so Bootstrap blue glow is removed and valid/invalid states retain border color without shadow.
+- UI Kit and Users right drawer premium pass with narrower offcanvas variables, compact content, neutral surfaces, and non-blue accordion active states.
+- Users table filter toolbar now keeps search, status, Apply, and Reset in one aligned desktop row.
+- Admin sidebar submenu UX now has reference-style hierarchy with open parent surface, nested rail, leaf dots, active child surface, and cleaner spacing; the problematic left child arrow treatment was removed.
+- UI Kit reusable filter toolbar partial now uses the same compact enterprise table filter row pattern as the Users table.
+- Global card/table surface styling now removes grey outer borders and applies shared `--sx-card-shadow` to Bootstrap cards, Admin panels, Users cards, UI Kit cards, and table-card wrappers.
+- UI Kit table demos now use attached code previews per table, reusable premium pagination, richer sample rows, compact Advanced Table filters, 4px status badges, and compact 5-15px table padding.
+- Admin header now uses the requested bottom shadow `rgba(0, 0, 0, 0.4) 0px 30px 90px`.
+- UI Kit Buttons page now includes six named Advanced Button Pattern groups with reusable `ui-adv-btn` CSS families, 4px radius, inherited SaptariX font family, and multiple premium color variants.
+- Admin shell now keeps header and footer fixed while only the main content container scrolls.
+- Removed the experimental generated UI Kit Icon Library and its generated registry/sprite assets.
+- Added Font Awesome Free runtime assets and restored UI Components -> Icon Library as a lightweight Font Awesome usage reference.
+- Organization UI-only shell at `/Organizations` with list/create-update tabs, enterprise filter toolbar, sample organization table, Apps/Products drawer, Modules drawer, Domains drawer, Settings drawer, soft-delete modal, and `Advanced Buttons 5` elevated action styling.
+- `Organizations.*` permission constants and Font Awesome sidebar/menu icons.
+
+Working:
+
+- Solution is scaffolded.
+- Admin MVC route defaults to `/Dashboard`.
+- DynamicForms route is `/DynamicForms`.
+- Dapper and SQL Server packages are installed.
+- Serilog package is installed.
+- `dotnet restore SaptariX.Platform.sln` succeeds.
+- Full solution build succeeds with `dotnet build SaptariX.Platform.sln --no-restore`.
+- Admin MVC was started on `http://localhost:5081`.
+- Admin MVC listener is running as PID `6444`.
+- `/Dashboard` and `/DynamicForms` returned `200`.
+- `/Modules` and `/Account/Login` returned `200`.
+- `/Users`, `/Users/List`, `/Users/GetPermissions/{userId}`, and `/js/modules/users.js` returned `200`.
+- Users AJAX create, edit load, update, permission save/load, and soft delete were verified with anti-forgery tokens.
+- `/UIComponents` and all UI Kit child pages returned `200`, including `/UIComponents/IconLibrary`.
+- `/UIComponents/TablePatterns`, `/UIComponents/InlineCreateTables`, and `/UIComponents/FilterToolbars` returned `200`.
+- `/css/saptarix-ui.css`, `/css/ui-kit.css`, and `/js/modules/ui-kit.js` returned `200`.
+- Dashboard/sidebar HTML includes Table Patterns, Inline Create Tables, and Filter Toolbars.
+- Developer Tools and UI Components sidebar items render with AdminLTE treeview toggles and open state on UI Kit pages.
+- Sidebar scroll position persists across menu navigation; headless Chrome verified `/UIComponents/Drawers` to `/UIComponents/Cards` keeps the active link at the same sidebar position.
+- Global form-control focus styling uses black border/no glow; headless Chrome verified clicked Input Table field focus styles.
+- Custom UI Kit select dropdown is implemented and browser-verified on `/UIComponents/FormControls`.
+- UI Kit switch, checkbox, radio, and primary button accents are browser-verified as `rgb(0, 13, 15)`.
+- `/Users`, `/UIComponents/InputTables`, `/UIComponents/InlineCreateTables`, and `/UIComponents/TablePatterns` were browser-scanned with `0` visible native select controls after custom dropdown enhancement.
+- `/Users` and `/UIComponents/InputTables` were browser-verified with hidden dropdown panel scrollbars and `6px` black table scrollbars.
+- Normal focused input was browser-verified as black `rgb(17, 24, 39)` 2px border with no shadow after transition.
+- Valid/invalid focused fields were browser-verified with green/red borders and `box-shadow: none`.
+- `/UIComponents/Drawers` was browser-verified with an open `460px` drawer and non-blue active accordion state.
+- `/Users` filter toolbar was browser-verified as a single no-wrap, center-aligned row.
+- `/Users` Apply and Reset buttons were browser-verified at compact `32px` height.
+- `/UIComponents/TablePatterns` reusable filter toolbar was browser-verified as a single no-wrap, center-aligned row.
+- Sidebar Developer Tools submenu was browser-verified with no child left-arrow content, leaf dot treatment, and non-arrow Developer Tools icon styling.
+- Served CSS assets were verified with `--sx-card-shadow`; card/table wrapper rules now use `border: 0` and the shared shadow token in `site.css`, `saptarix-ui.css`, and `ui-kit.css`.
+- `/UIComponents/Tables`, `/UIComponents/TablePatterns`, `/css/site.css`, `/css/saptarix-ui.css`, `/css/ui-kit.css`, and `/js/modules/ui-kit.js` returned `200` after the table UI pass.
+- `/UIComponents/Tables` markup was verified with reusable `sx-pagination`, associated code previews per table section, and richer sample entries.
+- Served CSS was verified with the Admin header bottom shadow, premium pagination shadow, 4px badge radius, compact table padding, and compact Advanced Table toolbar sizing.
+- `/UIComponents/Buttons` and `/css/ui-kit.css` returned `200`; markup and CSS were verified for `Advanced Buttons 1` through `Advanced Buttons 6`, 4px custom button radius, and inherited font styling.
+- `/Organizations` and `/js/modules/organizations.js` returned `200`; rendered markup includes Organization List, Create Organization, Apps & Products Mapping, Organization Module Access, and `ui-adv-btn-elevated` buttons.
+- Font Awesome CSS and webfont assets returned `200` from `/vendor/fontawesome-free/css/fontawesome.min.css`, `/vendor/fontawesome-free/css/solid.min.css`, `/vendor/fontawesome-free/css/regular.min.css`, `/vendor/fontawesome-free/webfonts/fa-solid-900.woff2`, and `/vendor/fontawesome-free/webfonts/fa-regular-400.woff2`.
+- Dashboard, Organizations, and UI Components Icon Library HTML checks verified Font Awesome icon classes and no old custom icon references in rendered markup.
+- `dotnet build SaptariX.Platform.sln --no-restore` succeeds after removing the generated custom Icon Library implementation with 0 warnings and 0 errors.
+- Dashboard/sidebar HTML includes Developer Tools and UI Components.
+- AdminLTE CSS and JS static assets returned `200`.
+- Dashboard HTML includes AdminLTE asset links and the Dynamic Forms menu entry.
+- Dashboard/sidebar HTML includes the Users menu entry.
+- DynamicForms HTML renders through the Admin MVC layout and seed form data.
+- All project files target `net8.0`.
+- Admin MVC references the required core, infrastructure, platform, and DynamicForms projects.
+- SQL Server/Dapper registrations were verified in `SaptariX.Persistence.SqlServer` and `SaptariX.Admin.Mvc`.
+- Users repositories are registered in `SaptariX.Persistence.SqlServer`.
+
+Needs testing:
+
+- SQL scripts against a local SQL Server container.
+- New Users stored procedures against SQL Server.
+- Organization backend functionality: SQL scripts, stored procedures, Dapper repositories, services, AJAX endpoints, and persistence validation.
+- UI Kit copy, toast, modal, drawer, row add/remove, and inline-create demos in a browser automation run.
+- Login form post and cookie sign-in.
+- Stored-procedure-backed DynamicForms data after database scripts are applied.

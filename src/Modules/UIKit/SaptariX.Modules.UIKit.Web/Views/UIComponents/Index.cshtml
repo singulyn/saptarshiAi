@@ -1,0 +1,31 @@
+@model UiComponentPageDto
+
+<section class="page-section ui-kit-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+    <partial name="UIComponents/_UiToastHost" />
+
+    <div class="row g-3">
+        @foreach (var card in Model.Cards)
+        {
+            <div class="col-12 col-md-6 col-xl-4">
+                <div class="card ui-component-card h-100">
+                    <div class="card-body">
+                        <i class="ui-component-card-icon @card.IconCssClass" aria-hidden="true"></i>
+                        <h2>@card.Title</h2>
+                        <p>@card.Description</p>
+                        <a class="btn btn-primary btn-sm" href="@card.Url">Open</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="row g-3 mt-1">
+        @foreach (var example in Model.Examples)
+        {
+            <div class="col-12 col-lg-6">
+                <partial name="UIComponents/_UiCodePreview" model="example" />
+            </div>
+        }
+    </div>
+</section>

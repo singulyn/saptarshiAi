@@ -1,0 +1,25 @@
+@model UiComponentPageDto
+
+<section class="page-section ui-kit-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+
+    <div class="row g-3">
+        <div class="col-12"><div class="card ui-demo-card"><div class="card-body">Full width page</div></div></div>
+        <div class="col-12 col-lg-5"><div class="card ui-demo-card"><div class="card-body">Narrow form page<partial name="UIComponents/_UiFormInput" /></div></div></div>
+        <div class="col-12 col-lg-7"><div class="card ui-demo-card"><div class="card-body">Medium content page</div></div></div>
+        <div class="col-12 col-xl-4"><div class="card ui-demo-card"><div class="card-body">Master list<partial name="UIComponents/_UiBasicTable" /></div></div></div>
+        <div class="col-12 col-xl-8"><div class="card ui-demo-card"><div class="card-body">Detail pane</div></div></div>
+        <div class="col-12 col-xl-6"><partial name="UIComponents/_UiAdvancedTable" /></div>
+        <div class="col-12 col-xl-6"><div class="card ui-demo-card"><div class="card-body">Table + modal layout<button class="btn btn-primary btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#uiLayoutModal">Open modal</button></div></div></div>
+        <div class="col-12"><div class="row g-3"><div class="col-md-3"><div class="metric-tile"><span class="metric-label">Dashboard grid</span><strong>24</strong></div></div><div class="col-md-3"><div class="metric-tile"><span class="metric-label">Active</span><strong>18</strong></div></div><div class="col-md-3"><div class="metric-tile"><span class="metric-label">Pending</span><strong>5</strong></div></div><div class="col-md-3"><div class="metric-tile"><span class="metric-label">Failed</span><strong>1</strong></div></div></div></div>
+    </div>
+
+    <div class="modal fade" id="uiLayoutModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h2 class="modal-title fs-6">Layout Modal</h2><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body">Modal layout example.</div></div></div></div>
+
+    <div class="row g-3 mt-1">
+        @foreach (var example in Model.Examples)
+        {
+            <div class="col-12 col-lg-4"><partial name="UIComponents/_UiCodePreview" model="example" /></div>
+        }
+    </div>
+</section>

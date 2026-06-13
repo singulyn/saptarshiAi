@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\SaptariX.Modules.DynamicForms.Application\SaptariX.Modules.DynamicForms.Application.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\SaptariX.Persistence.Abstractions\SaptariX.Persistence.Abstractions.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

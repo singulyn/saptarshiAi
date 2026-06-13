@@ -1,0 +1,23 @@
+.sx-empty-state {
+  align-items: center;
+  color: var(--sx-muted);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sx-space-2);
+  justify-content: center;
+  min-height: 150px;
+  padding: var(--sx-space-5);
+  text-align: center;
+}
+
+.sx-empty-state strong {
+  color: var(--sx-ink);
+}
+
+.sx-muted {
+  color: var(--sx-muted);
+}
+
+.sx-nowrap {
+  white-space: nowrap;
+}

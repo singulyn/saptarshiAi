@@ -1,0 +1,48 @@
+.btn-primary {
+  --bs-btn-bg: var(--sx-control-accent);
+  --bs-btn-border-color: var(--sx-control-accent);
+  --bs-btn-hover-bg: #001a1f;
+  --bs-btn-hover-border-color: #001a1f;
+  --bs-btn-active-bg: #001a1f;
+  --bs-btn-active-border-color: #001a1f;
+  --bs-btn-disabled-bg: #344245;
+  --bs-btn-disabled-border-color: #344245;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--sx-control-accent);
+  --bs-btn-border-color: var(--sx-control-accent);
+  --bs-btn-hover-bg: var(--sx-control-accent);
+  --bs-btn-hover-border-color: var(--sx-control-accent);
+  --bs-btn-active-bg: var(--sx-control-accent);
+  --bs-btn-active-border-color: var(--sx-control-accent);
+}
+
+.sx-action-buttons {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  justify-content: flex-end;
+  min-width: max-content;
+  white-space: nowrap;
+}
+
+.fa-icon-btn {
+  align-items: center;
+  box-shadow: var(--sx-pagination-shadow);
+  display: inline-flex;
+  flex: 0 0 var(--sx-button-height-sm);
+  height: var(--sx-button-height-sm);
+  justify-content: center;
+  padding: 0;
+  width: var(--sx-button-height-sm);
+}
+
+.sx-toolbar-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sx-space-2);
+  justify-content: flex-end;
+}

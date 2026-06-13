@@ -1,0 +1,24 @@
+@model UiComponentPageDto
+
+<section class="page-section ui-kit-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+
+    <div class="row g-3">
+        <div class="col-12 col-md-6 col-xl-4"><partial name="UIComponents/_UiCard" /></div>
+        <div class="col-12 col-md-6 col-xl-4"><div class="metric-tile"><span class="metric-label">Stats card</span><strong>128</strong></div></div>
+        <div class="col-12 col-md-6 col-xl-4"><div class="info-tile"><span class="tile-marker"></span><span>Icon card</span></div></div>
+        <div class="col-12 col-md-6 col-xl-4"><div class="card ui-demo-card"><div class="card-body"><span>Progress card</span><div class="progress mt-2"><div class="progress-bar" style="width: 68%"></div></div></div></div></div>
+        <div class="col-12 col-md-6 col-xl-4"><div class="card ui-demo-card"><div class="card-body"><partial name="UIComponents/_UiFormInput" /></div></div></div>
+        <div class="col-12 col-md-6 col-xl-4"><div class="card ui-demo-card"><div class="card-body p-0"><partial name="UIComponents/_UiBasicTable" /></div></div></div>
+        <div class="col-12 col-md-6 col-xl-4"><div class="card ui-demo-card"><div class="card-header" data-bs-toggle="collapse" data-bs-target="#uiCollapseCard">Collapsible card</div><div id="uiCollapseCard" class="collapse show"><div class="card-body">Compact content</div></div></div></div>
+        <div class="col-12 col-md-6 col-xl-4"><div class="card ui-demo-card"><div class="card-body py-2">Compact card</div></div></div>
+        <div class="col-12 col-md-6 col-xl-4"><div class="card ui-demo-card"><div class="card-body"><partial name="UIComponents/_UiEmptyState" /></div></div></div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        @foreach (var example in Model.Examples)
+        {
+            <div class="col-12 col-lg-4"><partial name="UIComponents/_UiCodePreview" model="example" /></div>
+        }
+    </div>
+</section>

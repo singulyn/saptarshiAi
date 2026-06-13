@@ -1,0 +1,39 @@
+.btn:focus,
+.btn:focus-visible,
+.btn-check:focus + .btn,
+.btn-close:focus,
+.nav-link:focus,
+.page-link:focus,
+.accordion-button:focus {
+  box-shadow: none;
+  outline: 0;
+}
+
+.badge {
+  border-radius: var(--sx-radius) !important;
+}
+
+.btn:not(.btn-link):focus-visible,
+.page-link:focus {
+  border-color: var(--sx-input-focus-border);
+}
+
+.accordion-button {
+  color: var(--sx-input-color);
+}
+
+.accordion-button:focus {
+  border-color: var(--sx-input-focus-border);
+}
+
+.accordion-button:not(.collapsed) {
+  background: var(--sx-surface-subtle);
+  box-shadow: none;
+  color: var(--sx-input-color);
+}
+
+.accordion-button::after,
+.accordion-button:not(.collapsed)::after {
+  filter: grayscale(1) brightness(0);
+  opacity: 0.72;
+}

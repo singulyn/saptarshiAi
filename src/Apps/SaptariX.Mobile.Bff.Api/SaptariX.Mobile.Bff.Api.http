@@ -1,0 +1,6 @@
+@SaptariX.Mobile.Bff.Api_HostAddress = http://localhost:5104
+
+GET {{SaptariX.Mobile.Bff.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

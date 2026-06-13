@@ -1,0 +1,12 @@
+@mixin sx-card-shell {
+  background: var(--sx-surface);
+  border: 0;
+  border-radius: var(--sx-radius);
+  box-shadow: var(--sx-card-shadow);
+}
+
+@mixin sx-responsive-grid($min-width: 180px) {
+  display: grid;
+  gap: var(--sx-space-3);
+  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+}

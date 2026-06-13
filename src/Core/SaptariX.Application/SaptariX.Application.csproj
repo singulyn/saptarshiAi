@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\SaptariX.Domain\SaptariX.Domain.csproj" />
+    <ProjectReference Include="..\SaptariX.Shared\SaptariX.Shared.csproj" />
+    <ProjectReference Include="..\SaptariX.Plugin.Abstractions\SaptariX.Plugin.Abstractions.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

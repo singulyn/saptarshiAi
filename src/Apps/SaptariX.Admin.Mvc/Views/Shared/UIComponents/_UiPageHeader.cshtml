@@ -1,0 +1,14 @@
+@model SaptariX.Modules.UIKit.Contracts.UiComponentPageDto
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["ActiveMenu"] = Model.ActiveRoute;
+}
+
+<div class="section-header ui-page-header">
+    <div>
+        <p class="section-kicker">@Model.Kicker</p>
+        <h1>@Model.Title</h1>
+        <p class="section-summary">@Model.Summary</p>
+    </div>
+    <span class="permission-pill">@ViewData["Permission"]</span>
+</div>

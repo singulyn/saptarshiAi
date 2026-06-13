@@ -1,0 +1,31 @@
+@model UiComponentPageDto
+
+<section class="page-section ui-kit-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+
+    <div class="card ui-demo-card">
+        <div class="card-header"><h2 class="ui-card-title">Create/List Tab Pattern</h2></div>
+        <div class="card-body">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#uiListTab" type="button">User List</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#uiCreateTab" type="button" data-ui-update-tab>Create User</button></li>
+            </ul>
+            <div class="tab-content border border-top-0 p-3">
+                <div class="tab-pane fade show active" id="uiListTab"><partial name="UIComponents/_UiBasicTable" /><button class="btn btn-outline-primary btn-sm mt-3" data-ui-set-update-mode type="button">Switch to Update User mode</button></div>
+                <div class="tab-pane fade" id="uiCreateTab"><partial name="UIComponents/_UiFormInput" /><button class="btn btn-primary btn-sm" data-ui-update-button type="button">Create User</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion mt-3" id="uiAccordionDemo">
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#uiAcc1">Permission group</button></h2><div id="uiAcc1" class="accordion-collapse collapse show"><div class="accordion-body"><partial name="UIComponents/_UiCheckbox" /></div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#uiAcc2">Wizard step tabs</button></h2><div id="uiAcc2" class="accordion-collapse collapse"><div class="accordion-body">Step 1 -> Step 2 -> Review</div></div></div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        @foreach (var example in Model.Examples)
+        {
+            <div class="col-12 col-lg-4"><partial name="UIComponents/_UiCodePreview" model="example" /></div>
+        }
+    </div>
+</section>

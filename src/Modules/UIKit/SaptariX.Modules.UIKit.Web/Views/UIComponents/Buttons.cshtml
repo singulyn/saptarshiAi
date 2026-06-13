@@ -1,0 +1,56 @@
+@model UiComponentPageDto
+
+<section class="page-section ui-kit-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+
+    <div class="card ui-demo-card">
+        <div class="card-header"><h2 class="ui-card-title">Buttons</h2></div>
+        <div class="card-body ui-button-cloud">
+            <button class="btn btn-primary btn-sm">Primary</button>
+            <button class="btn btn-secondary btn-sm">Secondary</button>
+            <button class="btn btn-success btn-sm">Success</button>
+            <button class="btn btn-danger btn-sm">Danger</button>
+            <button class="btn btn-warning btn-sm">Warning</button>
+            <button class="btn btn-info btn-sm">Info</button>
+            <button class="btn btn-light btn-sm">Light</button>
+            <button class="btn btn-dark btn-sm">Dark</button>
+            <button class="btn btn-primary btn-sm" data-ui-loading-button><span class="spinner-border spinner-border-sm d-none" data-ui-loading-button-spinner></span> Loading button</button>
+            <button class="btn btn-primary btn-sm" disabled>Disabled</button>
+            <partial name="UIComponents/_UiActionButtons" />
+        </div>
+    </div>
+
+    <div class="card ui-demo-card mt-3">
+        <div class="card-header"><h2 class="ui-card-title">Badges</h2></div>
+        <div class="card-body ui-button-cloud">
+            <span class="badge text-bg-success">Active</span>
+            <span class="badge text-bg-secondary">Inactive</span>
+            <span class="badge text-bg-warning">Pending</span>
+            <span class="badge text-bg-light">Draft</span>
+            <span class="badge text-bg-danger">Deleted</span>
+            <span class="badge text-bg-success">Success</span>
+            <span class="badge text-bg-danger">Failed</span>
+            <span class="badge text-bg-primary">Premium</span>
+            <span class="badge text-bg-info">Organization Admin</span>
+        </div>
+    </div>
+
+    <div class="card ui-demo-card mt-3">
+        <div class="card-header ui-card-header">
+            <div>
+                <h2 class="ui-card-title">Advanced Button Patterns</h2>
+                <p class="ui-card-subtitle">Named reusable button groups. Every custom button keeps 4px radius and inherits the SaptariX font stack.</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <partial name="UIComponents/_UiAdvancedButtonGallery" />
+        </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        @foreach (var example in Model.Examples)
+        {
+            <div class="col-12 col-lg-4"><partial name="UIComponents/_UiCodePreview" model="example" /></div>
+        }
+    </div>
+</section>

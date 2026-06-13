@@ -1,0 +1,20 @@
+@model UiComponentPageDto
+
+<section class="page-section ui-kit-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+
+    <div class="row g-3">
+        <div class="col-12 col-lg-6"><div class="card ui-demo-card"><div class="card-header"><h2 class="ui-card-title">Spinner Set</h2></div><div class="card-body"><partial name="UIComponents/_UiSpinnerSet" /></div></div></div>
+        <div class="col-12 col-lg-6"><div class="card ui-demo-card position-relative"><div class="card-header"><h2 class="ui-card-title">Card Overlay Loader</h2></div><div class="card-body">Card content<div class="ui-card-overlay"><span class="spinner-border spinner-border-sm"></span></div></div></div></div>
+        <div class="col-12 col-lg-6"><div class="card ui-demo-card"><div class="card-header"><h2 class="ui-card-title">Table Loading Row</h2></div><div class="card-body p-0"><table class="table mb-0"><tbody><tr><td><span class="spinner-border spinner-border-sm"></span> Loading records...</td></tr></tbody></table></div></div></div>
+        <div class="col-12 col-lg-6"><div class="card ui-demo-card"><div class="card-header"><h2 class="ui-card-title">Skeleton Loader</h2></div><div class="card-body"><partial name="UIComponents/_UiSkeletonLoader" /></div></div></div>
+        <div class="col-12"><div class="ui-full-page-loader"><span class="spinner-border"></span><span>Full page loader example</span></div></div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        @foreach (var example in Model.Examples)
+        {
+            <div class="col-12 col-lg-4"><partial name="UIComponents/_UiCodePreview" model="example" /></div>
+        }
+    </div>
+</section>

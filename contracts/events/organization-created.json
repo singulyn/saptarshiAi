@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OrganizationCreated",
+  "type": "object",
+  "required": ["eventId", "occurredAtUtc", "organizationId", "name"],
+  "properties": {
+    "eventId": { "type": "string", "format": "uuid" },
+    "occurredAtUtc": { "type": "string", "format": "date-time" },
+    "organizationId": { "type": "string", "format": "uuid" },
+    "name": { "type": "string" }
+  }
+}

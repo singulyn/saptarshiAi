@@ -1,0 +1,25 @@
+@model UiComponentPageDto
+
+<section class="page-section ui-kit-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+    <partial name="UIComponents/_UiRightDrawer" />
+
+    <div class="row g-3">
+        <div class="col-12 col-md-6 col-xl-3"><button class="btn btn-primary btn-sm w-100" data-bs-toggle="offcanvas" data-bs-target="#uiDemoDrawer">Basic Right Drawer</button></div>
+        <div class="col-12 col-md-6 col-xl-3"><button class="btn btn-outline-primary btn-sm w-100" data-bs-toggle="offcanvas" data-bs-target="#uiDemoDrawer">Form Drawer</button></div>
+        <div class="col-12 col-md-6 col-xl-3"><button class="btn btn-outline-primary btn-sm w-100" data-bs-toggle="offcanvas" data-bs-target="#uiDemoDrawer">Permission Drawer</button></div>
+        <div class="col-12 col-md-6 col-xl-3"><button class="btn btn-outline-primary btn-sm w-100" data-bs-toggle="offcanvas" data-bs-target="#uiDemoDrawer">Filter Drawer</button></div>
+    </div>
+
+    <div class="card ui-demo-card mt-3">
+        <div class="card-header"><h2 class="ui-card-title">Details Drawer Pattern</h2></div>
+        <div class="card-body"><p class="text-secondary mb-0">Use the same sticky header, scrollable body, and sticky footer pattern for details drawers.</p></div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        @foreach (var example in Model.Examples)
+        {
+            <div class="col-12 col-lg-4"><partial name="UIComponents/_UiCodePreview" model="example" /></div>
+        }
+    </div>
+</section>

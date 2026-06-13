@@ -1,0 +1,62 @@
+@model SaptariX.Admin.Mvc.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["ActiveMenu"] = "/Dashboard";
+}
+
+<section class="page-section">
+    <div class="section-header">
+        <div>
+            <p class="section-kicker">@Model.Kicker</p>
+            <h1>SaptariX Platform</h1>
+            <p class="section-summary">@Model.Summary</p>
+        </div>
+        <span class="permission-pill">@Model.Permission</span>
+    </div>
+
+    <div class="row g-3 mb-3">
+        <div class="col-12 col-md-4">
+            <div class="metric-tile">
+                <span class="metric-label">Organizations</span>
+                <strong>@Model.OrganizationCount</strong>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="metric-tile">
+                <span class="metric-label">Enabled modules</span>
+                <strong>@Model.EnabledModuleCount</strong>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="metric-tile">
+                <span class="metric-label">Workflow activities</span>
+                <strong>@Model.WorkflowActivityCount</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-12 col-xl-6">
+            <div class="admin-panel">
+                <h2>Platform Status</h2>
+                <ul class="status-list">
+                    @foreach (var item in Model.Items)
+                    {
+                        <li>@item</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 col-xl-6">
+            <div class="admin-panel">
+                <h2>Registered Workflow Activities</h2>
+                <ul class="status-list">
+                    @foreach (var activity in Model.WorkflowActivities)
+                    {
+                        <li>@activity.DisplayName <span>@activity.ModuleName</span></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

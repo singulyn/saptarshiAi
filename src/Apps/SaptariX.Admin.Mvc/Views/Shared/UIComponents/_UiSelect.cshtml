@@ -1,0 +1,37 @@
+<div class="mb-3">
+    <label class="form-label" for="uiSelectControl">Select dropdown</label>
+    <div class="sx-select" data-sx-select>
+        <select id="uiSelect" class="visually-hidden" name="Status" data-sx-native-select tabindex="-1" aria-hidden="true">
+            <option value="Active" selected>Active</option>
+            <option value="Pending">Pending</option>
+            <option value="Inactive">Inactive</option>
+        </select>
+        <button id="uiSelectControl" class="sx-select-control" type="button" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="uiSelectList" data-sx-select-control>
+            <span class="sx-select-value" data-sx-select-value>Active</span>
+            <span class="sx-select-caret" aria-hidden="true"></span>
+        </button>
+        <div class="sx-select-menu" id="uiSelectList" role="listbox" tabindex="-1" data-sx-select-menu>
+            <button class="sx-select-option is-selected" type="button" role="option" aria-selected="true" data-sx-select-option data-value="Active">
+                <span class="sx-select-status sx-select-status-success" aria-hidden="true"></span>
+                <span>
+                    <strong>Active</strong>
+                    <small>Visible and available for users</small>
+                </span>
+            </button>
+            <button class="sx-select-option" type="button" role="option" aria-selected="false" data-sx-select-option data-value="Pending">
+                <span class="sx-select-status sx-select-status-warning" aria-hidden="true"></span>
+                <span>
+                    <strong>Pending</strong>
+                    <small>Waiting for review or activation</small>
+                </span>
+            </button>
+            <button class="sx-select-option" type="button" role="option" aria-selected="false" data-sx-select-option data-value="Inactive">
+                <span class="sx-select-status sx-select-status-muted" aria-hidden="true"></span>
+                <span>
+                    <strong>Inactive</strong>
+                    <small>Hidden from regular workflows</small>
+                </span>
+            </button>
+        </div>
+    </div>
+</div>

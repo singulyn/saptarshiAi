@@ -1,0 +1,19 @@
+@{
+    var title = ViewData["Title"]?.ToString() ?? "Dashboard";
+}
+
+<div class="app-content-header">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-6">
+                <h3 class="mb-0">@title</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end mb-0">
+                    <li class="breadcrumb-item"><a href="/Dashboard">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

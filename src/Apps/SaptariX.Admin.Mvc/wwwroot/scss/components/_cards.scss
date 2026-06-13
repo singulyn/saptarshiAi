@@ -1,0 +1,43 @@
+.sx-page {
+  display: grid;
+  gap: var(--sx-space-4);
+}
+
+.card,
+.sx-card,
+.sx-table-card {
+  background: var(--sx-surface);
+  border: 0;
+  border-radius: var(--sx-radius);
+  box-shadow: var(--sx-card-shadow);
+}
+
+.sx-card .card-body,
+.sx-table-card .card-body {
+  padding: var(--sx-card-padding);
+}
+
+.sx-card-compact .card-body,
+.sx-card-compact.card-body {
+  padding: var(--sx-card-padding-compact);
+}
+
+.sx-toolbar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sx-space-2);
+  justify-content: space-between;
+}
+
+.sx-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.sx-card-subtitle {
+  color: var(--sx-muted);
+  font-size: 0.86rem;
+  margin: var(--sx-space-1) 0 0;
+}

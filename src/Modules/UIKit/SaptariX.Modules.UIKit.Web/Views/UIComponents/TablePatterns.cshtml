@@ -1,0 +1,21 @@
+@model UiComponentPageDto
+
+<section class="page-section ui-kit-page sx-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+
+    <partial name="UIComponents/_UiEnterpriseTable" />
+
+    <div class="card sx-card">
+        <div class="card-body">
+            <h2 class="sx-card-title">Enterprise Table Rules</h2>
+            <p class="sx-card-subtitle">Use this table when users need fast search, status/type filtering, date filtering, pagination, and compact row actions in the same workflow.</p>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        @foreach (var example in Model.Examples)
+        {
+            <div class="col-12 col-lg-4"><partial name="UIComponents/_UiCodePreview" model="example" /></div>
+        }
+    </div>
+</section>

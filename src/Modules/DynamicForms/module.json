@@ -1,0 +1,12 @@
+{
+  "name": "DynamicForms",
+  "displayName": "Dynamic Forms",
+  "version": "1.0.0",
+  "enabled": true,
+  "dependsOn": ["Organization", "Identity", "AccessControl"],
+  "menuProvider": "DynamicFormsMenuProvider",
+  "permissionProvider": "DynamicFormsPermissionProvider",
+  "workflowActivities": [
+    "FormSubmittedActivity"
+  ]
+}

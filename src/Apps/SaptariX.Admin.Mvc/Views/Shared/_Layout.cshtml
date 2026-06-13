@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SaptariX Platform</title>
+    <partial name="_Styles" />
+    <script src="~/js/site.js" asp-append-version="true" defer></script>
+</head>
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+        <partial name="_Header" />
+        <partial name="_Sidebar" />
+        <main class="app-main">
+            <partial name="_Breadcrumb" />
+            <div class="app-content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </div>
+        </main>
+        <partial name="_Footer" />
+    </div>
+
+    <partial name="_Scripts" />
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,28 @@
+@model UiComponentPageDto
+
+<section class="page-section ui-kit-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+    <partial name="UIComponents/_UiConfirmModal" />
+
+    <div class="row g-3">
+        <div class="col-12 col-lg-4"><button class="btn btn-danger btn-sm w-100" type="button" data-bs-toggle="modal" data-bs-target="#uiDeleteConfirmModal">Delete confirmation modal</button></div>
+        <div class="col-12 col-lg-4"><button class="btn btn-primary btn-sm w-100" type="button" data-bs-toggle="modal" data-bs-target="#uiFormModal">Medium form modal</button></div>
+        <div class="col-12 col-lg-4"><button class="btn btn-success btn-sm w-100" type="button" data-bs-toggle="modal" data-bs-target="#uiSuccessModal">Success modal</button></div>
+    </div>
+
+    <div class="modal fade" id="uiFormModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content"><div class="modal-header"><h2 class="modal-title fs-6">Form Modal</h2><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><partial name="UIComponents/_UiFormInput" /><partial name="UIComponents/_UiSelect" /></div><div class="modal-footer"><button class="btn btn-primary btn-sm">Save</button></div></div>
+        </div>
+    </div>
+    <div class="modal fade" id="uiSuccessModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h2 class="modal-title fs-6">Saved</h2><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body">Record saved successfully.</div></div></div>
+    </div>
+
+    <div class="row g-3 mt-3">
+        @foreach (var example in Model.Examples)
+        {
+            <div class="col-12 col-lg-4"><partial name="UIComponents/_UiCodePreview" model="example" /></div>
+        }
+    </div>
+</section>

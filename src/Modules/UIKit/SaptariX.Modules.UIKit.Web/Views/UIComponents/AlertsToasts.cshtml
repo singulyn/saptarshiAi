@@ -1,0 +1,35 @@
+@model UiComponentPageDto
+
+<section class="page-section ui-kit-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+    <partial name="UIComponents/_UiToastHost" />
+
+    <div class="row g-3">
+        <div class="col-12 col-xl-6">
+            <div class="alert alert-success">Success alert</div>
+            <div class="alert alert-danger">Error alert</div>
+            <div class="alert alert-warning">Warning alert</div>
+            <div class="alert alert-info">Info alert</div>
+            <div class="alert alert-secondary alert-dismissible fade show">Dismissible alert<button class="btn-close" data-bs-dismiss="alert"></button></div>
+        </div>
+        <div class="col-12 col-xl-6">
+            <div class="card ui-demo-card">
+                <div class="card-header"><h2 class="ui-card-title">Toast Helper</h2></div>
+                <div class="card-body ui-button-cloud">
+                    <button class="btn btn-success btn-sm" data-ui-toast="success">Success toast</button>
+                    <button class="btn btn-danger btn-sm" data-ui-toast="error">Error toast</button>
+                    <button class="btn btn-warning btn-sm" data-ui-toast="warning">Warning toast</button>
+                    <button class="btn btn-info btn-sm" data-ui-toast="info">Info toast</button>
+                    <button class="btn btn-primary btn-sm" data-ui-toast="save">AJAX save success toast</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        @foreach (var example in Model.Examples)
+        {
+            <div class="col-12 col-lg-4"><partial name="UIComponents/_UiCodePreview" model="example" /></div>
+        }
+    </div>
+</section>

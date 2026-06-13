@@ -1,0 +1,255 @@
+<div class="card users-card users-form-card organizations-form-card">
+    <div class="card-header users-card-header">
+        <div>
+            <h2 class="users-card-title" data-organizations-form-heading>Create Organization</h2>
+            <p class="users-card-subtitle">Foundation profile, contacts, billing defaults, and branding placeholders.</p>
+        </div>
+    </div>
+    <div class="card-body">
+        <form id="organizationForm" class="users-form organizations-form" data-organizations-form novalidate>
+            <input type="hidden" name="Id" data-organizations-id />
+
+            <div class="organization-form-section">
+                <div class="organization-section-heading">
+                    <h3>Basic Details</h3>
+                    <span>Identity and lifecycle fields</span>
+                </div>
+                <div class="row g-3">
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <label class="form-label" for="OrganizationName">Organization Name</label>
+                        <input class="form-control form-control-sm" id="OrganizationName" name="Name" autocomplete="organization" required />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <label class="form-label" for="LegalName">Legal Name</label>
+                        <input class="form-control form-control-sm" id="LegalName" name="LegalName" autocomplete="organization" />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <label class="form-label" for="OrganizationCode">Organization Code</label>
+                        <input class="form-control form-control-sm" id="OrganizationCode" name="Code" required />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <label class="form-label" for="Slug">Slug</label>
+                        <input class="form-control form-control-sm" id="Slug" name="Slug" required />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <label class="form-label" for="OrganizationType">Organization Type</label>
+                        <select class="form-select form-select-sm" id="OrganizationType" name="OrganizationType" required>
+                            <option value="">Select type</option>
+                            <option>Platform</option>
+                            <option>Customer</option>
+                            <option>Partner</option>
+                            <option>Internal</option>
+                            <option>Vendor</option>
+                            <option>Demo</option>
+                            <option>Trial</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <label class="form-label" for="Industry">Industry</label>
+                        <select class="form-select form-select-sm" id="Industry" name="Industry">
+                            <option>Technology</option>
+                            <option>Healthcare</option>
+                            <option>Finance</option>
+                            <option>Education</option>
+                            <option>Retail</option>
+                            <option>Manufacturing</option>
+                            <option>Real Estate</option>
+                            <option>Logistics</option>
+                            <option>Government</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <label class="form-label" for="CompanySize">Company Size</label>
+                        <select class="form-select form-select-sm" id="CompanySize" name="CompanySize">
+                            <option>1-10</option>
+                            <option>11-50</option>
+                            <option>51-200</option>
+                            <option>201-500</option>
+                            <option>501-1000</option>
+                            <option>1000+</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <label class="form-label" for="Status">Status</label>
+                        <select class="form-select form-select-sm" id="Status" name="Status" required>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                            <option>Suspended</option>
+                            <option>Trial</option>
+                            <option>Archived</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="organization-form-section">
+                <div class="organization-section-heading">
+                    <h3>Contact Details</h3>
+                    <span>Email, phone, and web presence</span>
+                </div>
+                <div class="row g-3">
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="PrimaryEmail">Primary Email</label>
+                        <input class="form-control form-control-sm" id="PrimaryEmail" name="PrimaryEmail" type="email" autocomplete="email" required />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="SupportEmail">Support Email</label>
+                        <input class="form-control form-control-sm" id="SupportEmail" name="SupportEmail" type="email" autocomplete="email" />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="PhoneNumber">Phone Number</label>
+                        <input class="form-control form-control-sm" id="PhoneNumber" name="PhoneNumber" autocomplete="tel" />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="Website">Website</label>
+                        <input class="form-control form-control-sm" id="Website" name="Website" type="url" placeholder="https://example.com" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="organization-form-section">
+                <div class="organization-section-heading">
+                    <h3>Address Details</h3>
+                    <span>Registered or operating address</span>
+                </div>
+                <div class="row g-3">
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="Country">Country</label>
+                        <input class="form-control form-control-sm" id="Country" name="Country" value="India" />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="State">State</label>
+                        <input class="form-control form-control-sm" id="State" name="State" />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="City">City</label>
+                        <input class="form-control form-control-sm" id="City" name="City" />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="PostalCode">Postal Code</label>
+                        <input class="form-control form-control-sm" id="PostalCode" name="PostalCode" />
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <label class="form-label" for="AddressLine1">Address Line 1</label>
+                        <input class="form-control form-control-sm" id="AddressLine1" name="AddressLine1" />
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <label class="form-label" for="AddressLine2">Address Line 2</label>
+                        <input class="form-control form-control-sm" id="AddressLine2" name="AddressLine2" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="organization-form-section">
+                <div class="organization-section-heading">
+                    <h3>Business Details</h3>
+                    <span>Tax, billing, locale, and commercial defaults</span>
+                </div>
+                <div class="row g-3">
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="GstNumber">GST Number</label>
+                        <input class="form-control form-control-sm" id="GstNumber" name="GstNumber" />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="CinNumber">CIN / Registration Number</label>
+                        <input class="form-control form-control-sm" id="CinNumber" name="CinNumber" />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="TaxId">PAN / Tax ID</label>
+                        <input class="form-control form-control-sm" id="TaxId" name="TaxId" />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="BillingEmail">Billing Email</label>
+                        <input class="form-control form-control-sm" id="BillingEmail" name="BillingEmail" type="email" />
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="Currency">Currency</label>
+                        <select class="form-select form-select-sm" id="Currency" name="Currency">
+                            <option selected>INR</option>
+                            <option>USD</option>
+                            <option>EUR</option>
+                            <option>GBP</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <label class="form-label" for="Timezone">Timezone</label>
+                        <select class="form-select form-select-sm" id="Timezone" name="Timezone">
+                            <option selected>Asia/Kolkata</option>
+                            <option>UTC</option>
+                            <option>America/New_York</option>
+                            <option>Europe/London</option>
+                            <option>Asia/Singapore</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="organization-form-section">
+                <div class="organization-section-heading">
+                    <h3>Branding</h3>
+                    <span>Visual placeholders for future upload and theme settings</span>
+                </div>
+                <div class="row g-3">
+                    <div class="col-12 col-lg-4">
+                        <label class="form-label" for="LogoPlaceholder">Logo Upload</label>
+                        <div class="ui-image-placeholder organization-image-placeholder">
+                            Logo upload placeholder
+                        </div>
+                        <input class="form-control form-control-sm mt-2" id="LogoPlaceholder" name="LogoUrl" placeholder="Logo URL placeholder" />
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <label class="form-label" for="BrandColor">Brand Color</label>
+                        <input class="form-control form-control-sm" id="BrandColor" name="BrandColor" placeholder="#000d0f" />
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <label class="form-label" for="ThemePreference">Theme Preference</label>
+                        <select class="form-select form-select-sm" id="ThemePreference" name="ThemePreference">
+                            <option>System</option>
+                            <option>Light</option>
+                            <option>Dark</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="organization-form-section">
+                <div class="organization-section-heading">
+                    <h3>Subscription / Plan Placeholder</h3>
+                    <span>Plan preview fields for the billing module</span>
+                </div>
+                <div class="row g-3">
+                    <div class="col-12 col-md-4">
+                        <label class="form-label" for="CurrentPlan">Current Plan</label>
+                        <select class="form-select form-select-sm" id="CurrentPlan" name="CurrentPlan">
+                            <option>Free</option>
+                            <option>Starter</option>
+                            <option>Professional</option>
+                            <option selected>Enterprise</option>
+                            <option>Custom</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label class="form-label" for="BillingStatus">Billing Status</label>
+                        <select class="form-select form-select-sm" id="BillingStatus" name="BillingStatus">
+                            <option selected>Active</option>
+                            <option>Trial</option>
+                            <option>Past Due</option>
+                            <option>Paused</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label class="form-label" for="TrialEndsOn">Trial Ends On</label>
+                        <input class="form-control form-control-sm" id="TrialEndsOn" name="TrialEndsOn" type="date" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="users-form-actions organizations-form-actions">
+                <button type="submit" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" data-organizations-submit>Create Organization</button>
+                <button type="reset" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-orange" data-organizations-reset>Reset</button>
+                <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-cobalt d-none" data-organizations-cancel-edit>Cancel Edit</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+@using SaptariX.Admin.Mvc.ViewModels.Users
+@model UserListViewModel
+@{
+    var totalPages = Math.Max(1, Model.TotalPages);
+    var previousDisabled = Model.PageNumber <= 1 ? "disabled" : string.Empty;
+    var nextDisabled = Model.PageNumber >= totalPages ? "disabled" : string.Empty;
+}
+
+@if (!Model.HasItems)
+{
+    <div class="users-empty-state">
+        <strong>No users found</strong>
+        <span>Adjust the search or create a new user.</span>
+    </div>
+}
+else
+{
+    <div class="table-responsive users-table-wrapper">
+        <table class="table table-hover align-middle users-table mb-0">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <button type="button" class="users-sort-button" data-users-sort="FullName">Full Name</button>
+                    </th>
+                    <th scope="col">
+                        <button type="button" class="users-sort-button" data-users-sort="Email">Email</button>
+                    </th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">
+                        <button type="button" class="users-sort-button" data-users-sort="Role">Role</button>
+                    </th>
+                    <th scope="col">
+                        <button type="button" class="users-sort-button" data-users-sort="Status">Status</button>
+                    </th>
+                    <th scope="col">
+                        <button type="button" class="users-sort-button" data-users-sort="CreatedDate">Created Date</button>
+                    </th>
+                    <th scope="col">
+                        <button type="button" class="users-sort-button" data-users-sort="LastLogin">Last Login</button>
+                    </th>
+                    <th scope="col" class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.Items)
+                {
+                    <tr>
+                        <td>
+                            <div class="users-person">
+                                <span class="users-avatar" aria-hidden="true">@user.FullName.Substring(0, 1).ToUpperInvariant()</span>
+                                <div>
+                                    <strong>@user.FullName</strong>
+                                    <span>@user.Email</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="users-nowrap">@user.Email</td>
+                        <td class="users-nowrap">@user.Mobile</td>
+                        <td><span class="badge text-bg-light users-role-badge">@user.Role</span></td>
+                        <td><span class="badge @user.StatusBadgeClass">@user.Status</span></td>
+                        <td class="users-nowrap">@user.CreatedDate</td>
+                        <td class="users-nowrap">@user.LastLogin</td>
+                        <td>
+                            <div class="users-actions">
+                                <button type="button" class="btn btn-light btn-sm users-icon-button" data-users-action="edit" data-user-id="@user.Id" aria-label="Edit @user.FullName">
+                                    <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-light btn-sm users-icon-button" data-users-action="permissions" data-user-id="@user.Id" aria-label="Permissions for @user.FullName">
+                                    <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-light btn-sm users-icon-button text-danger" data-users-action="delete" data-user-id="@user.Id" aria-label="Delete @user.FullName">
+                                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<div class="users-table-footer">
+    <span>@Model.TotalCount user@(Model.TotalCount == 1 ? string.Empty : "s")</span>
+    <div class="users-pagination">
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-users-page="@(Model.PageNumber - 1)" @previousDisabled>Previous</button>
+        <span>Page @Model.PageNumber of @totalPages</span>
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-users-page="@(Model.PageNumber + 1)" @nextDisabled>Next</button>
+    </div>
+</div>

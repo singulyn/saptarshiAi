@@ -1,0 +1,64 @@
+@model UiComponentPageDto
+@{
+    var enterpriseExample = Model.Examples.First(example => example.Title == "Enterprise top toolbar");
+    var basicExample = Model.Examples.First(example => example.Title == "Basic table");
+    var advancedExample = Model.Examples.First(example => example.Title == "Advanced table");
+    var actionExample = Model.Examples.First(example => example.Title == "Action table");
+    var emptyExample = Model.Examples.First(example => example.Title == "Empty and loading states");
+}
+
+<section class="page-section ui-kit-page" data-ui-kit>
+    <partial name="UIComponents/_UiPageHeader" model="Model" />
+
+    <div class="ui-table-demo-stack mb-3">
+        <partial name="UIComponents/_UiEnterpriseTable" />
+        <partial name="UIComponents/_UiCodePreview" model="enterpriseExample" />
+    </div>
+
+    <div class="row g-3">
+        <div class="col-12 col-xl-6">
+            <div class="ui-table-demo-stack">
+                <div class="card ui-demo-card ui-table-demo-card">
+                    <div class="card-header ui-card-header"><h2 class="ui-card-title">Basic Table</h2></div>
+                    <div class="card-body p-0"><partial name="UIComponents/_UiBasicTable" /></div>
+                    <div class="ui-table-footer">
+                        <span>Showing 1-3 of 12 records</span>
+                        <partial name="UIComponents/_UiPagination" />
+                    </div>
+                </div>
+                <partial name="UIComponents/_UiCodePreview" model="basicExample" />
+            </div>
+        </div>
+        <div class="col-12 col-xl-6">
+            <div class="ui-table-demo-stack">
+                <partial name="UIComponents/_UiAdvancedTable" />
+                <partial name="UIComponents/_UiCodePreview" model="advancedExample" />
+            </div>
+        </div>
+        <div class="col-12 col-xl-6">
+            <div class="ui-table-demo-stack">
+                <div class="card ui-demo-card ui-table-demo-card">
+                    <div class="card-header ui-card-header"><h2 class="ui-card-title">Action Table</h2></div>
+                    <div class="card-body p-0"><partial name="UIComponents/_UiActionTable" /></div>
+                    <div class="ui-table-footer">
+                        <span>Showing 1-3 of 9 records</span>
+                        <partial name="UIComponents/_UiPagination" />
+                    </div>
+                </div>
+                <partial name="UIComponents/_UiCodePreview" model="actionExample" />
+            </div>
+        </div>
+        <div class="col-12 col-xl-6">
+            <div class="ui-table-demo-stack">
+                <div class="card ui-demo-card ui-table-demo-card">
+                    <div class="card-header ui-card-header"><h2 class="ui-card-title">Empty and Loading States</h2></div>
+                    <div class="card-body">
+                        <div class="ui-table-loading mb-3"><span class="spinner-border spinner-border-sm"></span> Loading state</div>
+                        <partial name="UIComponents/_UiEmptyState" />
+                    </div>
+                </div>
+                <partial name="UIComponents/_UiCodePreview" model="emptyExample" />
+            </div>
+        </div>
+    </div>
+</section>

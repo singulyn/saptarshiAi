@@ -1,0 +1,26 @@
+@{
+    var filterId = "uiFilter" + Guid.NewGuid().ToString("N");
+}
+
+<div class="sx-table-filter-row sx-form-compact" data-ui-filter-toolbar>
+    <div class="input-group input-group-sm sx-table-filter-search">
+        <span class="input-group-text">Search</span>
+        <input class="form-control form-control-sm" id="@(filterId)Search" type="search" placeholder="Name, email, or code" />
+    </div>
+    <select class="form-select form-select-sm sx-table-filter-select" id="@(filterId)Status">
+        <option>All statuses</option>
+        <option>Active</option>
+        <option>Inactive</option>
+        <option>Pending</option>
+    </select>
+    <select class="form-select form-select-sm sx-table-filter-select" id="@(filterId)Type">
+        <option>All types</option>
+        <option>System</option>
+        <option>Organization</option>
+        <option>Custom</option>
+    </select>
+    <div class="sx-table-filter-actions">
+        <button class="btn btn-primary btn-sm" type="button" data-ui-apply-filters>Apply</button>
+        <button class="btn btn-outline-secondary btn-sm" type="button" data-ui-reset-filters>Reset</button>
+    </div>
+</div>

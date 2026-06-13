@@ -1,0 +1,77 @@
+<div class="card sx-table-card ui-demo-card">
+    <div class="card-header sx-toolbar">
+        <div>
+            <h2 class="sx-card-title">Enterprise Table With Top Toolbar</h2>
+            <p class="sx-card-subtitle">Use for Users, Roles, Organizations, Forms, Reports, and permission-heavy admin lists.</p>
+        </div>
+        <div class="sx-toolbar-actions">
+            <button class="btn btn-outline-secondary btn-sm" type="button">Export</button>
+            <button class="btn btn-primary btn-sm" type="button">Create User</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <partial name="UIComponents/_UiFilterToolbar" />
+    </div>
+    <div class="sx-table-loading d-none" data-ui-table-loading>
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span>Loading records</span>
+    </div>
+    <div class="sx-table-wrapper">
+        <table class="table table-hover align-middle sx-table mb-0">
+            <thead>
+                <tr>
+                    <th><button class="sx-sort-header" type="button">Name</button></th>
+                    <th><button class="sx-sort-header" type="button">Email / Code</button></th>
+                    <th><button class="sx-sort-header" type="button">Type</button></th>
+                    <th><button class="sx-sort-header" type="button">Status</button></th>
+                    <th><button class="sx-sort-header" type="button">Created Date</button></th>
+                    <th class="sx-action-cell">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Aarav Sharma</strong></td>
+                    <td>aarav@saptarix.local</td>
+                    <td>Organization Admin</td>
+                    <td><span class="badge text-bg-success">Active</span></td>
+                    <td class="sx-nowrap">12 Jun 2026</td>
+                    <td class="sx-action-cell">
+                        <div class="sx-action-buttons">
+                            <button class="btn btn-light btn-sm fa-icon-btn" type="button" aria-label="View"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                            <button class="btn btn-light btn-sm fa-icon-btn" type="button" aria-label="Edit"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
+                            <button class="btn btn-light btn-sm fa-icon-btn" type="button" aria-label="Permissions"><i class="fa-solid fa-user-shield" aria-hidden="true"></i></button>
+                            <button class="btn btn-light btn-sm fa-icon-btn text-danger" type="button" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Billing API</strong></td>
+                    <td>BILLING_API</td>
+                    <td>System</td>
+                    <td><span class="badge text-bg-warning">Pending</span></td>
+                    <td class="sx-nowrap">10 Jun 2026</td>
+                    <td class="sx-action-cell">
+                        <div class="sx-action-buttons">
+                            <button class="btn btn-light btn-sm fa-icon-btn" type="button" aria-label="View"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                            <button class="btn btn-light btn-sm fa-icon-btn" type="button" aria-label="Edit"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
+                            <button class="btn btn-light btn-sm fa-icon-btn" type="button" aria-label="Settings"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>
+                            <button class="btn btn-light btn-sm fa-icon-btn text-danger" type="button" aria-label="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="d-none" data-ui-table-empty-row>
+                    <td colspan="6">
+                        <div class="sx-empty-state">
+                            <strong>No records found</strong>
+                            <span>Adjust filters or create a new record.</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="sx-table-footer">
+        <span>Showing 1-2 of 24 records</span>
+        <partial name="UIComponents/_UiPagination" />
+    </div>
+</div>

@@ -1,0 +1,56 @@
+@using SaptariX.Platform.AccessControl.Permissions
+@model SaptariX.Admin.Mvc.Models.AdminPageViewModel
+@{
+    ViewData["Title"] = "Organizations";
+    ViewData["ActiveMenu"] = "/Organizations";
+}
+
+<section class="page-section users-page organizations-page"
+         data-organizations-root>
+    @Html.AntiForgeryToken()
+
+    <div class="section-header">
+        <div>
+            <p class="section-kicker">Platform</p>
+            <h1>Organizations</h1>
+            <p class="section-summary">Customer, company, workspace, and account foundation for apps, modules, domains, billing, users, and settings.</p>
+        </div>
+        <span class="permission-pill">@PlatformPermissions.OrganizationsView</span>
+    </div>
+
+    <div class="users-alert-host" data-organizations-alert></div>
+
+    <ul class="nav nav-tabs users-tabs" id="organizationsTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="organizations-list-tab" data-bs-toggle="tab" data-bs-target="#organizations-list-pane" type="button" role="tab" aria-controls="organizations-list-pane" aria-selected="true">
+                Organization List
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="organizations-form-tab" data-bs-toggle="tab" data-bs-target="#organizations-form-pane" type="button" role="tab" aria-controls="organizations-form-pane" aria-selected="false">
+                Create Organization
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content users-tab-content" id="organizationsTabsContent">
+        <div class="tab-pane fade show active" id="organizations-list-pane" role="tabpanel" aria-labelledby="organizations-list-tab" tabindex="0">
+            <partial name="_OrganizationList" />
+        </div>
+
+        <div class="tab-pane fade" id="organizations-form-pane" role="tabpanel" aria-labelledby="organizations-form-tab" tabindex="0">
+            <partial name="_OrganizationForm" />
+        </div>
+    </div>
+
+    <partial name="_OrganizationAppsProductsDrawer" />
+    <partial name="_OrganizationModulesDrawer" />
+    <partial name="_OrganizationDomainsDrawer" />
+    <partial name="_OrganizationSettingsDrawer" />
+    <partial name="_OrganizationDeleteModal" />
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/modules/organizations.js" asp-append-version="true"></script>
+}

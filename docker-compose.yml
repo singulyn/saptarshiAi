@@ -1,0 +1,38 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: saptarix-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      SA_PASSWORD: "${SAPTARIX_SQL_PASSWORD:-Change_me_12345!}"
+    ports:
+      - "14333:1433"
+    volumes:
+      - saptarix_sqlserver:/var/opt/mssql
+
+  redis:
+    image: redis:7-alpine
+    container_name: saptarix-redis
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - saptarix_redis:/data
+
+  # admin-mvc:
+  #   build:
+  #     context: .
+  #     dockerfile: deploy/docker/admin-mvc.Dockerfile
+  #   depends_on:
+  #     - sqlserver
+  #     - redis
+  #
+  # Future external services:
+  # - services/python/ai-service-fastapi
+  # - services/node/realtime-service-node
+  # - services/java/enterprise-adapter-java
+
+volumes:
+  saptarix_sqlserver:
+  saptarix_redis:

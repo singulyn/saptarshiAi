@@ -1,0 +1,126 @@
+<div class="card sx-table-card ui-demo-card" data-ui-inline-create-table data-ui-inline-entity-name="Role Category">
+    <div class="card-header">
+        <h2 class="sx-card-title">Inline Create + Entity Table</h2>
+        <p class="sx-card-subtitle">Use this pattern for small master data with two to five simple fields.</p>
+    </div>
+    <div class="card-body sx-page">
+        <form class="sx-inline-create sx-form-compact" data-ui-inline-create-form>
+            <div class="sx-toolbar mb-2">
+                <div>
+                    <h3 class="sx-card-title" data-ui-inline-form-title>Create Role Category</h3>
+                    <p class="sx-card-subtitle">Create mode and edit mode share the same compact section.</p>
+                </div>
+                <button class="btn btn-outline-secondary btn-sm d-none" type="button" data-ui-inline-cancel>Cancel Edit</button>
+            </div>
+            <div class="sx-inline-create-fields">
+                <div>
+                    <label class="form-label" for="inlineRoleCategoryName">Name</label>
+                    <input class="form-control form-control-sm" id="inlineRoleCategoryName" name="Name" value="Business Role" required data-ui-inline-field="name" />
+                </div>
+                <div>
+                    <label class="form-label" for="inlineRoleCategoryCode">Code</label>
+                    <input class="form-control form-control-sm" id="inlineRoleCategoryCode" name="Code" value="BUSINESS_ROLE" required data-ui-inline-field="code" />
+                </div>
+                <div>
+                    <label class="form-label" for="inlineRoleCategoryStatus">Status</label>
+                    <select class="form-select form-select-sm" id="inlineRoleCategoryStatus" name="Status" data-ui-inline-field="status">
+                        <option>Active</option>
+                        <option>Inactive</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label" for="inlineRoleCategorySortOrder">Sort Order</label>
+                    <input class="form-control form-control-sm" id="inlineRoleCategorySortOrder" name="SortOrder" type="number" min="1" value="10" data-ui-inline-field="sortOrder" />
+                </div>
+                <div class="d-flex align-items-end gap-2">
+                    <button class="btn btn-primary btn-sm" type="submit" data-ui-inline-submit>Create</button>
+                    <button class="btn btn-outline-secondary btn-sm" type="reset">Reset</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="sx-filter-bar sx-form-compact">
+            <div class="sx-filter-item">
+                <label class="form-label" for="inlineTableSearch">Search</label>
+                <input class="form-control form-control-sm" id="inlineTableSearch" type="search" placeholder="Search role categories" />
+            </div>
+            <div class="sx-filter-item">
+                <label class="form-label" for="inlineTableStatus">Status</label>
+                <select class="form-select form-select-sm" id="inlineTableStatus">
+                    <option>All statuses</option>
+                    <option>Active</option>
+                    <option>Inactive</option>
+                    <option>Deleted</option>
+                </select>
+            </div>
+            <div class="sx-filter-actions">
+                <button class="btn btn-outline-secondary btn-sm" type="button">Reset</button>
+                <button class="btn btn-primary btn-sm" type="button">Apply</button>
+            </div>
+        </div>
+    </div>
+    <div class="sx-table-wrapper">
+        <table class="table table-hover align-middle sx-table mb-0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Status</th>
+                    <th>Sort Order</th>
+                    <th>Created Date</th>
+                    <th class="sx-action-cell">Actions</th>
+                </tr>
+            </thead>
+            <tbody data-ui-inline-table-body>
+                <tr data-ui-inline-row data-entity-id="role-category-1" data-name="Business Role" data-code="BUSINESS_ROLE" data-status="Active" data-sort-order="10">
+                    <td data-ui-inline-cell="name">Business Role</td>
+                    <td data-ui-inline-cell="code">BUSINESS_ROLE</td>
+                    <td data-ui-inline-cell="status"><span class="badge text-bg-success">Active</span></td>
+                    <td data-ui-inline-cell="sortOrder">10</td>
+                    <td class="sx-nowrap" data-ui-inline-cell="createdDate">12 Jun 2026</td>
+                    <td class="sx-action-cell">
+                        <div class="sx-action-buttons">
+                            <button class="btn btn-light btn-sm fa-icon-btn" type="button" aria-label="Edit inline" data-ui-inline-edit><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
+                            <button class="btn btn-light btn-sm fa-icon-btn" type="button" aria-label="Toggle status" data-ui-inline-toggle><i class="fa-solid fa-rotate" aria-hidden="true"></i></button>
+                            <button class="btn btn-light btn-sm fa-icon-btn text-danger" type="button" aria-label="Soft delete" data-bs-toggle="modal" data-bs-target="#uiInlineSoftDeleteModal" data-ui-inline-delete><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                        </div>
+                    </td>
+                </tr>
+                <tr data-ui-inline-row data-entity-id="role-category-2" data-name="Support Role" data-code="SUPPORT_ROLE" data-status="Inactive" data-sort-order="20">
+                    <td data-ui-inline-cell="name">Support Role</td>
+                    <td data-ui-inline-cell="code">SUPPORT_ROLE</td>
+                    <td data-ui-inline-cell="status"><span class="badge text-bg-secondary">Inactive</span></td>
+                    <td data-ui-inline-cell="sortOrder">20</td>
+                    <td class="sx-nowrap" data-ui-inline-cell="createdDate">11 Jun 2026</td>
+                    <td class="sx-action-cell">
+                        <div class="sx-action-buttons">
+                            <button class="btn btn-light btn-sm fa-icon-btn" type="button" aria-label="Edit inline" data-ui-inline-edit><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
+                            <button class="btn btn-light btn-sm fa-icon-btn" type="button" aria-label="Toggle status" data-ui-inline-toggle><i class="fa-solid fa-rotate" aria-hidden="true"></i></button>
+                            <button class="btn btn-light btn-sm fa-icon-btn text-danger" type="button" aria-label="Soft delete" data-bs-toggle="modal" data-bs-target="#uiInlineSoftDeleteModal" data-ui-inline-delete><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="sx-table-footer">
+        <span data-ui-inline-record-count>2 records</span>
+        <span>Soft delete marks rows as deleted and keeps audit history.</span>
+    </div>
+</div>
+
+<div class="modal fade sx-modal-compact" id="uiInlineSoftDeleteModal" tabindex="-1" aria-labelledby="uiInlineSoftDeleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-6" id="uiInlineSoftDeleteModalTitle">Soft Delete Role Category</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">This demo marks the selected row as deleted without removing it from the table.</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger btn-sm" data-ui-inline-confirm-delete>Soft Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

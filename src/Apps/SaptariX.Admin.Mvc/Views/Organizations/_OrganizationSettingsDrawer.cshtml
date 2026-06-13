@@ -1,0 +1,109 @@
+<div class="offcanvas offcanvas-end ui-drawer organization-drawer organization-drawer-wide"
+     tabindex="-1"
+     id="organizationSettingsDrawer"
+     aria-labelledby="organizationSettingsDrawerTitle"
+     data-organization-drawer="settings">
+    <div class="offcanvas-header ui-drawer-header">
+        <div>
+            <p class="section-kicker mb-1">Organization</p>
+            <h2 class="offcanvas-title" id="organizationSettingsDrawerTitle">Organization Settings</h2>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body ui-drawer-body">
+        <div class="ui-user-summary organization-drawer-summary">
+            <span class="users-avatar users-avatar-lg" data-organization-drawer-avatar>S</span>
+            <div>
+                <strong data-organization-drawer-name>Select organization</strong>
+                <span data-organization-drawer-meta>Key-value configuration preview</span>
+            </div>
+        </div>
+
+        <div class="accordion" id="organizationSettingsAccordion">
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#organizationGeneralSettings" aria-expanded="true" aria-controls="organizationGeneralSettings">
+                        General Settings
+                    </button>
+                </h3>
+                <div id="organizationGeneralSettings" class="accordion-collapse collapse show" data-bs-parent="#organizationSettingsAccordion">
+                    <div class="accordion-body organization-setting-grid">
+                        <input class="form-control form-control-sm" value="default.language" aria-label="Setting key" />
+                        <input class="form-control form-control-sm" value="en-IN" aria-label="Setting value" />
+                        <select class="form-select form-select-sm" aria-label="Data type"><option>String</option><option>Number</option><option>Boolean</option><option>Json</option><option>Secret</option></select>
+                        <label class="form-check"><input class="form-check-input" type="checkbox" /> <span class="form-check-label">Secret</span></label>
+                        <label class="form-check"><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">Active</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#organizationSecuritySettings" aria-expanded="false" aria-controls="organizationSecuritySettings">
+                        Security Settings
+                    </button>
+                </h3>
+                <div id="organizationSecuritySettings" class="accordion-collapse collapse" data-bs-parent="#organizationSettingsAccordion">
+                    <div class="accordion-body organization-setting-grid">
+                        <input class="form-control form-control-sm" value="security.mfa.required" aria-label="Setting key" />
+                        <select class="form-select form-select-sm" aria-label="Setting value"><option>true</option><option>false</option></select>
+                        <select class="form-select form-select-sm" aria-label="Data type"><option>Boolean</option><option>String</option><option>Json</option></select>
+                        <label class="form-check"><input class="form-check-input" type="checkbox" /> <span class="form-check-label">Secret</span></label>
+                        <label class="form-check"><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">Active</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#organizationBrandingSettings" aria-expanded="false" aria-controls="organizationBrandingSettings">
+                        Branding Settings
+                    </button>
+                </h3>
+                <div id="organizationBrandingSettings" class="accordion-collapse collapse" data-bs-parent="#organizationSettingsAccordion">
+                    <div class="accordion-body organization-setting-grid">
+                        <input class="form-control form-control-sm" value="branding.primaryColor" aria-label="Setting key" />
+                        <input class="form-control form-control-sm" value="#000d0f" aria-label="Setting value" />
+                        <select class="form-select form-select-sm" aria-label="Data type"><option>String</option><option>Json</option></select>
+                        <label class="form-check"><input class="form-check-input" type="checkbox" /> <span class="form-check-label">Secret</span></label>
+                        <label class="form-check"><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">Active</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#organizationNotificationSettings" aria-expanded="false" aria-controls="organizationNotificationSettings">
+                        Notification Settings
+                    </button>
+                </h3>
+                <div id="organizationNotificationSettings" class="accordion-collapse collapse" data-bs-parent="#organizationSettingsAccordion">
+                    <div class="accordion-body organization-setting-grid">
+                        <input class="form-control form-control-sm" value="notifications.email.enabled" aria-label="Setting key" />
+                        <select class="form-select form-select-sm" aria-label="Setting value"><option>true</option><option>false</option></select>
+                        <select class="form-select form-select-sm" aria-label="Data type"><option>Boolean</option><option>String</option></select>
+                        <label class="form-check"><input class="form-check-input" type="checkbox" /> <span class="form-check-label">Secret</span></label>
+                        <label class="form-check"><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">Active</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#organizationFeatureSettings" aria-expanded="false" aria-controls="organizationFeatureSettings">
+                        Feature Flags
+                    </button>
+                </h3>
+                <div id="organizationFeatureSettings" class="accordion-collapse collapse" data-bs-parent="#organizationSettingsAccordion">
+                    <div class="accordion-body organization-setting-grid">
+                        <input class="form-control form-control-sm" value="features.aiAssistant" aria-label="Setting key" />
+                        <select class="form-select form-select-sm" aria-label="Setting value"><option>false</option><option>true</option></select>
+                        <select class="form-select form-select-sm" aria-label="Data type"><option>Boolean</option><option>String</option><option>Json</option></select>
+                        <label class="form-check"><input class="form-check-input" type="checkbox" /> <span class="form-check-label">Secret</span></label>
+                        <label class="form-check"><input class="form-check-input" type="checkbox" checked /> <span class="form-check-label">Active</span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-drawer-footer">
+        <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" data-organization-drawer-save>Save Settings</button>
+        <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-orange" data-bs-dismiss="offcanvas">Cancel</button>
+    </div>
+</div>
