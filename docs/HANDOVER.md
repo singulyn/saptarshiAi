@@ -39,6 +39,19 @@ Run SQL scripts under `database/sqlserver` in numeric order before using stored-
 
 This machine only had the ASP.NET Core 10 shared runtime available during verification, so the local dev server was started with `DOTNET_ROLL_FORWARD=Major` while keeping project targets at `net8.0`.
 
+## Coolify / GCP Deployment
+
+The root `docker-compose.yml` now defines a Coolify-ready stack with `admin-mvc`, `sqlserver`, and `redis`.
+
+- `admin-mvc` builds from `deploy/docker/admin-mvc.Dockerfile` and listens on container port `8080`.
+- SQL Server and Redis are private Compose services with no host port mappings.
+- `saptarix_app_data` persists ASP.NET Core DataProtection keys.
+- `saptarix_sqlserver` and `saptarix_redis` persist infrastructure state.
+- `SAPTARIX_SQL_PASSWORD` is required in Coolify before deployment.
+- Assign the Coolify domain to `admin-mvc` using internal port `8080`.
+
+See `docs/deployment-coolify-gcp.md` for the deployment checklist.
+
 ## AdminLTE Integration
 
 AdminLTE v4 was fetched from the official ColorlibHQ/AdminLTE repository into `.tmp/AdminLTE`. Only compiled runtime assets were copied to `src/Apps/SaptariX.Admin.Mvc/wwwroot/vendor/adminlte`. Demo pages, source files, and dependencies are not part of the final source.

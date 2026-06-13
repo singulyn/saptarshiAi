@@ -66,6 +66,8 @@ Current date: 2026-06-13
 - Implemented the UI-only Organization module shell at `/Organizations` with Organization List and Create/Update tabs, enterprise table filters, Advanced Buttons 5 action styling, right drawers for apps/products, modules, domains, and settings, and a soft-delete confirmation modal.
 - Updated Organization permission constants to use `Organizations.*` names and changed sidebar/menu icons to Font Awesome Free classes.
 - Installed Font Awesome Free runtime assets under `wwwroot/vendor/fontawesome-free`, loaded solid and regular styles globally, removed the custom SaptariX icon sprite assets, and restored `UI Components -> Icon Library` as a lightweight Font Awesome reference page.
+- Added a Coolify/GCP-ready Docker Compose deployment with an Admin MVC Dockerfile, private SQL Server/Redis services, persistent volumes, required SQL password configuration, reverse-proxy forwarded header support, and `/health` endpoint.
+- Fixed Admin MVC publish output for container builds by preventing the DynamicForms Web module `appsettings*.json` files from colliding with the Admin app settings during publish.
 
 ## In Progress
 
@@ -117,6 +119,7 @@ Current date: 2026-06-13
 - Verified after removing the generated custom Icon Library implementation that `dotnet build SaptariX.Platform.sln --no-restore` succeeds with 0 warnings and 0 errors.
 - Verified after the Organization UI-only shell that `dotnet build SaptariX.Platform.sln --no-restore` succeeds with 0 warnings and 0 errors.
 - Verified after the Font Awesome icon migration that `dotnet build SaptariX.Platform.sln --no-restore` succeeds with 0 warnings and 0 errors.
+- Verified after the Coolify compose update that `docker-compose config --quiet` renders successfully when `SAPTARIX_SQL_PASSWORD` is set, `dotnet publish src/Apps/SaptariX.Admin.Mvc/SaptariX.Admin.Mvc.csproj -c Release -o .tmp/publish-admin-mvc-check --no-restore` succeeds, and `dotnet build SaptariX.Platform.sln --no-restore` succeeds with 0 warnings and 0 errors.
 - The local machine has ASP.NET Core 10 installed but not the ASP.NET Core 8 shared runtime, so local startup uses `DOTNET_ROLL_FORWARD=Major` while projects remain targeted to `net8.0`.
 - A sandboxed package-list command attempted network restore and failed under restricted network rules; package references were verified directly from project files and the solution build succeeds.
 

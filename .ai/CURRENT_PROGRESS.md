@@ -32,6 +32,8 @@ Created in this run:
 - Admin shell now keeps header and footer fixed while only the main content container scrolls.
 - Removed the experimental generated UI Kit Icon Library and its generated registry/sprite assets.
 - Added Font Awesome Free runtime assets and restored UI Components -> Icon Library as a lightweight Font Awesome usage reference.
+- Added Coolify/GCP Docker Compose deployment support for Admin MVC, SQL Server, and Redis.
+- Fixed Admin MVC container publish by excluding DynamicForms module appsettings files from publish output.
 - Organization UI-only shell at `/Organizations` with list/create-update tabs, enterprise filter toolbar, sample organization table, Apps/Products drawer, Modules drawer, Domains drawer, Settings drawer, soft-delete modal, and `Advanced Buttons 5` elevated action styling.
 - `Organizations.*` permission constants and Font Awesome sidebar/menu icons.
 
@@ -76,6 +78,8 @@ Working:
 - `/Organizations` and `/js/modules/organizations.js` returned `200`; rendered markup includes Organization List, Create Organization, Apps & Products Mapping, Organization Module Access, and `ui-adv-btn-elevated` buttons.
 - Font Awesome CSS and webfont assets returned `200` from `/vendor/fontawesome-free/css/fontawesome.min.css`, `/vendor/fontawesome-free/css/solid.min.css`, `/vendor/fontawesome-free/css/regular.min.css`, `/vendor/fontawesome-free/webfonts/fa-solid-900.woff2`, and `/vendor/fontawesome-free/webfonts/fa-regular-400.woff2`.
 - Dashboard, Organizations, and UI Components Icon Library HTML checks verified Font Awesome icon classes and no old custom icon references in rendered markup.
+- `docker-compose config` renders successfully for the Coolify stack when `SAPTARIX_SQL_PASSWORD` is set.
+- `dotnet publish src/Apps/SaptariX.Admin.Mvc/SaptariX.Admin.Mvc.csproj -c Release -o .tmp/publish-admin-mvc-check --no-restore` succeeds for the container build path.
 - `dotnet build SaptariX.Platform.sln --no-restore` succeeds after removing the generated custom Icon Library implementation with 0 warnings and 0 errors.
 - Dashboard/sidebar HTML includes Developer Tools and UI Components.
 - AdminLTE CSS and JS static assets returned `200`.

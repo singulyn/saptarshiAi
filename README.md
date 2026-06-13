@@ -41,6 +41,14 @@ If the machine has the .NET 8 base runtime but not the ASP.NET Core 8 shared run
 
 4. Open the Admin MVC URL printed by `dotnet run`. The default route is `/Dashboard`.
 
+## Deploy With Coolify On GCP VM
+
+The root `docker-compose.yml` is prepared for Coolify Docker Compose deployment. It builds `SaptariX.Admin.Mvc`, keeps SQL Server and Redis private inside the Compose network, persists DataProtection keys and database data in named volumes, and exposes the Admin MVC app internally on port `8080`.
+
+In Coolify, create a Docker Compose resource from this Git repository, set `SAPTARIX_SQL_PASSWORD`, assign the domain to the `admin-mvc` service using container port `8080`, then deploy.
+
+Full notes are in `docs/deployment-coolify-gcp.md`.
+
 ## SQL Server
 
 The Admin MVC app reads the `SaptariX` connection string from `appsettings.json`. SQL scripts are SSMS-compatible and organized by bounded area:

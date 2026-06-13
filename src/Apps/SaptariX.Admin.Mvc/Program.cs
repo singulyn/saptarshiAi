@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.HttpOverrides;
 using SaptariX.Admin.Mvc.Navigation;
 using SaptariX.Admin.Mvc.Services;
 using SaptariX.Elsa;
@@ -60,6 +61,14 @@ uiKitModule.AddServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
+var forwardedHeadersOptions = new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+};
+forwardedHeadersOptions.KnownNetworks.Clear();
+forwardedHeadersOptions.KnownProxies.Clear();
+app.UseForwardedHeaders(forwardedHeadersOptions);
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Dashboard/Error");
@@ -78,6 +87,13 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Dashboard}/{action=Index}/{id?}");
+
+app.MapGet("/health", () => Results.Ok(new
+{
+    status = "Healthy",
+    service = "SaptariX.Admin.Mvc",
+    timestampUtc = DateTimeOffset.UtcNow
+}));
 
 app.Run();
 

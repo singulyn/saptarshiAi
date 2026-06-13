@@ -1,38 +1,72 @@
 services:
+  admin-mvc:
+    build:
+      context: .
+      dockerfile: deploy/docker/admin-mvc.Dockerfile
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
+      ConnectionStrings__SaptariX: "Server=sqlserver,1433;Database=${SAPTARIX_SQL_DATABASE:-SaptariX_Platform};User Id=sa;Password=${SAPTARIX_SQL_PASSWORD:?Set SAPTARIX_SQL_PASSWORD in Coolify or .env};TrustServerCertificate=True;Encrypt=False;MultipleActiveResultSets=False"
+      SqlServer__ConnectionStringName: SaptariX
+      SqlServer__DefaultCommandTimeoutSeconds: "30"
+      Redis__ConnectionString: redis:6379
+      Redis__Enabled: "false"
+      Elsa__ConnectionStringName: SaptariX
+      Elsa__UseSqlServerPersistence: "true"
+      Elsa__RuntimeEnabled: "true"
+      Elsa__ManagementEnabled: "true"
+      AllowedHosts: "*"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    expose:
+      - "8080"
+    volumes:
+      - saptarix_app_data:/app/App_Data
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: saptarix-sqlserver
+    restart: unless-stopped
     environment:
       ACCEPT_EULA: "Y"
-      MSSQL_PID: Developer
-      SA_PASSWORD: "${SAPTARIX_SQL_PASSWORD:-Change_me_12345!}"
-    ports:
-      - "14333:1433"
+      MSSQL_PID: "${MSSQL_PID:-Express}"
+      MSSQL_SA_PASSWORD: "${SAPTARIX_SQL_PASSWORD:?Set SAPTARIX_SQL_PASSWORD in Coolify or .env}"
+    expose:
+      - "1433"
     volumes:
       - saptarix_sqlserver:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/localhost/1433'"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+      start_period: 60s
 
   redis:
     image: redis:7-alpine
-    container_name: saptarix-redis
-    ports:
-      - "6379:6379"
+    restart: unless-stopped
     command: ["redis-server", "--appendonly", "yes"]
+    expose:
+      - "6379"
     volumes:
       - saptarix_redis:/data
-
-  # admin-mvc:
-  #   build:
-  #     context: .
-  #     dockerfile: deploy/docker/admin-mvc.Dockerfile
-  #   depends_on:
-  #     - sqlserver
-  #     - redis
-  #
-  # Future external services:
-  # - services/python/ai-service-fastapi
-  # - services/node/realtime-service-node
-  # - services/java/enterprise-adapter-java
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
 
 volumes:
+  saptarix_app_data:
   saptarix_sqlserver:
   saptarix_redis:
