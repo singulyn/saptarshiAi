@@ -2,7 +2,7 @@ services:
   admin-mvc:
     build:
       context: "${SAPTARIX_BUILD_CONTEXT:-https://github.com/singulyn/saptarshiAi.git#main}"
-      dockerfile: deploy/docker/admin-mvc.Dockerfile
+      dockerfile: Dockerfile
     restart: unless-stopped
     environment:
       ASPNETCORE_ENVIRONMENT: Production

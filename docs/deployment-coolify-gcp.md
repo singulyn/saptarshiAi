@@ -18,10 +18,10 @@ Create a Docker Compose application/service stack in Coolify from that GitHub re
 docker-compose.yml
 ```
 
-Coolify should build the `admin-mvc` service from:
+Coolify should build the `admin-mvc` service from the repository root Dockerfile:
 
 ```text
-deploy/docker/admin-mvc.Dockerfile
+Dockerfile
 ```
 
 The compose build context defaults to:

@@ -43,7 +43,7 @@ If the machine has the .NET 8 base runtime but not the ASP.NET Core 8 shared run
 
 ## Deploy With Coolify On GCP VM
 
-The root `docker-compose.yml` is prepared for Coolify Docker Compose deployment. It builds `SaptariX.Admin.Mvc`, keeps SQL Server and Redis private inside the Compose network, persists DataProtection keys and database data in named volumes, and exposes the Admin MVC app internally on port `8080`.
+The root `Dockerfile` and `docker-compose.yml` are prepared for Coolify deployment. They build `SaptariX.Admin.Mvc`, keep SQL Server and Redis private inside the Compose network, persist DataProtection keys and database data in named volumes, and expose the Admin MVC app internally on port `8080`.
 
 In Coolify, create a Docker Compose resource from `https://github.com/singulyn/saptarshiAi.git`, set `SAPTARIX_SQL_PASSWORD`, assign the domain to the `admin-mvc` service using container port `8080`, then deploy. The compose build context defaults to the GitHub `main` branch and can be overridden with `SAPTARIX_BUILD_CONTEXT=.` for local builds.
 

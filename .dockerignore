@@ -4,11 +4,11 @@
 **/.vscode/
 **/node_modules/
 **/TestResults/
+**/logs/
+**/App_Data/
 .git/
 .tmp/
-logs/
 publish/
-App_Data/
 *.user
 *.suo
 *.rsuser
