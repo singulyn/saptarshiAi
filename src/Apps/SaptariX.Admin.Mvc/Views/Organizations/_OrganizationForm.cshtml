@@ -1,254 +1,468 @@
 <div class="card users-card users-form-card organizations-form-card">
-    <div class="card-header users-card-header">
+    <div class="card-header users-card-header organizations-form-hero">
+        <div class="organizations-form-hero-icon" aria-hidden="true">
+            <i class="fa-solid fa-building"></i>
+        </div>
         <div>
             <h2 class="users-card-title" data-organizations-form-heading>Create Organization</h2>
-            <p class="users-card-subtitle">Foundation profile, contacts, billing defaults, and branding placeholders.</p>
+            <p class="users-card-subtitle">Set up the organization profile, contacts, billing defaults, and branding placeholders.</p>
         </div>
     </div>
     <div class="card-body">
         <form id="organizationForm" class="users-form organizations-form" data-organizations-form novalidate>
             <input type="hidden" name="Id" data-organizations-id />
 
-            <div class="organization-form-section">
-                <div class="organization-section-heading">
-                    <h3>Basic Details</h3>
-                    <span>Identity and lifecycle fields</span>
-                </div>
-                <div class="row g-3">
-                    <div class="col-12 col-md-6 col-xl-4">
-                        <label class="form-label" for="OrganizationName">Organization Name</label>
-                        <input class="form-control form-control-sm" id="OrganizationName" name="Name" autocomplete="organization" required />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-4">
-                        <label class="form-label" for="LegalName">Legal Name</label>
-                        <input class="form-control form-control-sm" id="LegalName" name="LegalName" autocomplete="organization" />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-4">
-                        <label class="form-label" for="OrganizationCode">Organization Code</label>
-                        <input class="form-control form-control-sm" id="OrganizationCode" name="Code" required />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-4">
-                        <label class="form-label" for="Slug">Slug</label>
-                        <input class="form-control form-control-sm" id="Slug" name="Slug" required />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-4">
-                        <label class="form-label" for="OrganizationType">Organization Type</label>
-                        <select class="form-select form-select-sm" id="OrganizationType" name="OrganizationType" required>
-                            <option value="">Select type</option>
-                            <option>Platform</option>
-                            <option>Customer</option>
-                            <option>Partner</option>
-                            <option>Internal</option>
-                            <option>Vendor</option>
-                            <option>Demo</option>
-                            <option>Trial</option>
-                        </select>
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-4">
-                        <label class="form-label" for="Industry">Industry</label>
-                        <select class="form-select form-select-sm" id="Industry" name="Industry">
-                            <option>Technology</option>
-                            <option>Healthcare</option>
-                            <option>Finance</option>
-                            <option>Education</option>
-                            <option>Retail</option>
-                            <option>Manufacturing</option>
-                            <option>Real Estate</option>
-                            <option>Logistics</option>
-                            <option>Government</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-4">
-                        <label class="form-label" for="CompanySize">Company Size</label>
-                        <select class="form-select form-select-sm" id="CompanySize" name="CompanySize">
-                            <option>1-10</option>
-                            <option>11-50</option>
-                            <option>51-200</option>
-                            <option>201-500</option>
-                            <option>501-1000</option>
-                            <option>1000+</option>
-                        </select>
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-4">
-                        <label class="form-label" for="Status">Status</label>
-                        <select class="form-select form-select-sm" id="Status" name="Status" required>
-                            <option>Active</option>
-                            <option>Inactive</option>
-                            <option>Suspended</option>
-                            <option>Trial</option>
-                            <option>Archived</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+            <nav class="organization-stepper" aria-label="Organization form steps">
+                <button type="button" class="organization-step is-active" data-organization-step-button="0" data-step-label="Basic Details" aria-current="step">
+                    <span class="organization-step-number">1</span>
+                    <span class="organization-step-label">Basic Details</span>
+                </button>
+                <button type="button" class="organization-step" data-organization-step-button="1" data-step-label="Contact Details">
+                    <span class="organization-step-number">2</span>
+                    <span class="organization-step-label">Contact Details</span>
+                </button>
+                <button type="button" class="organization-step" data-organization-step-button="2" data-step-label="Address Details">
+                    <span class="organization-step-number">3</span>
+                    <span class="organization-step-label">Address Details</span>
+                </button>
+                <button type="button" class="organization-step" data-organization-step-button="3" data-step-label="Business Details">
+                    <span class="organization-step-number">4</span>
+                    <span class="organization-step-label">Business Details</span>
+                </button>
+                <button type="button" class="organization-step" data-organization-step-button="4" data-step-label="Branding &amp; Plan">
+                    <span class="organization-step-number">5</span>
+                    <span class="organization-step-label">Branding &amp; Plan</span>
+                </button>
+                <button type="button" class="organization-step" data-organization-step-button="5" data-step-label="Review &amp; Create">
+                    <span class="organization-step-number">6</span>
+                    <span class="organization-step-label">Review &amp; Create</span>
+                </button>
+            </nav>
 
-            <div class="organization-form-section">
-                <div class="organization-section-heading">
-                    <h3>Contact Details</h3>
-                    <span>Email, phone, and web presence</span>
-                </div>
-                <div class="row g-3">
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="PrimaryEmail">Primary Email</label>
-                        <input class="form-control form-control-sm" id="PrimaryEmail" name="PrimaryEmail" type="email" autocomplete="email" required />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="SupportEmail">Support Email</label>
-                        <input class="form-control form-control-sm" id="SupportEmail" name="SupportEmail" type="email" autocomplete="email" />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="PhoneNumber">Phone Number</label>
-                        <input class="form-control form-control-sm" id="PhoneNumber" name="PhoneNumber" autocomplete="tel" />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="Website">Website</label>
-                        <input class="form-control form-control-sm" id="Website" name="Website" type="url" placeholder="https://example.com" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="organization-form-section">
-                <div class="organization-section-heading">
-                    <h3>Address Details</h3>
-                    <span>Registered or operating address</span>
-                </div>
-                <div class="row g-3">
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="Country">Country</label>
-                        <input class="form-control form-control-sm" id="Country" name="Country" value="India" />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="State">State</label>
-                        <input class="form-control form-control-sm" id="State" name="State" />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="City">City</label>
-                        <input class="form-control form-control-sm" id="City" name="City" />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="PostalCode">Postal Code</label>
-                        <input class="form-control form-control-sm" id="PostalCode" name="PostalCode" />
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <label class="form-label" for="AddressLine1">Address Line 1</label>
-                        <input class="form-control form-control-sm" id="AddressLine1" name="AddressLine1" />
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <label class="form-label" for="AddressLine2">Address Line 2</label>
-                        <input class="form-control form-control-sm" id="AddressLine2" name="AddressLine2" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="organization-form-section">
-                <div class="organization-section-heading">
-                    <h3>Business Details</h3>
-                    <span>Tax, billing, locale, and commercial defaults</span>
-                </div>
-                <div class="row g-3">
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="GstNumber">GST Number</label>
-                        <input class="form-control form-control-sm" id="GstNumber" name="GstNumber" />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="CinNumber">CIN / Registration Number</label>
-                        <input class="form-control form-control-sm" id="CinNumber" name="CinNumber" />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="TaxId">PAN / Tax ID</label>
-                        <input class="form-control form-control-sm" id="TaxId" name="TaxId" />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="BillingEmail">Billing Email</label>
-                        <input class="form-control form-control-sm" id="BillingEmail" name="BillingEmail" type="email" />
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="Currency">Currency</label>
-                        <select class="form-select form-select-sm" id="Currency" name="Currency">
-                            <option selected>INR</option>
-                            <option>USD</option>
-                            <option>EUR</option>
-                            <option>GBP</option>
-                        </select>
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <label class="form-label" for="Timezone">Timezone</label>
-                        <select class="form-select form-select-sm" id="Timezone" name="Timezone">
-                            <option selected>Asia/Kolkata</option>
-                            <option>UTC</option>
-                            <option>America/New_York</option>
-                            <option>Europe/London</option>
-                            <option>Asia/Singapore</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="organization-form-section">
-                <div class="organization-section-heading">
-                    <h3>Branding</h3>
-                    <span>Visual placeholders for future upload and theme settings</span>
-                </div>
-                <div class="row g-3">
-                    <div class="col-12 col-lg-4">
-                        <label class="form-label" for="LogoPlaceholder">Logo Upload</label>
-                        <div class="ui-image-placeholder organization-image-placeholder">
-                            Logo upload placeholder
+            <div class="organization-step-panels">
+                <section class="organization-form-section organization-step-panel is-active" data-organization-step-panel="0" aria-labelledby="organizationStepBasic">
+                    <div class="organization-section-heading">
+                        <div class="organization-section-title">
+                            <span class="organization-section-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+                            <div>
+                                <h3 id="organizationStepBasic">Basic Details</h3>
+                                <span>Identity and lifecycle fields</span>
+                            </div>
                         </div>
-                        <input class="form-control form-control-sm mt-2" id="LogoPlaceholder" name="LogoUrl" placeholder="Logo URL placeholder" />
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <label class="form-label" for="BrandColor">Brand Color</label>
-                        <input class="form-control form-control-sm" id="BrandColor" name="BrandColor" placeholder="#000d0f" />
+                    <div class="organization-fields-grid organization-fields-grid-four">
+                        <div class="organization-form-field">
+                            <label class="form-label" for="OrganizationName">Organization Name <span class="text-danger">*</span></label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-building" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="OrganizationName" name="Name" autocomplete="organization" placeholder="Enter organization name" required />
+                            </div>
+                            <p>Public name used across the platform.</p>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="LegalName">Legal Name</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="LegalName" name="LegalName" autocomplete="organization" placeholder="Enter legal name" />
+                            </div>
+                            <p>Registered legal name of the organization.</p>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="OrganizationCode">Organization Code <span class="text-danger">*</span></label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-hashtag" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="OrganizationCode" name="Code" placeholder="Enter organization code" required />
+                            </div>
+                            <p>Unique code for internal identification.</p>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="Slug">Slug <span class="text-danger">*</span></label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-link" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="Slug" name="Slug" placeholder="Enter slug" required />
+                            </div>
+                            <p>URL-friendly unique identifier.</p>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="OrganizationType">Organization Type <span class="text-danger">*</span></label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-table-cells-large" aria-hidden="true"></i>
+                                <select class="form-select form-select-sm" id="OrganizationType" name="OrganizationType" required data-sx-select-minimal>
+                                    <option value="">Select type</option>
+                                    <option>Platform</option>
+                                    <option>Customer</option>
+                                    <option>Partner</option>
+                                    <option>Internal</option>
+                                    <option>Vendor</option>
+                                    <option>Demo</option>
+                                    <option>Trial</option>
+                                </select>
+                            </div>
+                            <p>Choose the type that best describes this account.</p>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="Industry">Industry</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-briefcase" aria-hidden="true"></i>
+                                <select class="form-select form-select-sm" id="Industry" name="Industry" data-sx-select-minimal>
+                                    <option>Technology</option>
+                                    <option>Healthcare</option>
+                                    <option>Finance</option>
+                                    <option>Education</option>
+                                    <option>Retail</option>
+                                    <option>Manufacturing</option>
+                                    <option>Real Estate</option>
+                                    <option>Logistics</option>
+                                    <option>Government</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <p>Select the primary industry.</p>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="CompanySize">Company Size</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-users" aria-hidden="true"></i>
+                                <select class="form-select form-select-sm" id="CompanySize" name="CompanySize" data-sx-select-minimal>
+                                    <option>1-10</option>
+                                    <option>11-50</option>
+                                    <option>51-200</option>
+                                    <option>201-500</option>
+                                    <option>501-1000</option>
+                                    <option>1000+</option>
+                                </select>
+                            </div>
+                            <p>Approximate company size.</p>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="Status">Status <span class="text-danger">*</span></label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-circle-check" aria-hidden="true"></i>
+                                <select class="form-select form-select-sm" id="Status" name="Status" required data-sx-select-minimal>
+                                    <option>Active</option>
+                                    <option>Inactive</option>
+                                    <option>Suspended</option>
+                                    <option>Trial</option>
+                                    <option>Archived</option>
+                                </select>
+                            </div>
+                            <p>Current lifecycle status.</p>
+                        </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <label class="form-label" for="ThemePreference">Theme Preference</label>
-                        <select class="form-select form-select-sm" id="ThemePreference" name="ThemePreference">
-                            <option>System</option>
-                            <option>Light</option>
-                            <option>Dark</option>
-                        </select>
+                </section>
+
+                <section class="organization-form-section organization-step-panel" data-organization-step-panel="1" aria-labelledby="organizationStepContact" hidden>
+                    <div class="organization-section-heading">
+                        <div class="organization-section-title">
+                            <span class="organization-section-icon" aria-hidden="true"><i class="fa-regular fa-address-card"></i></span>
+                            <div>
+                                <h3 id="organizationStepContact">Contact Details</h3>
+                                <span>Email, phone, and web presence</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="organization-fields-grid organization-fields-grid-four">
+                        <div class="organization-form-field">
+                            <label class="form-label" for="PrimaryEmail">Primary Email <span class="text-danger">*</span></label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="PrimaryEmail" name="PrimaryEmail" type="email" autocomplete="email" placeholder="admin@example.com" required />
+                            </div>
+                            <p>Main operational email.</p>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="SupportEmail">Support Email</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-life-ring" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="SupportEmail" name="SupportEmail" type="email" autocomplete="email" placeholder="support@example.com" />
+                            </div>
+                            <p>Support and helpdesk contact.</p>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="PhoneNumber">Phone Number</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="PhoneNumber" name="PhoneNumber" autocomplete="tel" placeholder="+91 90000 00000" />
+                            </div>
+                            <p>Primary business phone.</p>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="Website">Website</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="Website" name="Website" type="url" placeholder="https://example.com" />
+                            </div>
+                            <p>Public website or domain.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="organization-form-section organization-step-panel" data-organization-step-panel="2" aria-labelledby="organizationStepAddress" hidden>
+                    <div class="organization-section-heading">
+                        <div class="organization-section-title">
+                            <span class="organization-section-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+                            <div>
+                                <h3 id="organizationStepAddress">Address Details</h3>
+                                <span>Registered or operating address</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="organization-fields-grid organization-fields-grid-four">
+                        <div class="organization-form-field">
+                            <label class="form-label" for="Country">Country</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-earth-asia" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="Country" name="Country" value="India" />
+                            </div>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="State">State</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-map" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="State" name="State" />
+                            </div>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="City">City</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-building" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="City" name="City" />
+                            </div>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="PostalCode">Postal Code</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-signs-post" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="PostalCode" name="PostalCode" />
+                            </div>
+                        </div>
+                        <div class="organization-form-field organization-field-wide">
+                            <label class="form-label" for="AddressLine1">Address Line 1</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-road" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="AddressLine1" name="AddressLine1" />
+                            </div>
+                        </div>
+                        <div class="organization-form-field organization-field-wide">
+                            <label class="form-label" for="AddressLine2">Address Line 2</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="AddressLine2" name="AddressLine2" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="organization-form-section organization-step-panel" data-organization-step-panel="3" aria-labelledby="organizationStepBusiness" hidden>
+                    <div class="organization-section-heading">
+                        <div class="organization-section-title">
+                            <span class="organization-section-icon" aria-hidden="true"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                            <div>
+                                <h3 id="organizationStepBusiness">Business Details</h3>
+                                <span>Tax, billing, locale, and commercial defaults</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="organization-fields-grid organization-fields-grid-four">
+                        <div class="organization-form-field">
+                            <label class="form-label" for="GstNumber">GST Number</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-receipt" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="GstNumber" name="GstNumber" />
+                            </div>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="CinNumber">CIN / Registration Number</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-id-card" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="CinNumber" name="CinNumber" />
+                            </div>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="TaxId">PAN / Tax ID</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-key" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="TaxId" name="TaxId" />
+                            </div>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="BillingEmail">Billing Email</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-envelope-open" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="BillingEmail" name="BillingEmail" type="email" />
+                            </div>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="Currency">Currency</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-coins" aria-hidden="true"></i>
+                                <select class="form-select form-select-sm" id="Currency" name="Currency" data-sx-select-minimal>
+                                    <option selected>INR</option>
+                                    <option>USD</option>
+                                    <option>EUR</option>
+                                    <option>GBP</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="Timezone">Timezone</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                                <select class="form-select form-select-sm" id="Timezone" name="Timezone" data-sx-select-minimal>
+                                    <option selected>Asia/Kolkata</option>
+                                    <option>UTC</option>
+                                    <option>America/New_York</option>
+                                    <option>Europe/London</option>
+                                    <option>Asia/Singapore</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="organization-form-section organization-step-panel" data-organization-step-panel="4" aria-labelledby="organizationStepBranding" hidden>
+                    <div class="organization-section-heading">
+                        <div class="organization-section-title">
+                            <span class="organization-section-icon" aria-hidden="true"><i class="fa-solid fa-palette"></i></span>
+                            <div>
+                                <h3 id="organizationStepBranding">Branding &amp; Plan</h3>
+                                <span>Visual defaults and subscription preview fields</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="organization-fields-grid organization-brand-grid">
+                        <div class="organization-form-field organization-logo-field">
+                            <label class="form-label" for="LogoPlaceholder">Logo Upload</label>
+                            <div class="ui-image-placeholder organization-image-placeholder">
+                                <i class="fa-regular fa-image" aria-hidden="true"></i>
+                                <span>Logo upload placeholder</span>
+                            </div>
+                            <div class="organization-input-shell mt-2">
+                                <i class="fa-solid fa-link" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="LogoPlaceholder" name="LogoUrl" placeholder="Logo URL placeholder" />
+                            </div>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="BrandColor">Brand Color</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-droplet" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="BrandColor" name="BrandColor" placeholder="#000d0f" />
+                            </div>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="ThemePreference">Theme Preference</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-sun" aria-hidden="true"></i>
+                                <select class="form-select form-select-sm" id="ThemePreference" name="ThemePreference" data-sx-select-minimal>
+                                    <option>System</option>
+                                    <option>Light</option>
+                                    <option>Dark</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="CurrentPlan">Current Plan</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                                <select class="form-select form-select-sm" id="CurrentPlan" name="CurrentPlan" data-sx-select-minimal>
+                                    <option>Free</option>
+                                    <option>Starter</option>
+                                    <option>Professional</option>
+                                    <option selected>Enterprise</option>
+                                    <option>Custom</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="BillingStatus">Billing Status</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-circle-check" aria-hidden="true"></i>
+                                <select class="form-select form-select-sm" id="BillingStatus" name="BillingStatus" data-sx-select-minimal>
+                                    <option selected>Active</option>
+                                    <option>Trial</option>
+                                    <option>Past Due</option>
+                                    <option>Paused</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="organization-form-field">
+                            <label class="form-label" for="TrialEndsOn">Trial Ends On</label>
+                            <div class="organization-input-shell">
+                                <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                <input class="form-control form-control-sm" id="TrialEndsOn" name="TrialEndsOn" type="date" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="organization-form-section organization-step-panel" data-organization-step-panel="5" aria-labelledby="organizationStepReview" hidden>
+                    <div class="organization-section-heading">
+                        <div class="organization-section-title">
+                            <span class="organization-section-icon" aria-hidden="true"><i class="fa-solid fa-clipboard-check"></i></span>
+                            <div>
+                                <h3 id="organizationStepReview">Review &amp; Create</h3>
+                                <span>Confirm the key details before saving the preview.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="organization-review-grid">
+                        <div class="organization-review-item">
+                            <span>Organization</span>
+                            <strong data-organization-review-field="Name">Not provided</strong>
+                        </div>
+                        <div class="organization-review-item">
+                            <span>Code</span>
+                            <strong data-organization-review-field="Code">Not provided</strong>
+                        </div>
+                        <div class="organization-review-item">
+                            <span>Type</span>
+                            <strong data-organization-review-field="OrganizationType">Not provided</strong>
+                        </div>
+                        <div class="organization-review-item">
+                            <span>Status</span>
+                            <strong data-organization-review-field="Status">Not provided</strong>
+                        </div>
+                        <div class="organization-review-item">
+                            <span>Primary Email</span>
+                            <strong data-organization-review-field="PrimaryEmail">Not provided</strong>
+                        </div>
+                        <div class="organization-review-item">
+                            <span>Industry</span>
+                            <strong data-organization-review-field="Industry">Not provided</strong>
+                        </div>
+                        <div class="organization-review-item">
+                            <span>Plan</span>
+                            <strong data-organization-review-field="CurrentPlan">Not provided</strong>
+                        </div>
+                        <div class="organization-review-item">
+                            <span>Billing Status</span>
+                            <strong data-organization-review-field="BillingStatus">Not provided</strong>
+                        </div>
+                    </div>
+                </section>
             </div>
 
-            <div class="organization-form-section">
-                <div class="organization-section-heading">
-                    <h3>Subscription / Plan Placeholder</h3>
-                    <span>Plan preview fields for the billing module</span>
-                </div>
-                <div class="row g-3">
-                    <div class="col-12 col-md-4">
-                        <label class="form-label" for="CurrentPlan">Current Plan</label>
-                        <select class="form-select form-select-sm" id="CurrentPlan" name="CurrentPlan">
-                            <option>Free</option>
-                            <option>Starter</option>
-                            <option>Professional</option>
-                            <option selected>Enterprise</option>
-                            <option>Custom</option>
-                        </select>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <label class="form-label" for="BillingStatus">Billing Status</label>
-                        <select class="form-select form-select-sm" id="BillingStatus" name="BillingStatus">
-                            <option selected>Active</option>
-                            <option>Trial</option>
-                            <option>Past Due</option>
-                            <option>Paused</option>
-                        </select>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <label class="form-label" for="TrialEndsOn">Trial Ends On</label>
-                        <input class="form-control form-control-sm" id="TrialEndsOn" name="TrialEndsOn" type="date" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="users-form-actions organizations-form-actions">
-                <button type="submit" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" data-organizations-submit>Create Organization</button>
-                <button type="reset" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-orange" data-organizations-reset>Reset</button>
-                <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-cobalt d-none" data-organizations-cancel-edit>Cancel Edit</button>
+            <div class="users-form-actions organizations-form-actions organization-step-actions">
+                <button type="button" class="ui-adv-btn ui-adv-btn-paper" data-organization-step-prev disabled>
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                    <span>Back</span>
+                </button>
+                <button type="reset" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-orange" data-organizations-reset>
+                    <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                    <span>Reset</span>
+                </button>
+                <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" data-organization-step-next>
+                    <span data-organization-step-next-label>Next: Contact Details</span>
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+                <button type="submit" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite d-none" data-organizations-submit>
+                    <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+                    <span data-organizations-submit-label>Create Organization</span>
+                </button>
+                <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-cobalt d-none" data-organizations-cancel-edit>
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                    <span data-organizations-cancel-label>Cancel</span>
+                </button>
             </div>
         </form>
     </div>

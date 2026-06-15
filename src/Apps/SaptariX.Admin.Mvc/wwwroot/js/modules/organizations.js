@@ -20,6 +20,14 @@
   const submitButton = root.querySelector("[data-organizations-submit]");
   const resetButton = root.querySelector("[data-organizations-reset]");
   const cancelEditButton = root.querySelector("[data-organizations-cancel-edit]");
+  const submitButtonLabel = root.querySelector("[data-organizations-submit-label]");
+  const cancelEditButtonLabel = root.querySelector("[data-organizations-cancel-label]");
+  const stepButtons = Array.from(root.querySelectorAll("[data-organization-step-button]"));
+  const stepPanels = Array.from(root.querySelectorAll("[data-organization-step-panel]"));
+  const previousStepButton = root.querySelector("[data-organization-step-prev]");
+  const nextStepButton = root.querySelector("[data-organization-step-next]");
+  const nextStepButtonLabel = root.querySelector("[data-organization-step-next-label]");
+  const reviewFields = Array.from(root.querySelectorAll("[data-organization-review-field]"));
   const deleteModalElement = document.getElementById("organizationDeleteModal");
   const deleteTarget = root.querySelector("[data-organization-delete-target]");
   const confirmDeleteButton = root.querySelector("[data-organization-confirm-delete]");
@@ -198,6 +206,7 @@
   };
 
   const state = {
+    activeStep: 0,
     mode: "create",
     pendingDeleteId: null
   };
@@ -238,6 +247,121 @@
     field.dispatchEvent(new Event("change", { bubbles: true }));
   }
 
+  function setButtonLabel(labelElement, button, value) {
+    if (labelElement) {
+      labelElement.textContent = value;
+      return;
+    }
+
+    if (button) {
+      button.textContent = value;
+    }
+  }
+
+  function stepLabel(index) {
+    return stepButtons[index]?.dataset.stepLabel || `Step ${index + 1}`;
+  }
+
+  function stepFields(index) {
+    return Array.from(stepPanels[index]?.querySelectorAll("input, select, textarea") || [])
+      .filter((field) => !field.disabled && field.willValidate);
+  }
+
+  function focusField(field) {
+    const customSelectControl = field.closest("[data-sx-select]")?.querySelector("[data-sx-select-control]");
+    const focusTarget = customSelectControl || field;
+    focusTarget.focus({ preventScroll: true });
+    field.reportValidity();
+  }
+
+  function validateStep(index) {
+    const invalidField = stepFields(index).find((field) => !field.checkValidity());
+    if (!invalidField) {
+      return true;
+    }
+
+    form.classList.add("was-validated");
+    if (state.activeStep !== index) {
+      state.activeStep = index;
+      updateStepper({ noScroll: true });
+    }
+    setTimeout(() => focusField(invalidField), 0);
+    return false;
+  }
+
+  function firstInvalidStep() {
+    for (let index = 0; index < stepPanels.length; index += 1) {
+      const invalidField = stepFields(index).find((field) => !field.checkValidity());
+      if (invalidField) {
+        return { index, field: invalidField };
+      }
+    }
+
+    return null;
+  }
+
+  function updateReview() {
+    reviewFields.forEach((item) => {
+      const field = getField(item.dataset.organizationReviewField);
+      const value = String(field?.value || "").trim();
+      item.textContent = value || "Not provided";
+    });
+  }
+
+  function updateStepper(options = {}) {
+    if (!stepPanels.length) {
+      return;
+    }
+
+    const lastStep = stepPanels.length - 1;
+    state.activeStep = Math.min(Math.max(state.activeStep, 0), lastStep);
+
+    stepPanels.forEach((panel, index) => {
+      const isActive = index === state.activeStep;
+      panel.classList.toggle("is-active", isActive);
+      panel.hidden = !isActive;
+    });
+
+    stepButtons.forEach((button, index) => {
+      const isActive = index === state.activeStep;
+      button.classList.toggle("is-active", isActive);
+      button.classList.toggle("is-complete", index < state.activeStep);
+      button.setAttribute("aria-current", isActive ? "step" : "false");
+    });
+
+    if (previousStepButton) {
+      previousStepButton.disabled = state.activeStep === 0;
+    }
+
+    const isReviewStep = state.activeStep === lastStep;
+    nextStepButton?.classList.toggle("d-none", isReviewStep);
+    submitButton?.classList.toggle("d-none", !isReviewStep);
+
+    if (nextStepButtonLabel && !isReviewStep) {
+      nextStepButtonLabel.textContent = `Next: ${stepLabel(state.activeStep + 1)}`;
+    }
+
+    updateReview();
+
+    if (!options.noScroll && !formPanel?.classList.contains("d-none")) {
+      formPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function goToStep(index, options = {}) {
+    if (!stepPanels.length) {
+      return;
+    }
+
+    const target = Math.min(Math.max(index, 0), stepPanels.length - 1);
+    if (!options.skipValidation && target > state.activeStep && !validateStep(state.activeStep)) {
+      return;
+    }
+
+    state.activeStep = target;
+    updateStepper(options);
+  }
+
   function showListPanel() {
     listPanel?.classList.remove("d-none");
     formPanel?.classList.add("d-none");
@@ -250,7 +374,7 @@
   }
 
   function showCreateCancel() {
-    cancelEditButton.textContent = "Cancel";
+    setButtonLabel(cancelEditButtonLabel, cancelEditButton, "Cancel");
     cancelEditButton.classList.remove("d-none");
   }
 
@@ -332,9 +456,10 @@
     setField("BillingStatus", "Active");
 
     formHeading.textContent = "Create Organization";
-    submitButton.textContent = "Create Organization";
+    setButtonLabel(submitButtonLabel, submitButton, "Create Organization");
     resetButton.classList.remove("d-none");
     cancelEditButton.classList.add("d-none");
+    goToStep(0, { skipValidation: true, noScroll: true });
   }
 
   function setEditMode(organization) {
@@ -374,19 +499,23 @@
     setField("TrialEndsOn", organization.trialEndsOn);
 
     formHeading.textContent = "Update Organization";
-    submitButton.textContent = "Update Organization";
+    setButtonLabel(submitButtonLabel, submitButton, "Update Organization");
     resetButton.classList.add("d-none");
-    cancelEditButton.textContent = "Cancel Edit";
+    setButtonLabel(cancelEditButtonLabel, cancelEditButton, "Cancel Edit");
     cancelEditButton.classList.remove("d-none");
+    goToStep(0, { skipValidation: true, noScroll: true });
     showFormPanel();
   }
 
   function submitForm(event) {
     event.preventDefault();
 
-    if (!form.checkValidity()) {
+    const invalid = firstInvalidStep();
+    if (invalid) {
       form.classList.add("was-validated");
-      form.reportValidity();
+      state.activeStep = invalid.index;
+      updateStepper({ noScroll: true });
+      setTimeout(() => focusField(invalid.field), 0);
       return;
     }
 
@@ -606,6 +735,19 @@
   openCreateButton?.addEventListener("click", openCreateForm);
   exportButton?.addEventListener("click", () => showAlert("Organization export preview selected. Backend export is intentionally not wired.", "info"));
   tableWrapper?.addEventListener("click", handleTableAction);
+  stepButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const targetStep = Number(button.dataset.organizationStepButton);
+      if (targetStep > state.activeStep + 1) {
+        return;
+      }
+      goToStep(targetStep);
+    });
+  });
+  previousStepButton?.addEventListener("click", () => goToStep(state.activeStep - 1, { skipValidation: true }));
+  nextStepButton?.addEventListener("click", () => goToStep(state.activeStep + 1));
+  form?.addEventListener("input", updateReview);
+  form?.addEventListener("change", updateReview);
   form?.addEventListener("submit", submitForm);
   resetButton?.addEventListener("click", () => {
     setTimeout(() => {
