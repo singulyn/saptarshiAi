@@ -1347,8 +1347,18 @@ body {
   min-width: 0;
   overflow-x: scroll;
   overflow-y: visible;
-  padding-bottom: 6px;
+  padding-bottom: 0;
   -webkit-overflow-scrolling: touch;
+}
+
+.organizations-page .users-table-footer {
+  min-height: 42px;
+  padding: 6px 14px;
+}
+
+.organizations-page .users-table-footer .sx-pagination .btn {
+  min-height: 32px;
+  padding: 4px 9px;
 }
 
 .organizations-table th {
