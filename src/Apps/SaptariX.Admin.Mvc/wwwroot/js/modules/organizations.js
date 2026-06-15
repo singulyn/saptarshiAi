@@ -500,6 +500,40 @@
     root.querySelectorAll("[data-organization-modules-list] input[type='checkbox']").forEach((checkbox) => {
       checkbox.checked = checked;
     });
+    updateModuleCounts();
+  }
+
+  function updateModuleCounts() {
+    const moduleList = root.querySelector("[data-organization-modules-list]");
+    if (!moduleList) {
+      return;
+    }
+
+    const checkboxes = Array.from(moduleList.querySelectorAll("input[type='checkbox']"));
+    const selected = checkboxes.filter((checkbox) => checkbox.checked).length;
+    const summary = `${selected} of ${checkboxes.length} modules selected`;
+
+    root.querySelectorAll("[data-organization-modules-count], [data-organization-modules-footer-count]").forEach((label) => {
+      label.textContent = summary;
+    });
+
+    root.querySelectorAll("[data-module-group]").forEach((group) => {
+      const groupName = group.dataset.moduleGroup;
+      const groupCheckboxes = Array.from(group.querySelectorAll("input[type='checkbox']"));
+      const groupSelected = groupCheckboxes.filter((checkbox) => checkbox.checked).length;
+      const groupCount = root.querySelector(`[data-module-group-count="${groupName}"]`);
+      if (groupCount) {
+        groupCount.textContent = `${groupSelected} / ${groupCheckboxes.length}`;
+      }
+    });
+  }
+
+  function handleModuleToggle(event) {
+    if (!event.target.matches("[data-organization-modules-list] input[type='checkbox']")) {
+      return;
+    }
+
+    updateModuleCounts();
   }
 
   function handleDomainForm(event) {
@@ -554,9 +588,11 @@
   root.addEventListener("input", handleDrawerSearch);
   root.addEventListener("click", handleDrawerSave);
   root.addEventListener("click", handleModulesCommand);
+  root.addEventListener("change", handleModuleToggle);
   root.addEventListener("submit", handleDomainForm);
   root.addEventListener("click", handleDomainDelete);
 
   setCreateMode();
+  updateModuleCounts();
   updateVisibleCount();
 })();

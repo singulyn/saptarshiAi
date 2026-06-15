@@ -7,52 +7,73 @@
     </div>
 
     <div class="card-body organizations-list-body p-0">
-        <form class="organizations-filter sx-table-filter-row" data-organizations-filter-form>
-            <div class="input-group input-group-sm sx-table-filter-search organizations-filter-search">
-                <span class="input-group-text">Search</span>
-                <input class="form-control form-control-sm" type="search" name="Search" placeholder="Name, code, email, or domain" autocomplete="off" />
+        <form class="organizations-filter sx-form-compact" data-organizations-filter-form>
+            <div class="organizations-filter-field organizations-filter-search">
+                <label class="visually-hidden" for="OrganizationsSearch">Search organizations</label>
+                <div class="input-group input-group-sm sx-table-filter-search">
+                    <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input class="form-control form-control-sm" id="OrganizationsSearch" type="search" name="Search" placeholder="Search by name, domain, email, or code" autocomplete="off" />
+                </div>
             </div>
-            <select class="form-select form-select-sm sx-table-filter-select" name="Status" aria-label="Status filter">
-                <option value="">All statuses</option>
-                <option value="Active">Active</option>
-                <option value="Inactive">Inactive</option>
-                <option value="Suspended">Suspended</option>
-                <option value="Trial">Trial</option>
-                <option value="Archived">Archived</option>
-            </select>
-            <select class="form-select form-select-sm sx-table-filter-select" name="Type" aria-label="Organization type filter">
-                <option value="">All types</option>
-                <option value="Platform">Platform</option>
-                <option value="Customer">Customer</option>
-                <option value="Partner">Partner</option>
-                <option value="Internal">Internal</option>
-                <option value="Vendor">Vendor</option>
-                <option value="Demo">Demo</option>
-                <option value="Trial">Trial</option>
-            </select>
-            <select class="form-select form-select-sm sx-table-filter-select" name="Plan" aria-label="Plan filter">
-                <option value="">All plans</option>
-                <option value="Free">Free</option>
-                <option value="Starter">Starter</option>
-                <option value="Professional">Professional</option>
-                <option value="Enterprise">Enterprise</option>
-                <option value="Custom">Custom</option>
-            </select>
-            <select class="form-select form-select-sm sx-table-filter-select" name="Industry" aria-label="Industry filter">
-                <option value="">All industries</option>
-                <option value="Technology">Technology</option>
-                <option value="Healthcare">Healthcare</option>
-                <option value="Finance">Finance</option>
-                <option value="Education">Education</option>
-                <option value="Retail">Retail</option>
-                <option value="Manufacturing">Manufacturing</option>
-                <option value="Logistics">Logistics</option>
-                <option value="Other">Other</option>
-            </select>
-            <input class="form-control form-control-sm" type="text" name="CreatedRange" placeholder="Created date range" aria-label="Created date range placeholder" />
+            <div class="organizations-filter-field">
+                <label class="visually-hidden" for="OrganizationsStatus">Status</label>
+                <select class="form-select form-select-sm sx-table-filter-select" id="OrganizationsStatus" name="Status" aria-label="Status filter">
+                    <option value="">All statuses</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                    <option value="Suspended">Suspended</option>
+                    <option value="Trial">Trial</option>
+                    <option value="Archived">Archived</option>
+                </select>
+            </div>
+            <div class="organizations-filter-field">
+                <label class="visually-hidden" for="OrganizationsType">Organization type</label>
+                <select class="form-select form-select-sm sx-table-filter-select" id="OrganizationsType" name="Type" aria-label="Organization type filter">
+                    <option value="">All types</option>
+                    <option value="Platform">Platform</option>
+                    <option value="Customer">Customer</option>
+                    <option value="Partner">Partner</option>
+                    <option value="Internal">Internal</option>
+                    <option value="Vendor">Vendor</option>
+                    <option value="Demo">Demo</option>
+                    <option value="Trial">Trial</option>
+                </select>
+            </div>
+            <div class="organizations-filter-field">
+                <label class="visually-hidden" for="OrganizationsPlan">Plan</label>
+                <select class="form-select form-select-sm sx-table-filter-select" id="OrganizationsPlan" name="Plan" aria-label="Plan filter">
+                    <option value="">All plans</option>
+                    <option value="Free">Free</option>
+                    <option value="Starter">Starter</option>
+                    <option value="Professional">Professional</option>
+                    <option value="Enterprise">Enterprise</option>
+                    <option value="Custom">Custom</option>
+                </select>
+            </div>
+            <div class="organizations-filter-field">
+                <label class="visually-hidden" for="OrganizationsIndustry">Industry</label>
+                <select class="form-select form-select-sm sx-table-filter-select" id="OrganizationsIndustry" name="Industry" aria-label="Industry filter">
+                    <option value="">All industries</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Education">Education</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Logistics">Logistics</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="organizations-filter-field organizations-filter-date">
+                <label class="visually-hidden" for="OrganizationsCreatedRange">Created date range</label>
+                <div class="input-group input-group-sm">
+                    <input class="form-control form-control-sm" id="OrganizationsCreatedRange" type="text" name="CreatedRange" placeholder="Created date" aria-label="Created date range placeholder" />
+                    <span class="input-group-text" aria-hidden="true"><i class="fa-regular fa-calendar"></i></span>
+                </div>
+            </div>
             <div class="sx-table-filter-actions organizations-filter-actions">
-                <button class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" type="submit">Apply</button>
-                <button class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-orange" type="button" data-organizations-reset-filters>Reset</button>
+                <button class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" type="submit"><i class="fa-solid fa-filter" aria-hidden="true"></i><span>Apply</span></button>
+                <button class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-orange" type="button" data-organizations-reset-filters><i class="fa-solid fa-rotate-left" aria-hidden="true"></i><span>Reset</span></button>
             </div>
         </form>
 
@@ -108,15 +129,21 @@
                         <td>11</td>
                         <td>24</td>
                         <td class="users-nowrap">13 Jun 2026</td>
-                        <td>
+                        <td class="sx-action-cell">
                             <div class="users-actions organizations-actions">
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="view" data-organization-id="platform" aria-label="View SaptariX Platform"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="edit" data-organization-id="platform" aria-label="Edit SaptariX Platform"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="apps" data-organization-id="platform" aria-label="Apps and products for SaptariX Platform"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="modules" data-organization-id="platform" aria-label="Modules for SaptariX Platform"><i class="fa-solid fa-table" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="domains" data-organization-id="platform" aria-label="Domains for SaptariX Platform"><i class="fa-solid fa-globe" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="settings" data-organization-id="platform" aria-label="Settings for SaptariX Platform"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-organization-action="delete" data-organization-id="platform" aria-label="Delete SaptariX Platform"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                <div class="dropdown dropstart organizations-more-menu">
+                                    <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-bs-toggle="dropdown" data-bs-boundary="viewport" aria-expanded="false" aria-label="More actions for SaptariX Platform"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i></button>
+                                    <ul class="dropdown-menu organizations-action-menu">
+                                        <li><button type="button" class="dropdown-item" data-organization-action="modules" data-organization-id="platform"><i class="fa-solid fa-table" aria-hidden="true"></i><span>Modules</span></button></li>
+                                        <li><button type="button" class="dropdown-item" data-organization-action="domains" data-organization-id="platform"><i class="fa-solid fa-globe" aria-hidden="true"></i><span>Domains</span></button></li>
+                                        <li><button type="button" class="dropdown-item" data-organization-action="settings" data-organization-id="platform"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></button></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><button type="button" class="dropdown-item text-danger" data-organization-action="delete" data-organization-id="platform"><i class="fa-solid fa-trash" aria-hidden="true"></i><span>Delete</span></button></li>
+                                    </ul>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -150,15 +177,21 @@
                         <td>8</td>
                         <td>46</td>
                         <td class="users-nowrap">12 Jun 2026</td>
-                        <td>
+                        <td class="sx-action-cell">
                             <div class="users-actions organizations-actions">
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="view" data-organization-id="northwind" aria-label="View Northwind Health"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="edit" data-organization-id="northwind" aria-label="Edit Northwind Health"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="apps" data-organization-id="northwind" aria-label="Apps and products for Northwind Health"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="modules" data-organization-id="northwind" aria-label="Modules for Northwind Health"><i class="fa-solid fa-table" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="domains" data-organization-id="northwind" aria-label="Domains for Northwind Health"><i class="fa-solid fa-globe" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="settings" data-organization-id="northwind" aria-label="Settings for Northwind Health"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-organization-action="delete" data-organization-id="northwind" aria-label="Delete Northwind Health"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                <div class="dropdown dropstart organizations-more-menu">
+                                    <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-bs-toggle="dropdown" data-bs-boundary="viewport" aria-expanded="false" aria-label="More actions for Northwind Health"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i></button>
+                                    <ul class="dropdown-menu organizations-action-menu">
+                                        <li><button type="button" class="dropdown-item" data-organization-action="modules" data-organization-id="northwind"><i class="fa-solid fa-table" aria-hidden="true"></i><span>Modules</span></button></li>
+                                        <li><button type="button" class="dropdown-item" data-organization-action="domains" data-organization-id="northwind"><i class="fa-solid fa-globe" aria-hidden="true"></i><span>Domains</span></button></li>
+                                        <li><button type="button" class="dropdown-item" data-organization-action="settings" data-organization-id="northwind"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></button></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><button type="button" class="dropdown-item text-danger" data-organization-action="delete" data-organization-id="northwind"><i class="fa-solid fa-trash" aria-hidden="true"></i><span>Delete</span></button></li>
+                                    </ul>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -192,15 +225,21 @@
                         <td>6</td>
                         <td>18</td>
                         <td class="users-nowrap">10 Jun 2026</td>
-                        <td>
+                        <td class="sx-action-cell">
                             <div class="users-actions organizations-actions">
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="view" data-organization-id="bluepeak" aria-label="View Bluepeak Logistics"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="edit" data-organization-id="bluepeak" aria-label="Edit Bluepeak Logistics"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="apps" data-organization-id="bluepeak" aria-label="Apps and products for Bluepeak Logistics"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="modules" data-organization-id="bluepeak" aria-label="Modules for Bluepeak Logistics"><i class="fa-solid fa-table" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="domains" data-organization-id="bluepeak" aria-label="Domains for Bluepeak Logistics"><i class="fa-solid fa-globe" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="settings" data-organization-id="bluepeak" aria-label="Settings for Bluepeak Logistics"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-organization-action="delete" data-organization-id="bluepeak" aria-label="Delete Bluepeak Logistics"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                <div class="dropdown dropstart organizations-more-menu">
+                                    <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-bs-toggle="dropdown" data-bs-boundary="viewport" aria-expanded="false" aria-label="More actions for Bluepeak Logistics"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i></button>
+                                    <ul class="dropdown-menu organizations-action-menu">
+                                        <li><button type="button" class="dropdown-item" data-organization-action="modules" data-organization-id="bluepeak"><i class="fa-solid fa-table" aria-hidden="true"></i><span>Modules</span></button></li>
+                                        <li><button type="button" class="dropdown-item" data-organization-action="domains" data-organization-id="bluepeak"><i class="fa-solid fa-globe" aria-hidden="true"></i><span>Domains</span></button></li>
+                                        <li><button type="button" class="dropdown-item" data-organization-action="settings" data-organization-id="bluepeak"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></button></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><button type="button" class="dropdown-item text-danger" data-organization-action="delete" data-organization-id="bluepeak"><i class="fa-solid fa-trash" aria-hidden="true"></i><span>Delete</span></button></li>
+                                    </ul>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -234,15 +273,21 @@
                         <td>4</td>
                         <td>9</td>
                         <td class="users-nowrap">08 Jun 2026</td>
-                        <td>
+                        <td class="sx-action-cell">
                             <div class="users-actions organizations-actions">
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="view" data-organization-id="atlas" aria-label="View Atlas Retail Group"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="edit" data-organization-id="atlas" aria-label="Edit Atlas Retail Group"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="apps" data-organization-id="atlas" aria-label="Apps and products for Atlas Retail Group"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="modules" data-organization-id="atlas" aria-label="Modules for Atlas Retail Group"><i class="fa-solid fa-table" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="domains" data-organization-id="atlas" aria-label="Domains for Atlas Retail Group"><i class="fa-solid fa-globe" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="settings" data-organization-id="atlas" aria-label="Settings for Atlas Retail Group"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-organization-action="delete" data-organization-id="atlas" aria-label="Delete Atlas Retail Group"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                <div class="dropdown dropstart organizations-more-menu">
+                                    <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-bs-toggle="dropdown" data-bs-boundary="viewport" aria-expanded="false" aria-label="More actions for Atlas Retail Group"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i></button>
+                                    <ul class="dropdown-menu organizations-action-menu">
+                                        <li><button type="button" class="dropdown-item" data-organization-action="modules" data-organization-id="atlas"><i class="fa-solid fa-table" aria-hidden="true"></i><span>Modules</span></button></li>
+                                        <li><button type="button" class="dropdown-item" data-organization-action="domains" data-organization-id="atlas"><i class="fa-solid fa-globe" aria-hidden="true"></i><span>Domains</span></button></li>
+                                        <li><button type="button" class="dropdown-item" data-organization-action="settings" data-organization-id="atlas"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></button></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><button type="button" class="dropdown-item text-danger" data-organization-action="delete" data-organization-id="atlas"><i class="fa-solid fa-trash" aria-hidden="true"></i><span>Delete</span></button></li>
+                                    </ul>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -276,15 +321,21 @@
                         <td>3</td>
                         <td>5</td>
                         <td class="users-nowrap">06 Jun 2026</td>
-                        <td>
+                        <td class="sx-action-cell">
                             <div class="users-actions organizations-actions">
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="view" data-organization-id="demo" aria-label="View SaptariX Demo Workspace"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="edit" data-organization-id="demo" aria-label="Edit SaptariX Demo Workspace"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></button>
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="apps" data-organization-id="demo" aria-label="Apps and products for SaptariX Demo Workspace"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="modules" data-organization-id="demo" aria-label="Modules for SaptariX Demo Workspace"><i class="fa-solid fa-table" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="domains" data-organization-id="demo" aria-label="Domains for SaptariX Demo Workspace"><i class="fa-solid fa-globe" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-organization-action="settings" data-organization-id="demo" aria-label="Settings for SaptariX Demo Workspace"><i class="fa-solid fa-gear" aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-organization-action="delete" data-organization-id="demo" aria-label="Delete SaptariX Demo Workspace"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                <div class="dropdown dropstart organizations-more-menu">
+                                    <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-bs-toggle="dropdown" data-bs-boundary="viewport" aria-expanded="false" aria-label="More actions for SaptariX Demo Workspace"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i></button>
+                                    <ul class="dropdown-menu organizations-action-menu">
+                                        <li><button type="button" class="dropdown-item" data-organization-action="modules" data-organization-id="demo"><i class="fa-solid fa-table" aria-hidden="true"></i><span>Modules</span></button></li>
+                                        <li><button type="button" class="dropdown-item" data-organization-action="domains" data-organization-id="demo"><i class="fa-solid fa-globe" aria-hidden="true"></i><span>Domains</span></button></li>
+                                        <li><button type="button" class="dropdown-item" data-organization-action="settings" data-organization-id="demo"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></button></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li><button type="button" class="dropdown-item text-danger" data-organization-action="delete" data-organization-id="demo"><i class="fa-solid fa-trash" aria-hidden="true"></i><span>Delete</span></button></li>
+                                    </ul>
+                                </div>
                             </div>
                         </td>
                     </tr>
