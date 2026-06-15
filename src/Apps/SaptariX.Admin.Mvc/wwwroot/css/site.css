@@ -1187,6 +1187,7 @@ body {
   grid-template-columns: minmax(88px, 1fr) minmax(84px, 1fr);
   justify-content: stretch;
   min-width: 0;
+  width: 100%;
 }
 
 .organizations-page .ui-adv-btn {
@@ -1721,6 +1722,18 @@ body {
   padding: 8px 10px;
 }
 
+@media (max-width: 1599.98px) {
+  .organizations-page .organizations-filter {
+    grid-template-columns: minmax(300px, 1.35fr) repeat(4, minmax(145px, 1fr)) minmax(180px, 0.9fr);
+  }
+
+  .organizations-filter .organizations-filter-actions {
+    grid-column: 1 / -1;
+    justify-self: end;
+    max-width: 240px;
+  }
+}
+
 @media (max-width: 1399.98px) {
   .organizations-page .organizations-filter {
     grid-template-columns: minmax(260px, 1.5fr) repeat(3, minmax(145px, 1fr));
@@ -1728,6 +1741,7 @@ body {
 
   .organizations-filter .organizations-filter-actions {
     grid-column: span 2;
+    max-width: none;
   }
 }
 
@@ -1745,6 +1759,7 @@ body {
 
   .organizations-filter .organizations-filter-actions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: none;
     min-width: 0;
   }
 }
