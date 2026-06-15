@@ -12,8 +12,10 @@
   const tableWrapper = root.querySelector("[data-organizations-list-host]");
   const alertHost = root.querySelector("[data-organizations-alert]");
   const form = root.querySelector("[data-organizations-form]");
-  const formTab = document.getElementById("organizations-form-tab");
-  const listTab = document.getElementById("organizations-list-tab");
+  const listPanel = root.querySelector("[data-organizations-list-panel]");
+  const formPanel = root.querySelector("[data-organizations-form-panel]");
+  const openCreateButton = root.querySelector("[data-organizations-open-create]");
+  const exportButton = root.querySelector("[data-organizations-export]");
   const formHeading = root.querySelector("[data-organizations-form-heading]");
   const submitButton = root.querySelector("[data-organizations-submit]");
   const resetButton = root.querySelector("[data-organizations-reset]");
@@ -236,6 +238,28 @@
     field.dispatchEvent(new Event("change", { bubbles: true }));
   }
 
+  function showListPanel() {
+    listPanel?.classList.remove("d-none");
+    formPanel?.classList.add("d-none");
+  }
+
+  function showFormPanel() {
+    listPanel?.classList.add("d-none");
+    formPanel?.classList.remove("d-none");
+    formPanel?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function showCreateCancel() {
+    cancelEditButton.textContent = "Cancel";
+    cancelEditButton.classList.remove("d-none");
+  }
+
+  function openCreateForm() {
+    setCreateMode();
+    showCreateCancel();
+    showFormPanel();
+  }
+
   function getOrganization(id) {
     return organizations[id] || null;
   }
@@ -307,7 +331,6 @@
     setField("CurrentPlan", "Enterprise");
     setField("BillingStatus", "Active");
 
-    formTab.textContent = "Create Organization";
     formHeading.textContent = "Create Organization";
     submitButton.textContent = "Create Organization";
     resetButton.classList.remove("d-none");
@@ -350,12 +373,12 @@
     setField("BillingStatus", organization.billingStatus);
     setField("TrialEndsOn", organization.trialEndsOn);
 
-    formTab.textContent = "Update Organization";
     formHeading.textContent = "Update Organization";
     submitButton.textContent = "Update Organization";
     resetButton.classList.add("d-none");
+    cancelEditButton.textContent = "Cancel Edit";
     cancelEditButton.classList.remove("d-none");
-    bootstrap.Tab.getOrCreateInstance(formTab).show();
+    showFormPanel();
   }
 
   function submitForm(event) {
@@ -370,7 +393,7 @@
     const verb = state.mode === "edit" ? "updated" : "created";
     showAlert(`Organization ${verb} in UI preview only. Backend save is intentionally not wired.`, "success");
     setCreateMode();
-    bootstrap.Tab.getOrCreateInstance(listTab).show();
+    showListPanel();
   }
 
   function updateDrawerSummary(drawer, organization) {
@@ -580,10 +603,22 @@
 
   filterForm?.addEventListener("submit", applyFilters);
   resetFiltersButton?.addEventListener("click", resetFilters);
+  openCreateButton?.addEventListener("click", openCreateForm);
+  exportButton?.addEventListener("click", () => showAlert("Organization export preview selected. Backend export is intentionally not wired.", "info"));
   tableWrapper?.addEventListener("click", handleTableAction);
   form?.addEventListener("submit", submitForm);
-  resetButton?.addEventListener("click", () => setTimeout(setCreateMode, 0));
-  cancelEditButton?.addEventListener("click", setCreateMode);
+  resetButton?.addEventListener("click", () => {
+    setTimeout(() => {
+      setCreateMode();
+      if (!formPanel?.classList.contains("d-none")) {
+        showCreateCancel();
+      }
+    }, 0);
+  });
+  cancelEditButton?.addEventListener("click", () => {
+    setCreateMode();
+    showListPanel();
+  });
   confirmDeleteButton?.addEventListener("click", confirmDelete);
   root.addEventListener("input", handleDrawerSearch);
   root.addEventListener("click", handleDrawerSave);
