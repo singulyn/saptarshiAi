@@ -1542,6 +1542,16 @@ body {
   width: 46px;
 }
 
+.organizations-form-hero-icon i,
+.organization-section-icon i {
+  align-items: center;
+  display: inline-flex;
+  height: 1em;
+  justify-content: center;
+  line-height: 1;
+  width: 1em;
+}
+
 .organization-stepper {
   border-bottom: 1px solid #e2e8f0;
   display: grid;
@@ -1735,7 +1745,9 @@ body {
   gap: 10px;
   min-height: 46px;
   min-width: 0;
+  overflow: visible;
   padding: 0 12px;
+  position: relative;
   transition: border-color 0.16s ease, box-shadow 0.16s ease;
 }
 
@@ -1745,9 +1757,14 @@ body {
 }
 
 .organization-input-shell > i {
+  align-items: center;
   color: #667085;
+  display: inline-flex;
   flex: 0 0 18px;
-  text-align: center;
+  height: 44px;
+  justify-content: center;
+  line-height: 1;
+  width: 18px;
 }
 
 .organization-input-shell .form-control,
@@ -1769,6 +1786,7 @@ body {
 .organization-input-shell .sx-select {
   flex: 1 1 auto;
   min-width: 0;
+  position: static;
   width: 100%;
 }
 
@@ -1787,6 +1805,41 @@ body {
 
 .organization-input-shell .sx-select-menu {
   border-radius: 8px;
+  left: 0;
+  margin-top: 0;
+  min-width: 100%;
+  right: 0;
+  top: calc(100% + 8px);
+  width: 100%;
+  z-index: 1085;
+}
+
+.organization-input-shell .sx-select-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.organization-input-shell .sx-select-caret {
+  margin-left: auto;
+}
+
+.organizations-form.was-validated .organization-input-shell .form-control:valid,
+.organizations-form.was-validated .organization-input-shell .form-control:invalid,
+.organizations-form.was-validated .organization-input-shell .form-select:valid,
+.organizations-form.was-validated .organization-input-shell .form-select:invalid {
+  background-image: none !important;
+  padding-right: 0 !important;
+}
+
+.organizations-form.was-validated .organization-input-shell:has(.form-control:invalid),
+.organizations-form.was-validated .organization-input-shell:has(.form-select:invalid) {
+  border-color: var(--bs-form-invalid-border-color);
+}
+
+.organizations-form.was-validated .organization-input-shell:has(.form-control:invalid):focus-within,
+.organizations-form.was-validated .organization-input-shell:has(.form-select:invalid):focus-within {
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.12);
 }
 
 .organization-image-placeholder {
