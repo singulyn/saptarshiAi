@@ -1153,13 +1153,15 @@ body {
   align-items: center;
   background: linear-gradient(180deg, #fff 0%, #fbfcfe 100%);
   border-bottom: 1px solid var(--sx-border);
+  --organizations-filter-border: #111827;
+  --organizations-filter-height: 44px;
   display: grid;
-  gap: 12px;
-  grid-template-columns: minmax(320px, 1.5fr) repeat(4, minmax(150px, 1fr)) minmax(190px, 0.9fr) minmax(220px, auto);
+  gap: 10px 14px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   justify-content: stretch;
   max-width: 100%;
   min-width: 0;
-  padding: 16px 18px;
+  padding: 14px 16px;
   width: 100%;
 }
 
@@ -1188,16 +1190,22 @@ body {
 .organizations-filter .form-control,
 .organizations-filter .form-select,
 .organizations-filter .input-group-text {
-  border-color: #d7dee8;
-  border-width: 1px;
-  min-height: 42px;
+  border-color: var(--organizations-filter-border);
+  border-width: 2px;
+  min-height: var(--organizations-filter-height);
+}
+
+.organizations-filter .form-control:focus,
+.organizations-filter .form-select:focus {
+  border-color: var(--organizations-filter-border);
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
 }
 
 .organizations-filter .input-group-text {
   background: #fff;
-  color: #667085;
+  color: #344054;
   justify-content: center;
-  min-width: 42px;
+  min-width: var(--organizations-filter-height);
 }
 
 .organizations-filter .input-group-text:first-child {
@@ -1213,25 +1221,33 @@ body {
   border-left: 0;
 }
 
-.organizations-filter-search .input-group {
+.organizations-filter-search .input-group,
+.organizations-filter-date .input-group {
   background: #fff;
-  border: 2px solid #d7dee8;
+  border: 2px solid var(--organizations-filter-border);
   border-radius: var(--sx-radius);
+  min-height: var(--organizations-filter-height);
   overflow: hidden;
 }
 
-.organizations-filter-search .input-group:focus-within {
-  border-color: var(--sx-input-focus-border);
+.organizations-filter-search .input-group:focus-within,
+.organizations-filter-date .input-group:focus-within {
+  border-color: var(--organizations-filter-border);
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
 }
 
 .organizations-filter-search .input-group .input-group-text,
-.organizations-filter-search .input-group .form-control {
+.organizations-filter-search .input-group .form-control,
+.organizations-filter-date .input-group .input-group-text,
+.organizations-filter-date .input-group .form-control {
   border: 0;
-  min-height: 38px;
+  box-shadow: none;
+  min-height: calc(var(--organizations-filter-height) - 4px);
 }
 
-.organizations-filter-search .input-group:focus-within .input-group-text {
-  color: var(--sx-input-focus-border);
+.organizations-filter-search .input-group:focus-within .input-group-text,
+.organizations-filter-date .input-group:focus-within .input-group-text {
+  color: var(--organizations-filter-border);
 }
 
 .organizations-filter .sx-table-filter-search,
@@ -1245,8 +1261,11 @@ body {
 .organizations-filter .organizations-filter-actions {
   display: grid;
   gap: 10px;
+  grid-column: 1 / -1;
   grid-template-columns: minmax(88px, 1fr) minmax(84px, 1fr);
   justify-content: stretch;
+  justify-self: end;
+  max-width: 300px;
   min-width: 0;
   width: 100%;
 }
@@ -1794,24 +1813,30 @@ body {
 
 @media (max-width: 1599.98px) {
   .organizations-page .organizations-filter {
-    grid-template-columns: minmax(300px, 1.35fr) repeat(4, minmax(145px, 1fr)) minmax(180px, 0.9fr);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .organizations-filter .organizations-filter-actions {
     grid-column: 1 / -1;
     justify-self: end;
-    max-width: 240px;
+    max-width: 300px;
   }
 }
 
 @media (max-width: 1399.98px) {
   .organizations-page .organizations-filter {
-    grid-template-columns: minmax(260px, 1.5fr) repeat(3, minmax(145px, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .organizations-filter .organizations-filter-actions {
-    grid-column: span 2;
-    max-width: none;
+    grid-column: 1 / -1;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .organizations-page .organizations-filter {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -1832,7 +1857,6 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .organizations-filter-search,
   .organizations-filter-actions {
     grid-column: 1 / -1;
   }
