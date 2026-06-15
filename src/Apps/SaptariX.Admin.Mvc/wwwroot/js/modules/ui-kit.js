@@ -172,7 +172,8 @@
   function buildGeneratedOption(option, nativeSelect) {
     const item = document.createElement("button");
     const label = option.textContent.trim();
-    const meta = getGeneratedOptionMeta(option);
+    const isMinimal = Object.prototype.hasOwnProperty.call(nativeSelect.dataset, "sxSelectMinimal");
+    const meta = isMinimal ? { description: "", tone: "muted" } : getGeneratedOptionMeta(option);
 
     item.className = "sx-select-option";
     item.type = "button";
@@ -185,6 +186,10 @@
 
     if (option.selected || nativeSelect.value === option.value) {
       item.classList.add("is-selected");
+    }
+
+    if (isMinimal) {
+      item.classList.add("sx-select-option-minimal");
     }
 
     const marker = document.createElement("span");
@@ -202,7 +207,12 @@
       text.appendChild(description);
     }
 
-    item.append(marker, text);
+    if (isMinimal) {
+      item.append(text);
+    } else {
+      item.append(marker, text);
+    }
+
     return item;
   }
 

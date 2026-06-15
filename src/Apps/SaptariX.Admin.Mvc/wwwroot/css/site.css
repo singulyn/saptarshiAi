@@ -1097,6 +1097,7 @@ body {
   align-items: flex-start;
   gap: 20px;
   margin-bottom: 18px;
+  margin-top: 12px;
 }
 
 .organizations-page-header h1 {
@@ -1192,7 +1193,8 @@ body {
 .organizations-filter .input-group-text {
   border-color: var(--organizations-filter-border);
   border-width: 2px;
-  min-height: var(--organizations-filter-height);
+  height: var(--organizations-filter-height);
+  min-height: 0;
 }
 
 .organizations-filter .form-control:focus,
@@ -1206,6 +1208,8 @@ body {
   color: #344054;
   justify-content: center;
   min-width: var(--organizations-filter-height);
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 .organizations-filter .input-group-text:first-child {
@@ -1226,7 +1230,8 @@ body {
   background: #fff;
   border: 2px solid var(--organizations-filter-border);
   border-radius: var(--sx-radius);
-  min-height: var(--organizations-filter-height);
+  height: var(--organizations-filter-height);
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -1242,7 +1247,10 @@ body {
 .organizations-filter-date .input-group .form-control {
   border: 0;
   box-shadow: none;
-  min-height: calc(var(--organizations-filter-height) - 4px);
+  height: calc(var(--organizations-filter-height) - 4px);
+  min-height: 0;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 .organizations-filter-search .input-group:focus-within .input-group-text,
@@ -1256,6 +1264,54 @@ body {
   flex: unset;
   min-width: 0;
   width: 100%;
+}
+
+.organizations-filter .sx-select-control {
+  border-color: var(--organizations-filter-border);
+  border-width: 2px;
+  box-shadow: none;
+  height: var(--organizations-filter-height);
+  min-height: 0;
+  padding: 0 12px;
+}
+
+.organizations-filter .sx-select.is-open .sx-select-control,
+.organizations-filter .sx-select-control:focus {
+  border-color: var(--organizations-filter-border);
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+}
+
+.organizations-filter .sx-select-menu {
+  border: 1px solid rgba(17, 24, 39, 0.16);
+  border-radius: 8px;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.16), 0 6px 16px rgba(15, 23, 42, 0.08);
+  gap: 3px;
+  margin-top: 8px;
+  padding: 6px;
+}
+
+.organizations-filter .sx-select-option-minimal {
+  grid-template-columns: 1fr auto;
+  min-height: 36px;
+  padding: 8px 10px;
+}
+
+.organizations-filter .sx-select-option-minimal strong {
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.organizations-filter .sx-select-option-minimal.is-selected {
+  background: #eef4f3;
+  color: #061a16;
+}
+
+.organizations-filter .sx-select-option-minimal.is-selected::after {
+  color: #146c43;
+  content: "\f00c";
+  font-family: "Font Awesome 6 Free";
+  font-size: 0.78rem;
+  font-weight: 900;
 }
 
 .organizations-filter .organizations-filter-actions {
