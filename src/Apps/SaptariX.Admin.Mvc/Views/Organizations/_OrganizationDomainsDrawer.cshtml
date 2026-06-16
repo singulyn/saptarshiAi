@@ -1,17 +1,17 @@
-<div class="offcanvas offcanvas-end ui-drawer organization-drawer organization-drawer-wide"
+<div class="offcanvas offcanvas-end ui-drawer organization-drawer organization-domains-drawer"
      tabindex="-1"
      id="organizationDomainsDrawer"
      aria-labelledby="organizationDomainsDrawerTitle"
      data-organization-drawer="domains">
-    <div class="offcanvas-header ui-drawer-header">
+    <div class="offcanvas-header ui-drawer-header organization-domains-header">
         <div>
             <p class="section-kicker mb-1">Organization</p>
             <h2 class="offcanvas-title" id="organizationDomainsDrawerTitle">Organization Domains</h2>
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body ui-drawer-body">
-        <div class="ui-user-summary organization-drawer-summary">
+    <div class="offcanvas-body ui-drawer-body organization-domains-body">
+        <div class="ui-user-summary organization-drawer-summary organization-domains-summary">
             <span class="users-avatar users-avatar-lg" data-organization-drawer-avatar>D</span>
             <div>
                 <strong data-organization-drawer-name>Select organization</strong>
@@ -19,30 +19,39 @@
             </div>
         </div>
 
-        <div class="card sx-card sx-card-compact organization-inline-card">
+        <div class="card sx-card sx-card-compact organization-inline-card organization-domains-card">
             <div class="card-body">
                 <div class="organization-section-heading">
                     <h3>Inline Create Domain</h3>
                     <span>Add a preview row to the drawer table</span>
                 </div>
                 <form class="organization-inline-domain-form" data-organization-domain-form>
-                    <input class="form-control form-control-sm" name="Domain" placeholder="app.example.com" aria-label="Domain" />
-                    <select class="form-select form-select-sm" name="DomainType" aria-label="Domain type">
-                        <option>Custom</option>
-                        <option>Primary</option>
-                        <option>Subdomain</option>
-                        <option>Redirect</option>
-                    </select>
-                    <select class="form-select form-select-sm" name="Status" aria-label="Domain status">
-                        <option>Active</option>
-                        <option>Inactive</option>
-                    </select>
+                    <label class="organization-domain-field">
+                        <span>Domain</span>
+                        <input class="form-control form-control-sm" name="Domain" placeholder="app.example.com" aria-label="Domain" />
+                    </label>
+                    <label class="organization-domain-field">
+                        <span>Type</span>
+                        <select class="form-select form-select-sm" name="DomainType" aria-label="Domain type">
+                            <option>Custom</option>
+                            <option>Primary</option>
+                            <option>Subdomain</option>
+                            <option>Redirect</option>
+                        </select>
+                    </label>
+                    <label class="organization-domain-field">
+                        <span>Status</span>
+                        <select class="form-select form-select-sm" name="Status" aria-label="Domain status">
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+                    </label>
                     <button class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" type="submit">Add Domain</button>
                 </form>
             </div>
         </div>
 
-        <div class="table-responsive organization-drawer-table">
+        <div class="table-responsive organization-drawer-table organization-domains-table">
             <table class="table table-hover align-middle sx-table mb-0">
                 <thead>
                     <tr>
@@ -75,7 +84,7 @@
             </table>
         </div>
     </div>
-    <div class="ui-drawer-footer">
+    <div class="ui-drawer-footer organization-domains-footer">
         <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" data-organization-drawer-save>Save Domains</button>
         <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-orange" data-bs-dismiss="offcanvas">Cancel</button>
     </div>
