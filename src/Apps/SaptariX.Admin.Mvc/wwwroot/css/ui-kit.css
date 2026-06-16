@@ -1169,7 +1169,50 @@
   }
 
   .ui-drawer {
-    width: 100vw;
+    --bs-offcanvas-width: 85vw;
+    max-width: 85vw;
+    width: 85vw;
+  }
+
+  .ui-drawer-header {
+    padding: 14px 14px 12px;
+  }
+
+  .ui-drawer-header .section-kicker {
+    font-size: 0.64rem;
+    margin-bottom: 4px;
+  }
+
+  .ui-drawer-header .offcanvas-title {
+    font-size: 1.08rem;
+  }
+
+  .ui-drawer-body {
+    padding: 12px 12px 68px;
+  }
+
+  .ui-drawer-footer {
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .ui-drawer .accordion {
+    gap: 8px;
+  }
+
+  .ui-drawer .accordion-button {
+    font-size: 0.82rem;
+    min-height: 42px;
+    padding: 10px 12px;
+  }
+
+  .ui-drawer .accordion-body {
+    padding: 9px 12px 10px;
+  }
+
+  .ui-user-summary {
+    gap: 10px;
+    padding: 10px;
   }
 }
 

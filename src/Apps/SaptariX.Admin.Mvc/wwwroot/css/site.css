@@ -3609,7 +3609,60 @@ body {
   }
 
   .user-permission-drawer {
-    width: 100vw;
+    --bs-offcanvas-width: 85vw;
+    max-width: 85vw;
+    width: 85vw;
+  }
+
+  .user-permission-header {
+    padding: 14px 14px 12px;
+  }
+
+  .user-permission-header .section-kicker {
+    font-size: 0.64rem;
+    margin-bottom: 4px;
+  }
+
+  .user-permission-header h2 {
+    font-size: 1.08rem;
+  }
+
+  .user-permission-body {
+    padding: 12px 12px 68px;
+  }
+
+  .user-permission-user {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .user-permission-group .accordion-button {
+    font-size: 0.82rem;
+    min-height: 42px;
+    padding: 10px 12px;
+  }
+
+  .user-permission-group .accordion-body {
+    padding: 9px 12px 10px;
+  }
+
+  .user-permission-row {
+    gap: 8px;
+    min-height: 36px;
+    padding: 7px 0;
+  }
+
+  .user-permission-row .form-check-label {
+    font-size: 0.78rem;
+    min-width: 0;
+  }
+
+  .user-permission-row small {
+    font-size: 0.68rem;
+  }
+
+  .user-permission-footer {
+    padding: 10px 12px;
   }
 }
 
@@ -4218,13 +4271,30 @@ body {
   .organizations-page .organization-drawer,
   .organizations-page .organization-drawer-wide,
   .organizations-page .organization-modules-drawer {
-    --bs-offcanvas-width: 100vw;
-    border-left: 0;
+    --bs-offcanvas-width: 85vw;
+    border-left: 1px solid #dfe6ee;
     display: flex;
     flex-direction: column;
     height: 100dvh;
-    max-width: 100vw;
-    width: 100vw;
+    max-width: 85vw;
+    width: 85vw;
+  }
+
+  .organizations-page .organization-drawer .offcanvas-header,
+  .organizations-page .organization-modules-drawer .offcanvas-header {
+    padding: 14px 14px 12px;
+  }
+
+  .organizations-page .organization-drawer .section-kicker,
+  .organizations-page .organization-modules-drawer .section-kicker {
+    font-size: 0.62rem;
+    margin-bottom: 4px;
+  }
+
+  .organizations-page .organization-drawer .offcanvas-title,
+  .organizations-page .organization-modules-drawer .offcanvas-title {
+    font-size: 1.04rem;
+    line-height: 1.15;
   }
 
   .organizations-page .organization-drawer .offcanvas-header,
@@ -4245,20 +4315,22 @@ body {
   .organizations-page .organization-modules-drawer .ui-drawer-footer {
     bottom: 0;
     flex: 0 0 auto;
+    gap: 8px;
+    padding: 10px 12px;
     position: sticky;
     z-index: 3;
   }
 
   .organizations-page .organization-apps-header {
-    padding: 18px 18px 16px;
+    padding: 14px 14px 12px;
   }
 
   .organizations-page .organization-apps-header h2 {
-    font-size: 1.18rem;
+    font-size: 1.04rem;
   }
 
   .organizations-page .organization-apps-body {
-    padding: 14px;
+    padding: 12px;
   }
 
   .organizations-page .organization-apps-filter {
@@ -4277,8 +4349,8 @@ body {
 
   .organizations-page .organization-apps-card .accordion-button {
     gap: 9px;
-    min-height: 52px;
-    padding: 12px 14px;
+    min-height: 48px;
+    padding: 11px 12px;
   }
 
   .organizations-page .organization-apps-group-icon {
@@ -4287,14 +4359,14 @@ body {
   }
 
   .organizations-page .organization-apps-card .accordion-body {
-    padding: 0 14px 10px;
+    padding: 0 12px 10px;
   }
 
   .organizations-page .organization-app-row {
-    gap: 10px;
-    grid-template-columns: 18px 34px minmax(0, 1fr) auto;
-    min-height: 62px;
-    padding: 10px 0;
+    gap: 8px;
+    grid-template-columns: 17px 32px minmax(0, 1fr) auto;
+    min-height: 58px;
+    padding: 9px 0;
   }
 
   .organizations-page .organization-app-icon {
@@ -4303,11 +4375,11 @@ body {
   }
 
   .organizations-page .organization-app-row .form-check-label strong {
-    font-size: 0.84rem;
+    font-size: 0.8rem;
   }
 
   .organizations-page .organization-app-row .form-check-label small {
-    font-size: 0.68rem;
+    font-size: 0.64rem;
   }
 
   .organizations-page .organization-app-row .badge {
@@ -4324,21 +4396,21 @@ body {
   }
 
   .organizations-page .organization-apps-footer .ui-adv-btn {
-    min-height: 40px;
+    min-height: 38px;
     min-width: 0;
     width: 100%;
   }
 
   .organizations-page .organization-settings-header {
-    padding: 18px 18px 16px;
+    padding: 14px 14px 12px;
   }
 
   .organizations-page .organization-settings-header h2 {
-    font-size: 1.18rem;
+    font-size: 1.04rem;
   }
 
   .organizations-page .organization-settings-body {
-    padding: 14px;
+    padding: 12px;
   }
 
   .organizations-page .organization-settings-summary {
@@ -4353,8 +4425,9 @@ body {
   }
 
   .organizations-page .organization-settings-card .accordion-button {
-    min-height: 50px;
-    padding: 13px 14px;
+    font-size: 0.82rem;
+    min-height: 46px;
+    padding: 11px 12px;
   }
 
   .organizations-page .organization-settings-card .accordion-button:not(.collapsed) {
@@ -4362,7 +4435,7 @@ body {
   }
 
   .organizations-page .organization-settings-card .accordion-body {
-    padding: 14px;
+    padding: 12px;
   }
 
   .organizations-page .organization-settings-card .accordion-collapse.show .accordion-body {
@@ -4376,22 +4449,22 @@ body {
   }
 
   .organizations-page .organization-settings-table-head {
-    font-size: 0.66rem;
+    font-size: 0.62rem;
     padding: 0 12px;
   }
 
   .organizations-page .organization-settings-row {
-    min-height: 52px;
-    padding: 9px 12px;
+    min-height: 50px;
+    padding: 8px 10px;
   }
 
   .organizations-page .organization-settings-key,
   .organizations-page .organization-settings-value {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
   }
 
   .organizations-page .organization-settings-type {
-    font-size: 0.68rem;
+    font-size: 0.64rem;
     min-height: 25px;
     min-width: 56px;
     padding: 3px 9px;
@@ -4405,21 +4478,21 @@ body {
   }
 
   .organizations-page .organization-settings-footer .ui-adv-btn {
-    min-height: 40px;
+    min-height: 38px;
     min-width: 0;
     width: 100%;
   }
 
   .organizations-page .organization-domains-header {
-    padding: 18px 18px 16px;
+    padding: 14px 14px 12px;
   }
 
   .organizations-page .organization-domains-header h2 {
-    font-size: 1.18rem;
+    font-size: 1.04rem;
   }
 
   .organizations-page .organization-domains-body {
-    padding: 14px;
+    padding: 12px;
   }
 
   .organizations-page .organization-domains-summary {
@@ -4430,7 +4503,7 @@ body {
   }
 
   .organizations-page .organization-domains-card .card-body {
-    padding: 14px;
+    padding: 12px;
   }
 
   .organizations-page .organization-domains-card .organization-section-heading {
@@ -4488,7 +4561,7 @@ body {
   }
 
   .organizations-page .organization-domains-footer .ui-adv-btn {
-    min-height: 40px;
+    min-height: 38px;
     min-width: 0;
     width: 100%;
   }
