@@ -1,0 +1,73 @@
+@using SaptariX.Admin.Mvc.ViewModels.Users
+@model UserRoleViewModel
+
+<div class="offcanvas offcanvas-end user-permission-drawer"
+     tabindex="-1"
+     id="userRolesDrawer"
+     aria-labelledby="userRolesDrawerTitle"
+     data-user-roles-drawer
+     data-user-id="@Model.UserId">
+    <div class="offcanvas-header user-permission-header">
+        <div>
+            <p class="section-kicker mb-1">Access Control</p>
+            <h2 class="offcanvas-title" id="userRolesDrawerTitle">User Roles</h2>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body user-permission-body">
+        @if (!Model.HasUser)
+        {
+            <div class="users-empty-state h-100">
+                <strong>No user selected</strong>
+                <span>Select the roles action from the user list.</span>
+            </div>
+        }
+        else
+        {
+            <div class="user-permission-user">
+                <div class="users-avatar users-avatar-lg" aria-hidden="true">@Model.UserFullName.Substring(0, 1).ToUpperInvariant()</div>
+                <div>
+                    <strong>@Model.UserFullName</strong>
+                    <span>@Model.Email</span>
+                </div>
+            </div>
+
+            <div class="user-permission-groups">
+                <div class="accordion-item user-permission-group">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button">
+                            <span>Assigned Roles</span>
+                            <span class="badge text-bg-light ms-2">@Model.Roles.Count</span>
+                        </button>
+                    </h3>
+                    <div class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            @foreach (var role in Model.Roles)
+                            {
+                                <label class="form-check user-permission-row" data-user-role-row>
+                                    <input class="form-check-input"
+                                           type="checkbox"
+                                           value="@role.RoleId"
+                                           data-user-role-checkbox
+                                           data-role-id="@role.RoleId"
+                                           checked="@role.IsAssigned" />
+                                    <span class="form-check-label">
+                                        <strong>@role.DisplayName</strong>
+                                        <small>@role.Description</small>
+                                    </span>
+                                    <span class="badge @(role.IsSystem ? "text-bg-primary" : "text-bg-secondary")">@(role.IsSystem ? "System" : "Custom")</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="user-permission-footer">
+        <button type="button" class="btn btn-primary btn-sm" data-user-role-save @(Model.HasUser ? string.Empty : "disabled")>Save Roles</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="offcanvas">Cancel</button>
+    </div>
+</div>

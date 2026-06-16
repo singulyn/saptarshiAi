@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SaptariX.Persistence.Abstractions\SaptariX.Persistence.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Platform\SaptariX.Platform.AccessControl\SaptariX.Platform.AccessControl.csproj" />
     <ProjectReference Include="..\..\Platform\SaptariX.Platform.Identity\SaptariX.Platform.Identity.csproj" />
   </ItemGroup>
 

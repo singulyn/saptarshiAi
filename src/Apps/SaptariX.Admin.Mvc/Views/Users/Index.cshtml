@@ -6,6 +6,7 @@
     ViewData["ActiveMenu"] = "/Users";
     var formModel = UserFormViewModel.Empty(Model.OrganizationId);
     var permissionsModel = UserPermissionViewModel.Empty(Model.OrganizationId);
+    var rolesModel = UserRoleViewModel.Empty(Model.OrganizationId);
 }
 
 <section class="page-section users-page"
@@ -16,6 +17,8 @@
          data-create-url="/Users/Create"
          data-update-url="/Users/Update"
          data-delete-url="/Users/SoftDelete"
+         data-roles-url="/Users/GetRoles"
+         data-save-roles-url="/Users/SaveRoles"
          data-permissions-url="/Users/GetPermissions"
          data-save-permissions-url="/Users/SavePermissions">
     @Html.AntiForgeryToken()
@@ -88,6 +91,10 @@
 
     <div id="userPermissionsDrawerHost" data-user-permissions-host>
         <partial name="_UserPermissionsDrawer" model="permissionsModel" />
+    </div>
+
+    <div id="userRolesDrawerHost" data-user-roles-host>
+        <partial name="_UserRolesDrawer" model="rolesModel" />
     </div>
 
     <div class="modal fade" id="userDeleteModal" tabindex="-1" aria-labelledby="userDeleteModalTitle" aria-hidden="true">

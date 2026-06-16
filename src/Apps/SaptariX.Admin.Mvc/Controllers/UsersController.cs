@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using SaptariX.Admin.Mvc.ViewModels.Users;
 using SaptariX.Platform.AccessControl;
 using SaptariX.Platform.AccessControl.Permissions;
+using SaptariX.Platform.AccessControl.UserRoles;
 using SaptariX.Platform.Identity.Users;
 using SaptariX.Plugin.Abstractions.Identity;
 using SaptariX.Plugin.Abstractions.Organization;
@@ -15,6 +16,7 @@ public sealed class UsersController : Controller
 
     private readonly IUserService _userService;
     private readonly IUserPermissionService _userPermissionService;
+    private readonly IUserRoleService _userRoleService;
     private readonly ICurrentOrganizationService _currentOrganizationService;
     private readonly ICurrentUserService _currentUserService;
     private readonly IPermissionAuthorizationService _permissionAuthorizationService;
@@ -22,12 +24,14 @@ public sealed class UsersController : Controller
     public UsersController(
         IUserService userService,
         IUserPermissionService userPermissionService,
+        IUserRoleService userRoleService,
         ICurrentOrganizationService currentOrganizationService,
         ICurrentUserService currentUserService,
         IPermissionAuthorizationService permissionAuthorizationService)
     {
         _userService = userService;
         _userPermissionService = userPermissionService;
+        _userRoleService = userRoleService;
         _currentOrganizationService = currentOrganizationService;
         _currentUserService = currentUserService;
         _permissionAuthorizationService = permissionAuthorizationService;
@@ -157,6 +161,41 @@ public sealed class UsersController : Controller
         request.ChangedBy = GetUserId();
         var result = await _userPermissionService.SavePermissionsAsync(request, cancellationToken);
         return ToJsonResult(result);
+    }
+
+    [HttpGet("/Users/GetRoles/{userId:guid}")]
+    public async Task<IActionResult> GetRoles(Guid userId, CancellationToken cancellationToken)
+    {
+        if (!await HasPermissionAsync(PlatformPermissions.UsersManageRoles, cancellationToken))
+        {
+            return StatusCode(StatusCodes.Status403Forbidden);
+        }
+
+        var roles = await _userRoleService.GetRolesAsync(
+            new UserRoleRequest
+            {
+                UserId = userId,
+                OrganizationId = GetOrganizationId()
+            },
+            cancellationToken);
+
+        return PartialView("_UserRolesDrawer", UserRoleViewModel.FromDto(roles));
+    }
+
+    [HttpPost("/Users/SaveRoles")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> SaveRoles([FromBody] UserRoleSaveRequest request, CancellationToken cancellationToken)
+    {
+        if (!await HasPermissionAsync(PlatformPermissions.UsersManageRoles, cancellationToken))
+        {
+            return StatusCode(StatusCodes.Status403Forbidden);
+        }
+
+        request.OrganizationId = GetOrganizationId();
+        request.ChangedBy = GetUserId();
+        var result = await _userRoleService.SaveRolesAsync(request, cancellationToken);
+        Response.StatusCode = result.Succeeded ? StatusCodes.Status200OK : StatusCodes.Status400BadRequest;
+        return Json(new { result.Succeeded, result.Message, result.UserId });
     }
 
     private JsonResult ToJsonResult(UserCommandResult result)

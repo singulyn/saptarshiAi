@@ -1,0 +1,74 @@
+@using SaptariX.Admin.Mvc.ViewModels.Roles
+@model RoleListViewModel
+@{
+    var totalPages = Math.Max(1, Model.TotalPages);
+    var previousDisabled = Model.PageNumber <= 1 ? "disabled" : string.Empty;
+    var nextDisabled = Model.PageNumber >= totalPages ? "disabled" : string.Empty;
+}
+
+@if (!Model.HasItems)
+{
+    <div class="users-empty-state">
+        <strong>No roles found</strong>
+        <span>Adjust the search or create a new role.</span>
+    </div>
+}
+else
+{
+    <div class="table-responsive users-table-wrapper">
+        <table class="table table-hover align-middle users-table mb-0">
+            <thead>
+                <tr>
+                    <th scope="col"><button type="button" class="users-sort-button" data-roles-sort="Name">Role</button></th>
+                    <th scope="col">Description</th>
+                    <th scope="col"><button type="button" class="users-sort-button" data-roles-sort="Status">Status</button></th>
+                    <th scope="col"><button type="button" class="users-sort-button" data-roles-sort="UserCount">Users</button></th>
+                    <th scope="col"><button type="button" class="users-sort-button" data-roles-sort="PermissionCount">Permissions</button></th>
+                    <th scope="col" class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var role in Model.Items)
+                {
+                    <tr>
+                        <td>
+                            <div class="users-person">
+                                <span class="users-avatar" aria-hidden="true">@role.DisplayName.Substring(0, 1).ToUpperInvariant()</span>
+                                <div>
+                                    <strong>@role.DisplayName</strong>
+                                    <span>@role.Name</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>@role.Description</td>
+                        <td><span class="badge @role.StatusBadgeClass">@role.Status</span></td>
+                        <td>@role.UserCount</td>
+                        <td>@role.PermissionCount</td>
+                        <td>
+                            <div class="users-actions">
+                                <button type="button" class="btn btn-light btn-sm users-icon-button" data-roles-action="permissions" data-role-id="@role.Id" aria-label="Permissions for @role.DisplayName">
+                                    <i class="fa-solid fa-key" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-light btn-sm users-icon-button" data-roles-action="edit" data-role-id="@role.Id" aria-label="Edit @role.DisplayName">
+                                    <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-light btn-sm users-icon-button text-danger" data-roles-action="delete" data-role-id="@role.Id" aria-label="Delete @role.DisplayName" @(role.IsSystem ? "disabled" : string.Empty)>
+                                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<div class="users-table-footer">
+    <span>@Model.TotalCount role@(Model.TotalCount == 1 ? string.Empty : "s")</span>
+    <div class="users-pagination">
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-roles-page="@(Model.PageNumber - 1)" @previousDisabled>Previous</button>
+        <span>Page @Model.PageNumber of @totalPages</span>
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-roles-page="@(Model.PageNumber + 1)" @nextDisabled>Next</button>
+    </div>
+</div>

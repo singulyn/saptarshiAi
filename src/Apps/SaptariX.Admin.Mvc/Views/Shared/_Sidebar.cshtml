@@ -8,7 +8,17 @@
 @inject ICurrentOrganizationService CurrentOrganizationService
 @{
     var activeMenu = ViewData["ActiveMenu"]?.ToString() ?? Context.Request.Path.Value ?? "/Dashboard";
-    var items = MenuRegistry.GetItems().Where(CanShow).ToList();
+    var allMenuItems = MenuRegistry.GetItems().ToList();
+    var visibleMenuItems = allMenuItems.Where(CanShow).ToList();
+    var parentsWithVisibleChildren = visibleMenuItems
+        .Where(x => !string.IsNullOrWhiteSpace(x.Parent))
+        .Select(x => x.Parent!)
+        .ToHashSet(StringComparer.OrdinalIgnoreCase);
+    var items = visibleMenuItems
+        .Where(x =>
+            !allMenuItems.Any(child => string.Equals(child.Parent, x.Text, StringComparison.OrdinalIgnoreCase))
+            || parentsWithVisibleChildren.Contains(x.Text))
+        .ToList();
     var childrenByParent = items
         .Where(x => !string.IsNullOrWhiteSpace(x.Parent))
         .GroupBy(x => x.Parent!)

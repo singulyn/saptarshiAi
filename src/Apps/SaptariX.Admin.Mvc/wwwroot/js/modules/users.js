@@ -22,6 +22,7 @@
   const deleteModalElement = document.getElementById("userDeleteModal");
   const confirmDeleteButton = root.querySelector("[data-users-confirm-delete]");
   const permissionsHost = root.querySelector("[data-user-permissions-host]");
+  const rolesHost = root.querySelector("[data-user-roles-host]");
   const alertHost = root.querySelector("[data-users-alert]");
 
   const state = {
@@ -255,6 +256,84 @@
     }
   }
 
+  async function openRoles(userId) {
+    renderRolesLoading(userId);
+    showRolesDrawer();
+    try {
+      const response = await fetch(`${root.dataset.rolesUrl}/${userId}`);
+      if (!response.ok) {
+        throw new Error("Unable to load roles.");
+      }
+      rolesHost.innerHTML = await response.text();
+      showRolesDrawer();
+    } catch (error) {
+      showAlert(error.message, "danger");
+    }
+  }
+
+  function renderRolesLoading(userId) {
+    rolesHost.innerHTML = [
+      `<div class="offcanvas offcanvas-end user-permission-drawer" tabindex="-1" id="userRolesDrawer" data-user-roles-drawer data-user-id="${userId}">`,
+      '<div class="offcanvas-header user-permission-header">',
+      '<div><p class="section-kicker mb-1">Access Control</p><h2 class="offcanvas-title">User Roles</h2></div>',
+      '<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>',
+      "</div>",
+      '<div class="offcanvas-body user-permission-body">',
+      '<div class="users-loading-state"><div class="spinner-border spinner-border-sm text-primary" role="status" aria-hidden="true"></div><span>Loading roles</span></div>',
+      "</div>",
+      '<div class="user-permission-footer"><button type="button" class="btn btn-primary btn-sm" disabled>Save Roles</button><button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="offcanvas">Cancel</button></div>',
+      "</div>"
+    ].join("");
+  }
+
+  function showRolesDrawer() {
+    const drawer = document.getElementById("userRolesDrawer");
+    if (drawer) {
+      bootstrap.Offcanvas.getOrCreateInstance(drawer).show();
+    }
+  }
+
+  async function saveRoles() {
+    const drawer = document.getElementById("userRolesDrawer");
+    const saveButton = rolesHost.querySelector("[data-user-role-save]");
+    if (!drawer || !saveButton) {
+      return;
+    }
+
+    const roles = Array.from(rolesHost.querySelectorAll("[data-user-role-checkbox]")).map((checkbox) => ({
+      roleId: checkbox.dataset.roleId,
+      isAssigned: checkbox.checked
+    }));
+
+    try {
+      saveButton.disabled = true;
+      const response = await fetch(root.dataset.saveRolesUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          RequestVerificationToken: token
+        },
+        body: JSON.stringify({
+          userId: drawer.dataset.userId,
+          organizationId: root.dataset.organizationId,
+          roles
+        })
+      });
+      const result = await response.json();
+      if (!response.ok || !result.succeeded) {
+        throw new Error(result.message || "Unable to save user roles.");
+      }
+
+      showAlert(result.message, "success");
+      bootstrap.Offcanvas.getOrCreateInstance(drawer).hide();
+      await loadList();
+    } catch (error) {
+      showAlert(error.message, "danger");
+    } finally {
+      saveButton.disabled = false;
+    }
+  }
+
   function renderPermissionLoading(userId) {
     permissionsHost.innerHTML = [
       `<div class="offcanvas offcanvas-end user-permission-drawer" tabindex="-1" id="userPermissionsDrawer" data-user-permissions-drawer data-user-id="${userId}">`,
@@ -383,6 +462,8 @@
       loadUserForEdit(userId);
     } else if (actionButton.dataset.usersAction === "delete") {
       openDeleteModal(userId);
+    } else if (actionButton.dataset.usersAction === "roles") {
+      openRoles(userId);
     } else if (actionButton.dataset.usersAction === "permissions") {
       openPermissions(userId);
     }
@@ -410,6 +491,12 @@
   permissionsHost.addEventListener("click", (event) => {
     if (event.target.closest("[data-permission-save]")) {
       savePermissions();
+    }
+  });
+
+  rolesHost.addEventListener("click", (event) => {
+    if (event.target.closest("[data-user-role-save]")) {
+      saveRoles();
     }
   });
 

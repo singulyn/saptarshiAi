@@ -68,6 +68,11 @@ Current date: 2026-06-13
 - Installed Font Awesome Free runtime assets under `wwwroot/vendor/fontawesome-free`, loaded solid and regular styles globally, removed the custom SaptariX icon sprite assets, and restored `UI Components -> Icon Library` as a lightweight Font Awesome reference page.
 - Added a Coolify/GCP-ready Docker Compose deployment with an Admin MVC Dockerfile, private SQL Server/Redis services, persistent volumes, required SQL password configuration, reverse-proxy forwarded header support, and `/health` endpoint.
 - Fixed Admin MVC publish output for container builds by preventing the DynamicForms Web module `appsettings*.json` files from colliding with the Admin app settings during publish.
+- Added AccessControl SQL Server schema/stored procedures/seed scripts under `database/sqlserver/004-access-control`.
+- Added AccessControl services and Dapper repositories for roles, permissions, user-role mappings, role-permission mappings, and effective permission checks.
+- Replaced static Roles and Permissions pages with real Admin MVC controllers, Razor views, AJAX list/form flows, and JavaScript modules.
+- Added Role Permissions right drawer and User Roles right drawer.
+- Grouped Users, Roles, and Permissions under the sidebar `User Management` parent with dynamic permission filtering.
 
 ## In Progress
 
@@ -81,6 +86,7 @@ Current date: 2026-06-13
 - Real Redis provider implementation.
 - Full database migration runner.
 - SQL Server execution test for new Users stored procedures.
+- SQL Server execution test for new AccessControl stored procedures.
 - Deeper browser interaction tests for UI Kit copy/toast/drawer/modal and inline-create demos.
 - CI pipeline and integration test infrastructure.
 
@@ -128,7 +134,7 @@ Current date: 2026-06-13
 1. Apply SQL scripts to local SQL Server.
 2. Implement Organization backend persistence: SQL scripts, stored procedures, repositories, services, and controller endpoints.
 3. Validate the Users module against SQL Server stored procedures instead of the local fallback store.
-4. Use UI Kit enterprise table, drawer, modal, and tab patterns while implementing the Roles module.
+4. Validate Roles, Permissions, user-role drawer, role-permission drawer, and dynamic sidebar checks against SQL Server stored procedures.
 5. Use the UI Kit inline-create table pattern for small master modules.
 6. Use the UI Kit input-table pattern in DynamicForms/AppBuilder module work.
 7. Replace workflow placeholder runtime with concrete Elsa integration.

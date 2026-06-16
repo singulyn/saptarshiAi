@@ -99,6 +99,26 @@ Users stored procedure scripts are under `database/sqlserver/003-identity`:
 
 The repositories call these stored procedures first. When SQL Server scripts have not been applied yet, they use a local fallback store so the Admin UI remains verifiable during scaffold development.
 
+## Access Control Module
+
+Access Control now has a database-backed service layer for roles, permissions, user-role assignment, role-permission assignment, and effective permission checks.
+
+SQL Server scripts live under `database/sqlserver/004-access-control`:
+
+- `001-create-access-control-schema.sql`
+- `002-create-access-control-stored-procedures.sql`
+- `003-seed-access-control.sql`
+
+The scripts create the `[access]` schema, permissions, roles, user-role mappings, role-permission mappings, user direct permission overrides, stored procedures, and seed data for the demo organization and SuperAdmin user.
+
+Runtime service contracts live in `SaptariX.Platform.AccessControl`: `IRoleService`, `IPermissionService`, `IUserRoleService`, and `IEffectivePermissionService`.
+
+SQL Server/Dapper implementations live in `SaptariX.Persistence.SqlServer`: `RoleRepository`, `PermissionRepository`, and `UserRoleRepository`.
+
+The repositories call stored procedures first and fall back to seeded in-memory data when scripts have not been applied. The fallback is only for scaffold/demo verification and should not be treated as production persistence.
+
+Admin MVC routes now cover `/Roles`, `/Permissions`, `/Users/GetRoles/{userId}`, and `/Users/SaveRoles`. Sidebar structure groups `/Users`, `/Roles`, and `/Permissions` under `User Management`. Child menu entries remain permission-gated with `Users.View`, `Roles.View`, and `Permissions.View`; SuperAdmin and Developer roles continue to bypass sidebar permission checks.
+
 ## UI Kit / Design System
 
 `src/Modules/UIKit` is the internal Admin MVC UI Kit module. It is intended for SuperAdmin and Developer users, not normal end users. The module contributes the `Developer.UIComponents.View` permission and the sidebar hierarchy `Developer Tools -> UI Components`.

@@ -1,0 +1,87 @@
+@using SaptariX.Admin.Mvc.ViewModels.Roles
+@model RolePermissionViewModel
+
+<div class="offcanvas offcanvas-end user-permission-drawer"
+     tabindex="-1"
+     id="rolePermissionsDrawer"
+     aria-labelledby="rolePermissionsDrawerTitle"
+     data-role-permissions-drawer
+     data-role-id="@Model.RoleId">
+    <div class="offcanvas-header user-permission-header">
+        <div>
+            <p class="section-kicker mb-1">Access Control</p>
+            <h2 class="offcanvas-title" id="rolePermissionsDrawerTitle">Role Permissions</h2>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body user-permission-body">
+        @if (!Model.HasRole)
+        {
+            <div class="users-empty-state h-100">
+                <strong>No role selected</strong>
+                <span>Select the permissions action from the role list.</span>
+            </div>
+        }
+        else
+        {
+            <div class="user-permission-user">
+                <div class="users-avatar users-avatar-lg" aria-hidden="true">@Model.DisplayName.Substring(0, 1).ToUpperInvariant()</div>
+                <div>
+                    <strong>@Model.DisplayName</strong>
+                    <span>@Model.RoleName</span>
+                </div>
+            </div>
+
+            <div class="input-group input-group-sm user-permission-search">
+                <span class="input-group-text"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+                <input type="search" class="form-control" placeholder="Permission name" data-role-permission-search autocomplete="off" />
+            </div>
+
+            <div class="accordion user-permission-groups" id="rolePermissionGroups">
+                @for (var index = 0; index < Model.Groups.Count; index++)
+                {
+                    var group = Model.Groups[index];
+                    var groupId = $"rolePermissionGroup{index}";
+                    var collapseId = $"rolePermissionCollapse{index}";
+                    <div class="accordion-item user-permission-group" data-role-permission-group>
+                        <h3 class="accordion-header" id="@groupId">
+                            <button class="accordion-button @(index == 0 ? string.Empty : "collapsed")" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="@(index == 0 ? "true" : "false")" aria-controls="@collapseId">
+                                <span>@group.ModuleName</span>
+                                <span class="badge text-bg-light ms-2">@group.Permissions.Count</span>
+                            </button>
+                        </h3>
+                        <div id="@collapseId" class="accordion-collapse collapse @(index == 0 ? "show" : string.Empty)" aria-labelledby="@groupId" data-bs-parent="#rolePermissionGroups">
+                            <div class="accordion-body">
+                                <label class="form-check user-permission-select-all">
+                                    <input class="form-check-input" type="checkbox" data-role-permission-select-group />
+                                    <span class="form-check-label">Select All</span>
+                                </label>
+                                @foreach (var permission in group.Permissions)
+                                {
+                                    <label class="form-check user-permission-row" data-role-permission-row>
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               value="@permission.PermissionName"
+                                               data-role-permission-checkbox
+                                               data-permission-name="@permission.PermissionName"
+                                               checked="@permission.IsGranted" />
+                                        <span class="form-check-label">
+                                            <strong>@permission.PermissionName</strong>
+                                            <small>@permission.DisplayName</small>
+                                        </span>
+                                    </label>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="user-permission-footer">
+        <button type="button" class="btn btn-primary btn-sm" data-role-permission-save @(Model.HasRole ? string.Empty : "disabled")>Save Permissions</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="offcanvas">Cancel</button>
+    </div>
+</div>

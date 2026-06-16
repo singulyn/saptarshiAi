@@ -1,0 +1,49 @@
+@using SaptariX.Admin.Mvc.ViewModels.Roles
+@model RoleFormViewModel
+
+<div class="card users-card">
+    <div class="card-header users-card-header">
+        <div>
+            <h2 class="users-card-title" data-roles-form-heading>Create Role</h2>
+            <p class="users-card-subtitle">Define role identity and lifecycle status.</p>
+        </div>
+    </div>
+    <div class="card-body">
+        <form class="users-form" data-roles-form novalidate>
+            <input type="hidden" name="Id" value="@Model.Id" data-roles-id />
+            <input type="hidden" name="OrganizationId" value="@Model.OrganizationId" />
+
+            <div class="row g-3">
+                <div class="col-12 col-lg-4">
+                    <label class="form-label" asp-for="Name">Role Name</label>
+                    <input class="form-control" asp-for="Name" name="Name" data-roles-name required autocomplete="off" />
+                    <span class="invalid-feedback" data-roles-field-error="Name"></span>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <label class="form-label" asp-for="DisplayName">Display Name</label>
+                    <input class="form-control" asp-for="DisplayName" name="DisplayName" required autocomplete="off" />
+                    <span class="invalid-feedback" data-roles-field-error="DisplayName"></span>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <label class="form-label" asp-for="Status">Status</label>
+                    <select class="form-select" asp-for="Status" name="Status" required>
+                        @foreach (var status in Model.Statuses)
+                        {
+                            <option value="@status">@status</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label class="form-label" asp-for="Description">Description</label>
+                    <textarea class="form-control" asp-for="Description" name="Description" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="users-form-actions">
+                <button type="submit" class="btn btn-primary" data-roles-submit>Create Role</button>
+                <button type="reset" class="btn btn-outline-secondary" data-roles-reset>Reset</button>
+                <button type="button" class="btn btn-outline-secondary d-none" data-roles-cancel-edit>Cancel Edit</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -36,16 +36,6 @@ public sealed class ModulesController : StaticPageController<IModulesPageService
     public ModulesController(IModulesPageService service) : base(service) { }
 }
 
-public sealed class RolesController : StaticPageController<IRolesPageService>
-{
-    public RolesController(IRolesPageService service) : base(service) { }
-}
-
-public sealed class PermissionsController : StaticPageController<IPermissionsPageService>
-{
-    public PermissionsController(IPermissionsPageService service) : base(service) { }
-}
-
 public sealed class WorkflowController : StaticPageController<IWorkflowPageService>
 {
     public WorkflowController(IWorkflowPageService service) : base(service) { }

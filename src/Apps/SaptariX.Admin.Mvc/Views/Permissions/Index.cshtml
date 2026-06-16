@@ -1,2 +1,84 @@
-@model SaptariX.Admin.Mvc.Models.AdminPageViewModel
-<partial name="AdminPage" model="Model" />
+@using SaptariX.Admin.Mvc.ViewModels.Permissions
+@using SaptariX.Platform.AccessControl.Permissions
+@model PermissionListViewModel
+@{
+    ViewData["Title"] = "Permissions";
+    ViewData["ActiveMenu"] = "/Permissions";
+    var formModel = PermissionFormViewModel.Empty();
+}
+
+<section class="page-section users-page access-page"
+         data-permissions-root
+         data-list-url="/Permissions/List"
+         data-get-url="/Permissions/GetById"
+         data-create-url="/Permissions/Create"
+         data-update-url="/Permissions/Update"
+         data-delete-url="/Permissions/Delete">
+    @Html.AntiForgeryToken()
+
+    <div class="section-header">
+        <div>
+            <p class="section-kicker">Access Control</p>
+            <h1>Permissions</h1>
+            <p class="section-summary">Review and manage platform permission keys used by roles and users.</p>
+        </div>
+        <span class="permission-pill">@PlatformPermissions.PermissionsView</span>
+    </div>
+
+    <div class="users-alert-host" data-permissions-alert></div>
+
+    <ul class="nav nav-tabs users-tabs" id="permissionsTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="permissions-list-tab" data-bs-toggle="tab" data-bs-target="#permissions-list-pane" type="button" role="tab" aria-controls="permissions-list-pane" aria-selected="true">
+                Permission List
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="permissions-form-tab" data-bs-toggle="tab" data-bs-target="#permissions-form-pane" type="button" role="tab" aria-controls="permissions-form-pane" aria-selected="false">
+                Create Permission
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content users-tab-content" id="permissionsTabsContent">
+        <div class="tab-pane fade show active" id="permissions-list-pane" role="tabpanel" aria-labelledby="permissions-list-tab" tabindex="0">
+            <div class="card users-card">
+                <div class="card-header users-card-header">
+                    <div>
+                        <h2 class="users-card-title">Permission List</h2>
+                        <p class="users-card-subtitle">Search, filter, and maintain permission definitions.</p>
+                    </div>
+                    <form class="users-filter sx-table-filter-row" data-permissions-filter-form>
+                        <div class="input-group input-group-sm users-search sx-table-filter-search">
+                            <span class="input-group-text"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+                            <input class="form-control form-control-sm" type="search" name="Search" placeholder="Permission or group" autocomplete="off" />
+                        </div>
+                        <input class="form-control form-control-sm sx-table-filter-select" type="text" name="Group" placeholder="Group" autocomplete="off" />
+                        <div class="sx-table-filter-actions">
+                            <button class="btn btn-primary btn-sm" type="submit"><i class="fa-solid fa-filter" aria-hidden="true"></i> Apply</button>
+                            <button class="btn btn-outline-secondary btn-sm" type="button" data-permissions-clear-filters>Reset</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-body p-0">
+                    <div class="users-loading-state d-none" data-permissions-loading>
+                        <div class="spinner-border spinner-border-sm text-primary" role="status" aria-hidden="true"></div>
+                        <span>Loading permissions</span>
+                    </div>
+                    <div data-permissions-list-host>
+                        <partial name="_PermissionList" model="Model" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="permissions-form-pane" role="tabpanel" aria-labelledby="permissions-form-tab" tabindex="0">
+            <partial name="_PermissionForm" model="formModel" />
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/modules/permissions.js" asp-append-version="true"></script>
+}

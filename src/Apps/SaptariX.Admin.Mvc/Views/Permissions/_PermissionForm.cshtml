@@ -1,0 +1,43 @@
+@using SaptariX.Admin.Mvc.ViewModels.Permissions
+@model PermissionFormViewModel
+
+<div class="card users-card">
+    <div class="card-header users-card-header">
+        <div>
+            <h2 class="users-card-title" data-permissions-form-heading>Create Permission</h2>
+            <p class="users-card-subtitle">Add custom permission keys for platform modules.</p>
+        </div>
+    </div>
+    <div class="card-body">
+        <form class="users-form" data-permissions-form novalidate>
+            <input type="hidden" name="Id" value="@Model.Id" data-permissions-id />
+            <div class="row g-3">
+                <div class="col-12 col-lg-4">
+                    <label class="form-label" asp-for="Name">Permission Name</label>
+                    <input class="form-control" asp-for="Name" name="Name" data-permissions-name required autocomplete="off" placeholder="Module.Action" />
+                    <span class="invalid-feedback" data-permissions-field-error="Name"></span>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <label class="form-label" asp-for="DisplayName">Display Name</label>
+                    <input class="form-control" asp-for="DisplayName" name="DisplayName" required autocomplete="off" />
+                    <span class="invalid-feedback" data-permissions-field-error="DisplayName"></span>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <label class="form-label" asp-for="Group">Group</label>
+                    <input class="form-control" asp-for="Group" name="Group" required autocomplete="off" />
+                    <span class="invalid-feedback" data-permissions-field-error="Group"></span>
+                </div>
+                <div class="col-12">
+                    <label class="form-label" asp-for="Description">Description</label>
+                    <textarea class="form-control" asp-for="Description" name="Description" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="users-form-actions">
+                <button type="submit" class="btn btn-primary" data-permissions-submit>Create Permission</button>
+                <button type="reset" class="btn btn-outline-secondary" data-permissions-reset>Reset</button>
+                <button type="button" class="btn btn-outline-secondary d-none" data-permissions-cancel-edit>Cancel Edit</button>
+            </div>
+        </form>
+    </div>
+</div>
