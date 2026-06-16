@@ -6,7 +6,7 @@
   --sx-accent: #1b6b5f;
   --sx-accent-strong: #124d45;
   --sx-card-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-  --sx-header-shadow: rgba(0, 0, 0, 0.4) 0px 30px 230px;
+  --sx-header-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   --lte-sidebar-width: 225px;
 }
 
@@ -3022,8 +3022,12 @@ body {
 
   .organizations-page-header {
     gap: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     margin-top: clamp(12px, 4vw, 18px);
+  }
+
+  .organizations-page-header > .organizations-page-titlebar {
+    margin-bottom: 4px;
   }
 
   .organizations-page-header h1 {
@@ -3067,6 +3071,37 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  .organizations-page .users-table-footer {
+    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: space-between;
+    min-height: 40px;
+    padding: 6px 10px;
+  }
+
+  .organizations-page .users-table-footer [data-organizations-count] {
+    flex: 0 0 auto;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .organizations-page .users-table-footer .sx-pagination {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 4px;
+    justify-content: flex-end;
+    width: auto;
+  }
+
+  .organizations-page .users-table-footer .sx-pagination .btn {
+    font-size: 0.72rem;
+    line-height: 1;
+    min-height: 30px;
+    min-width: 38px;
+    padding: 4px 7px;
   }
 
   .organizations-page .users-tab-content {
