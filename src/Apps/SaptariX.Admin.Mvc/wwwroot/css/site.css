@@ -2956,8 +2956,8 @@ body {
 /* Organizations mobile: compact two-column wizard with internal stepper/table scrolling only. */
 @media (max-width: 767.98px) {
   .organizations-page {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .organizations-page-header {
@@ -2978,15 +2978,24 @@ body {
 
   .organizations-page-actions {
     display: grid;
-    gap: 8px;
-    grid-template-columns: 1fr;
+    gap: 6px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
   }
 
   .organizations-page .organizations-page-actions .ui-adv-btn {
     justify-content: center;
-    min-height: 38px;
+    min-height: 36px;
+    min-width: 0;
+    padding: 7px 8px;
     width: 100%;
+  }
+
+  .organizations-page .organizations-page-actions .ui-adv-btn span {
+    font-size: 0.74rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .organizations-page .users-tab-content {
@@ -3019,7 +3028,7 @@ body {
   }
 
   .organizations-page .organizations-form-card .card-body {
-    padding: 10px;
+    padding: 0;
   }
 
   .organizations-page .organizations-form-hero.users-card-header {
@@ -3237,22 +3246,47 @@ body {
 
   .organizations-page .organization-step-actions {
     display: grid;
-    gap: 8px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-top: 10px;
-    padding-top: 10px;
+    gap: 4px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 8px;
+    padding-top: 8px;
   }
 
   .organizations-page .organization-step-actions .ui-adv-btn {
-    min-height: 36px;
+    gap: 4px;
+    min-height: 34px;
     min-width: 0;
-    padding: 7px 8px;
+    padding: 6px 4px;
     width: 100%;
+  }
+
+  .organizations-page .organization-step-actions .ui-adv-btn span {
+    font-size: 0.68rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .organizations-page .organization-step-actions .ui-adv-btn i {
+    font-size: 0.7rem;
+  }
+
+  .organizations-page .organization-step-actions [data-organization-step-prev] {
+    order: 1;
   }
 
   .organizations-page .organization-step-actions [data-organization-step-next],
   .organizations-page .organization-step-actions [data-organizations-submit] {
-    grid-column: 1 / -1;
+    grid-column: auto;
+    order: 2;
+  }
+
+  .organizations-page .organization-step-actions [data-organizations-reset] {
+    order: 3;
+  }
+
+  .organizations-page .organization-step-actions [data-organizations-cancel-edit] {
+    order: 4;
   }
 
   .organizations-page .organization-drawer,
