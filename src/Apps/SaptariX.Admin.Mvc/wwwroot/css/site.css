@@ -2020,6 +2020,8 @@ body {
   background: #fff;
   border-left: 1px solid #dfe6ee;
   box-shadow: -24px 0 54px rgba(16, 24, 40, 0.14);
+  max-width: 100vw;
+  overflow-x: hidden;
   width: min(620px, 100vw);
 }
 
@@ -2053,14 +2055,19 @@ body {
 
 .organization-apps-body {
   background: #fff;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
   padding: 24px 28px 28px;
 }
 
 .organization-apps-filter {
   display: grid;
   gap: 10px;
-  grid-template-columns: minmax(210px, 1fr) 118px 118px 42px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 42px;
   margin-bottom: 18px;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .organization-apps-search,
@@ -2070,12 +2077,15 @@ body {
   border-radius: 6px;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
   height: 40px;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .organization-apps-search {
   align-items: center;
   background: #fff;
   flex-wrap: nowrap;
+  grid-column: 1 / -1;
   overflow: hidden;
 }
 
@@ -2095,6 +2105,7 @@ body {
 
 .organization-apps-search .form-control {
   color: #344054;
+  min-width: 0;
   padding-left: 0;
 }
 
@@ -2126,6 +2137,8 @@ body {
   border-radius: 8px;
   box-shadow: 0 10px 30px rgba(16, 24, 40, 0.06);
   margin-bottom: 18px;
+  max-width: 100%;
+  min-width: 0;
   overflow: hidden;
 }
 
@@ -2186,6 +2199,8 @@ body {
 }
 
 .organization-apps-card .accordion-body {
+  max-width: 100%;
+  min-width: 0;
   padding: 0 18px 14px;
 }
 
@@ -2194,8 +2209,10 @@ body {
   border-top: 1px solid #edf2f7;
   display: grid;
   gap: 14px;
-  grid-template-columns: 20px 42px minmax(0, 1fr) auto;
+  grid-template-columns: 20px 42px minmax(0, 1fr) minmax(58px, auto);
   margin: 0;
+  max-width: 100%;
+  min-width: 0;
   min-height: 72px;
   padding: 12px 0;
 }
@@ -2255,9 +2272,11 @@ body {
   font-size: 0.72rem;
   font-weight: 820;
   justify-self: end;
+  max-width: 100%;
   min-width: 64px;
   padding: 5px 8px;
   text-align: center;
+  white-space: nowrap;
 }
 
 .organization-app-row .text-bg-dark {
