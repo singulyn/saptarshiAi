@@ -3875,33 +3875,44 @@ body {
 
   .organizations-page .users-table-footer {
     align-items: center;
-    flex-direction: row;
+    display: grid;
     gap: 8px;
-    justify-content: space-between;
+    grid-template-columns: minmax(0, 1fr) auto;
     min-height: 40px;
     padding: 6px 10px;
   }
 
   .organizations-page .users-table-footer [data-organizations-count] {
-    flex: 0 0 auto;
     font-size: 0.75rem;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   .organizations-page .users-table-footer .sx-pagination {
+    align-items: center;
     display: flex;
-    flex: 0 0 auto;
+    flex-direction: row;
+    flex-wrap: nowrap;
     gap: 4px;
     justify-content: flex-end;
     width: auto;
   }
 
   .organizations-page .users-table-footer .sx-pagination .btn {
+    flex: 0 0 auto;
     font-size: 0.72rem;
     line-height: 1;
     min-height: 30px;
-    min-width: 38px;
+    min-width: 34px;
     padding: 4px 7px;
+    width: auto;
+  }
+
+  .organizations-page .users-table-footer .sx-pagination .btn:first-child,
+  .organizations-page .users-table-footer .sx-pagination .btn:last-child {
+    min-width: 58px;
   }
 
   .organizations-page .users-tab-content {
