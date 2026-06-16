@@ -25,7 +25,7 @@ public sealed class PermissionAuthorizationService : IPermissionAuthorizationSer
         try
         {
             var effectivePermissions = await _effectivePermissionService.GetAsync(organizationId, userId, cancellationToken);
-            return effectivePermissions.Permissions.Contains(permission);
+            return !effectivePermissions.HasAssignments || effectivePermissions.Permissions.Contains(permission);
         }
         catch
         {
