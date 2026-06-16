@@ -2368,6 +2368,20 @@ body {
 }
 
 @media (max-width: 575.98px) {
+  .organizations-page,
+  .organizations-page .users-section,
+  .organizations-page .users-tab-content,
+  .organizations-form,
+  .organization-step-panels,
+  .organization-form-section {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .organizations-page {
+    overflow-x: hidden;
+  }
+
   .organizations-page-header h1 {
     font-size: 1.85rem;
   }
@@ -2403,84 +2417,90 @@ body {
   }
 
   .organizations-form-card .card-body {
-    padding: 10px;
+    padding: 8px 8px 10px;
+  }
+
+  .organizations-form-card {
+    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.14), 0 6px 14px rgba(15, 23, 42, 0.08);
   }
 
   .organizations-form-hero {
-    min-height: 50px;
-    padding: 10px 12px;
+    min-height: 46px;
+    padding: 8px 10px;
   }
 
   .organizations-form-hero-icon {
-    height: 34px;
-    width: 34px;
+    height: 32px;
+    width: 32px;
   }
 
   .organizations-form-hero > .organizations-form-hero-icon {
-    flex-basis: 34px;
-    max-width: 34px;
-    min-width: 34px;
+    flex-basis: 32px;
+    max-width: 32px;
+    min-width: 32px;
   }
 
   .organizations-form-hero .users-card-title {
-    font-size: 0.96rem;
+    font-size: 0.9rem;
   }
 
   .organization-form-section {
-    padding: 10px;
+    padding: 8px;
   }
 
   .organization-section-heading {
     align-items: center;
-    margin-bottom: 12px;
-    padding-bottom: 10px;
-  }
-
-  .organization-section-title {
-    align-items: center;
-    gap: 9px;
-  }
-
-  .organization-section-icon {
-    height: 34px;
-    width: 34px;
-  }
-
-  .organization-section-heading h3 {
-    font-size: 0.9rem;
-  }
-
-  .organization-section-heading span {
-    font-size: 0.68rem;
-  }
-
-  .organization-stepper {
-    gap: 8px;
-    grid-auto-columns: minmax(122px, 1fr);
     margin-bottom: 10px;
     padding-bottom: 9px;
   }
 
-  .organization-step {
+  .organization-section-title {
+    align-items: center;
+    gap: 8px;
+  }
+
+  .organization-section-icon {
+    height: 30px;
+    width: 30px;
+  }
+
+  .organization-section-heading h3 {
+    font-size: 0.82rem;
+  }
+
+  .organization-section-heading span {
+    font-size: 0.62rem;
+  }
+
+  .organization-stepper {
     gap: 7px;
-    min-height: 36px;
+    grid-auto-columns: minmax(104px, 1fr);
+    margin-bottom: 8px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
     padding-bottom: 8px;
   }
 
+  .organization-step {
+    gap: 6px;
+    min-height: 34px;
+    padding-bottom: 7px;
+  }
+
   .organization-step-number {
-    font-size: 0.75rem;
-    height: 28px;
-    width: 28px;
+    font-size: 0.7rem;
+    height: 26px;
+    width: 26px;
   }
 
   .organization-step-label {
-    font-size: 0.7rem;
+    font-size: 0.64rem;
   }
 
   .organization-fields-grid-four,
   .organization-brand-grid,
   .organization-review-grid {
-    gap: 12px 10px;
+    gap: 10px 8px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -2489,51 +2509,58 @@ body {
   }
 
   .organization-form-field .form-label {
-    font-size: 0.72rem;
-    margin-bottom: 5px;
+    font-size: 0.68rem;
+    margin-bottom: 4px;
   }
 
   .organization-form-field p {
-    font-size: 0.64rem;
-    line-height: 1.25;
-    margin-top: 5px;
-  }
-
-  .organization-field-error {
-    font-size: 0.66rem;
-    gap: 5px;
+    font-size: 0.59rem;
+    line-height: 1.2;
     margin-top: 4px;
   }
 
+  .organization-field-error {
+    font-size: 0.6rem;
+    gap: 4px;
+    margin-top: 3px;
+  }
+
   .organization-input-shell {
-    gap: 7px;
-    min-height: 38px;
-    padding: 0 8px;
+    gap: 6px;
+    min-height: 36px;
+    padding: 0 7px;
   }
 
   .organization-input-shell > i {
-    flex-basis: 14px;
-    font-size: 0.84rem;
-    height: 36px;
-    width: 14px;
+    flex-basis: 13px;
+    font-size: 0.78rem;
+    height: 34px;
+    width: 13px;
   }
 
   .organization-input-shell .form-control,
   .organization-input-shell .form-select,
   .organization-input-shell .sx-select-control {
-    font-size: 0.78rem;
-    min-height: 36px;
+    font-size: 0.72rem;
+    min-height: 34px;
   }
 
   .organization-step-actions {
     display: grid;
-    gap: 8px;
+    gap: 7px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 10px;
+    padding-top: 10px;
   }
 
   .organization-step-actions .ui-adv-btn {
     min-width: 0;
     width: 100%;
+  }
+
+  .organizations-form-actions .ui-adv-btn {
+    min-height: 34px;
+    padding: 6px 8px;
   }
 
   .organization-modules-header {
@@ -2711,5 +2738,41 @@ body {
 
   .user-permission-drawer {
     width: 100vw;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .organizations-form-card .organizations-form-hero.users-card-header {
+    display: flex;
+    gap: 8px;
+  }
+
+  .organizations-form-card,
+  .organizations-form-card .organization-stepper,
+  .organizations-form-card .organization-input-shell {
+    max-width: 100%;
+  }
+
+  .organizations-form-card .organization-input-shell .form-control,
+  .organizations-form-card .organization-input-shell .form-select,
+  .organizations-form-card .organization-input-shell .sx-select-control {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .organizations-form-card .organization-input-shell .sx-select-menu {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 359.98px) {
+  .organizations-form-card .organization-fields-grid-four,
+  .organizations-form-card .organization-brand-grid,
+  .organizations-form-card .organization-review-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .organizations-form-card .organization-field-wide {
+    grid-column: span 1;
   }
 }
