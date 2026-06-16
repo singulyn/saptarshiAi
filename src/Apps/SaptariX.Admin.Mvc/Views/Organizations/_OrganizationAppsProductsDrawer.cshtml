@@ -1,102 +1,126 @@
-<div class="offcanvas offcanvas-end ui-drawer organization-drawer"
+<div class="offcanvas offcanvas-end ui-drawer organization-drawer organization-apps-drawer"
      tabindex="-1"
      id="organizationAppsProductsDrawer"
      aria-labelledby="organizationAppsProductsDrawerTitle"
      data-organization-drawer="apps">
-    <div class="offcanvas-header ui-drawer-header">
+    <div class="offcanvas-header ui-drawer-header organization-apps-header">
         <div>
             <p class="section-kicker mb-1">Organization</p>
             <h2 class="offcanvas-title" id="organizationAppsProductsDrawerTitle">Apps &amp; Products Mapping</h2>
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body ui-drawer-body">
-        <div class="ui-user-summary organization-drawer-summary">
-            <span class="users-avatar users-avatar-lg" data-organization-drawer-avatar>A</span>
-            <div>
-                <strong data-organization-drawer-name>Select organization</strong>
-                <span data-organization-drawer-meta>Apps and product access preview</span>
+    <div class="offcanvas-body ui-drawer-body organization-apps-body">
+        <div class="organization-apps-filter">
+            <div class="input-group input-group-sm organization-apps-search">
+                <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input class="form-control" type="search" placeholder="Search apps or products" data-organization-drawer-search autocomplete="off" aria-label="Search apps or products" />
             </div>
+            <select class="form-select form-select-sm" aria-label="App group filter">
+                <option>All Groups</option>
+                <option>Core Apps</option>
+                <option>Growth Products</option>
+            </select>
+            <select class="form-select form-select-sm" aria-label="Plan filter">
+                <option>All Plans</option>
+                <option>Enterprise</option>
+                <option>Professional</option>
+                <option>Starter</option>
+                <option>Custom</option>
+            </select>
+            <button type="button" class="btn btn-light btn-sm organization-apps-filter-button" aria-label="Filter apps">
+                <i class="fa-solid fa-filter" aria-hidden="true"></i>
+            </button>
         </div>
 
-        <div class="input-group input-group-sm user-permission-search">
-            <span class="input-group-text">Search</span>
-            <input class="form-control" type="search" placeholder="Search apps or products" data-organization-drawer-search autocomplete="off" />
-        </div>
-
-        <div class="accordion" id="organizationAppsProductsAccordion">
-            <div class="accordion-item">
+        <div class="accordion organization-apps-accordion" id="organizationAppsProductsAccordion">
+            <div class="accordion-item organization-apps-card">
                 <h3 class="accordion-header">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#organizationCoreApps" aria-expanded="true" aria-controls="organizationCoreApps">
-                        Core Apps <span class="badge text-bg-light ms-2">5</span>
+                        <span class="organization-apps-group-icon"><i class="fa-solid fa-cube" aria-hidden="true"></i></span>
+                        <strong>Core Apps</strong>
+                        <span class="badge text-bg-primary">5</span>
                     </button>
                 </h3>
                 <div id="organizationCoreApps" class="accordion-collapse collapse show" data-bs-parent="#organizationAppsProductsAccordion">
                     <div class="accordion-body">
-                        <label class="form-check organization-drawer-row" data-drawer-row>
+                        <label class="form-check organization-drawer-row organization-app-row" data-drawer-row>
                             <input class="form-check-input" type="checkbox" checked />
-                            <span class="form-check-label">Admin Platform <small class="text-muted d-block">Enterprise control surface</small></span>
+                            <span class="organization-app-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+                            <span class="form-check-label"><strong>Admin Platform</strong><small>Enterprise control surface</small></span>
                             <span class="badge text-bg-dark ms-auto">Enterprise</span>
                         </label>
-                        <label class="form-check organization-drawer-row" data-drawer-row>
+                        <label class="form-check organization-drawer-row organization-app-row" data-drawer-row>
                             <input class="form-check-input" type="checkbox" checked />
-                            <span class="form-check-label">App Builder <small class="text-muted d-block">Low-code app composition</small></span>
+                            <span class="organization-app-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></span>
+                            <span class="form-check-label"><strong>App Builder</strong><small>Low-code app composition</small></span>
                             <span class="badge text-bg-primary ms-auto">Professional</span>
                         </label>
-                        <label class="form-check organization-drawer-row" data-drawer-row>
+                        <label class="form-check organization-drawer-row organization-app-row" data-drawer-row>
                             <input class="form-check-input" type="checkbox" checked />
-                            <span class="form-check-label">Dynamic Forms <small class="text-muted d-block">Form capture and routing</small></span>
-                            <span class="badge text-bg-primary ms-auto">Starter</span>
+                            <span class="organization-app-icon"><i class="fa-regular fa-rectangle-list" aria-hidden="true"></i></span>
+                            <span class="form-check-label"><strong>Dynamic Forms</strong><small>Form capture and routing</small></span>
+                            <span class="badge text-bg-success ms-auto">Starter</span>
                         </label>
-                        <label class="form-check organization-drawer-row" data-drawer-row>
+                        <label class="form-check organization-drawer-row organization-app-row" data-drawer-row>
                             <input class="form-check-input" type="checkbox" />
-                            <span class="form-check-label">Dynamic Tables <small class="text-muted d-block">Configurable data grids</small></span>
+                            <span class="organization-app-icon"><i class="fa-solid fa-table-cells" aria-hidden="true"></i></span>
+                            <span class="form-check-label"><strong>Dynamic Tables</strong><small>Configurable data grids</small></span>
                             <span class="badge text-bg-light ms-auto">Custom</span>
                         </label>
-                        <label class="form-check organization-drawer-row" data-drawer-row>
+                        <label class="form-check organization-drawer-row organization-app-row" data-drawer-row>
                             <input class="form-check-input" type="checkbox" checked />
-                            <span class="form-check-label">Workflow Automation <small class="text-muted d-block">Approval and background flows</small></span>
+                            <span class="organization-app-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span>
+                            <span class="form-check-label"><strong>Workflow Automation</strong><small>Approval and background flows</small></span>
                             <span class="badge text-bg-dark ms-auto">Enterprise</span>
                         </label>
                     </div>
                 </div>
             </div>
-            <div class="accordion-item">
+            <div class="accordion-item organization-apps-card">
                 <h3 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#organizationGrowthApps" aria-expanded="false" aria-controls="organizationGrowthApps">
-                        Growth Products <span class="badge text-bg-light ms-2">6</span>
+                        <span class="organization-apps-group-icon"><i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i></span>
+                        <strong>Growth Products</strong>
+                        <span class="badge text-bg-primary">6</span>
                     </button>
                 </h3>
                 <div id="organizationGrowthApps" class="accordion-collapse collapse" data-bs-parent="#organizationAppsProductsAccordion">
                     <div class="accordion-body">
-                        <label class="form-check organization-drawer-row" data-drawer-row>
+                        <label class="form-check organization-drawer-row organization-app-row" data-drawer-row>
                             <input class="form-check-input" type="checkbox" checked />
-                            <span class="form-check-label">Reports &amp; Analytics</span>
+                            <span class="organization-app-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
+                            <span class="form-check-label"><strong>Reports &amp; Analytics</strong><small>Operational dashboards</small></span>
                             <span class="badge text-bg-primary ms-auto">Professional</span>
                         </label>
-                        <label class="form-check organization-drawer-row" data-drawer-row>
+                        <label class="form-check organization-drawer-row organization-app-row" data-drawer-row>
                             <input class="form-check-input" type="checkbox" />
-                            <span class="form-check-label">CMS</span>
+                            <span class="organization-app-icon"><i class="fa-regular fa-newspaper" aria-hidden="true"></i></span>
+                            <span class="form-check-label"><strong>CMS</strong><small>Content publishing</small></span>
                             <span class="badge text-bg-light ms-auto">Custom</span>
                         </label>
-                        <label class="form-check organization-drawer-row" data-drawer-row>
+                        <label class="form-check organization-drawer-row organization-app-row" data-drawer-row>
                             <input class="form-check-input" type="checkbox" />
-                            <span class="form-check-label">Billing</span>
+                            <span class="organization-app-icon"><i class="fa-solid fa-credit-card" aria-hidden="true"></i></span>
+                            <span class="form-check-label"><strong>Billing</strong><small>Invoices and subscriptions</small></span>
                             <span class="badge text-bg-dark ms-auto">Enterprise</span>
                         </label>
-                        <label class="form-check organization-drawer-row" data-drawer-row>
+                        <label class="form-check organization-drawer-row organization-app-row" data-drawer-row>
                             <input class="form-check-input" type="checkbox" />
-                            <span class="form-check-label">AI Assistant</span>
+                            <span class="organization-app-icon"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></span>
+                            <span class="form-check-label"><strong>AI Assistant</strong><small>Workspace automation preview</small></span>
                             <span class="badge text-bg-warning ms-auto">Preview</span>
                         </label>
-                        <label class="form-check organization-drawer-row" data-drawer-row>
+                        <label class="form-check organization-drawer-row organization-app-row" data-drawer-row>
                             <input class="form-check-input" type="checkbox" checked />
-                            <span class="form-check-label">Customer Portal</span>
+                            <span class="organization-app-icon"><i class="fa-solid fa-users-viewfinder" aria-hidden="true"></i></span>
+                            <span class="form-check-label"><strong>Customer Portal</strong><small>Self-service access</small></span>
                             <span class="badge text-bg-primary ms-auto">Starter</span>
                         </label>
-                        <label class="form-check organization-drawer-row" data-drawer-row>
+                        <label class="form-check organization-drawer-row organization-app-row" data-drawer-row>
                             <input class="form-check-input" type="checkbox" />
-                            <span class="form-check-label">Mobile API</span>
+                            <span class="organization-app-icon"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i></span>
+                            <span class="form-check-label"><strong>Mobile API</strong><small>Mobile channel integration</small></span>
                             <span class="badge text-bg-primary ms-auto">Professional</span>
                         </label>
                     </div>
@@ -104,7 +128,7 @@
             </div>
         </div>
     </div>
-    <div class="ui-drawer-footer">
+    <div class="ui-drawer-footer organization-apps-footer">
         <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" data-organization-drawer-save>Save Mapping</button>
         <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-orange" data-bs-dismiss="offcanvas">Cancel</button>
     </div>
