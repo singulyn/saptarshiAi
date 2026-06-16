@@ -9,32 +9,34 @@
         <form id="organizationForm" class="users-form organizations-form" data-organizations-form novalidate>
             <input type="hidden" name="Id" data-organizations-id />
 
-            <nav class="organization-stepper" aria-label="Organization form steps">
-                <button type="button" class="organization-step is-active" data-organization-step-button="0" data-step-label="Basic Details" aria-current="step">
-                    <span class="organization-step-number">1</span>
-                    <span class="organization-step-label">Basic Details</span>
-                </button>
-                <button type="button" class="organization-step" data-organization-step-button="1" data-step-label="Contact Details">
-                    <span class="organization-step-number">2</span>
-                    <span class="organization-step-label">Contact Details</span>
-                </button>
-                <button type="button" class="organization-step" data-organization-step-button="2" data-step-label="Address Details">
-                    <span class="organization-step-number">3</span>
-                    <span class="organization-step-label">Address Details</span>
-                </button>
-                <button type="button" class="organization-step" data-organization-step-button="3" data-step-label="Business Details">
-                    <span class="organization-step-number">4</span>
-                    <span class="organization-step-label">Business Details</span>
-                </button>
-                <button type="button" class="organization-step" data-organization-step-button="4" data-step-label="Branding &amp; Plan">
-                    <span class="organization-step-number">5</span>
-                    <span class="organization-step-label">Branding &amp; Plan</span>
-                </button>
-                <button type="button" class="organization-step" data-organization-step-button="5" data-step-label="Review &amp; Create">
-                    <span class="organization-step-number">6</span>
-                    <span class="organization-step-label">Review &amp; Create</span>
-                </button>
-            </nav>
+            <div class="organization-stepper-wrap">
+                <nav class="organization-stepper" aria-label="Organization form steps">
+                    <button type="button" class="organization-step is-active" data-organization-step-button="0" data-step-label="Basic Details" aria-current="step">
+                        <span class="organization-step-number">1</span>
+                        <span class="organization-step-label">Basic Details</span>
+                    </button>
+                    <button type="button" class="organization-step" data-organization-step-button="1" data-step-label="Contact Details">
+                        <span class="organization-step-number">2</span>
+                        <span class="organization-step-label">Contact Details</span>
+                    </button>
+                    <button type="button" class="organization-step" data-organization-step-button="2" data-step-label="Address Details">
+                        <span class="organization-step-number">3</span>
+                        <span class="organization-step-label">Address Details</span>
+                    </button>
+                    <button type="button" class="organization-step" data-organization-step-button="3" data-step-label="Business Details">
+                        <span class="organization-step-number">4</span>
+                        <span class="organization-step-label">Business Details</span>
+                    </button>
+                    <button type="button" class="organization-step" data-organization-step-button="4" data-step-label="Branding &amp; Plan">
+                        <span class="organization-step-number">5</span>
+                        <span class="organization-step-label">Branding &amp; Plan</span>
+                    </button>
+                    <button type="button" class="organization-step" data-organization-step-button="5" data-step-label="Review &amp; Create">
+                        <span class="organization-step-number">6</span>
+                        <span class="organization-step-label">Review &amp; Create</span>
+                    </button>
+                </nav>
+            </div>
 
             <div class="organization-step-panels">
                 <section class="organization-form-section organization-step-panel is-active" data-organization-step-panel="0" aria-labelledby="organizationStepBasic">
