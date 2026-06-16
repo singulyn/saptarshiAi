@@ -15,6 +15,7 @@
   const listPanel = root.querySelector("[data-organizations-list-panel]");
   const formPanel = root.querySelector("[data-organizations-form-panel]");
   const openCreateButton = root.querySelector("[data-organizations-open-create]");
+  const backToListButton = root.querySelector("[data-organizations-back-to-list]");
   const exportButton = root.querySelector("[data-organizations-export]");
   const formHeading = root.querySelector("[data-organizations-form-heading]");
   const submitButton = root.querySelector("[data-organizations-submit]");
@@ -450,11 +451,13 @@
   function showListPanel() {
     listPanel?.classList.remove("d-none");
     formPanel?.classList.add("d-none");
+    backToListButton?.classList.add("d-none");
   }
 
   function showFormPanel() {
     listPanel?.classList.add("d-none");
     formPanel?.classList.remove("d-none");
+    backToListButton?.classList.remove("d-none");
     scrollToOrganizationHeader();
   }
 
@@ -821,6 +824,7 @@
   filterForm?.addEventListener("submit", applyFilters);
   resetFiltersButton?.addEventListener("click", resetFilters);
   openCreateButton?.addEventListener("click", openCreateForm);
+  backToListButton?.addEventListener("click", showListPanel);
   exportButton?.addEventListener("click", () => showAlert("Organization export preview selected. Backend export is intentionally not wired.", "info"));
   tableWrapper?.addEventListener("click", handleTableAction);
   stepButtons.forEach((button) => {

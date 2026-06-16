@@ -43,6 +43,23 @@ body {
   z-index: 1035;
 }
 
+.app-header .container-fluid {
+  align-items: center;
+  min-height: inherit;
+}
+
+.app-header .navbar-nav {
+  align-items: center;
+}
+
+.app-header [data-lte-toggle="sidebar"] {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1;
+  min-height: 40px;
+}
+
 .layout-fixed .app-wrapper {
   height: 100vh;
   min-height: 100vh;
@@ -1097,14 +1114,43 @@ body {
   align-items: flex-start;
   gap: 20px;
   margin-bottom: 18px;
-  margin-top: 12px;
+  margin-top: clamp(16px, 2vw, 28px);
+}
+
+.organizations-page-titlebar {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  min-width: 0;
+}
+
+.organizations-back-button {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #d8dee8;
+  border-radius: 6px;
+  color: #101828;
+  display: inline-flex;
+  flex: 0 0 34px;
+  height: 34px;
+  justify-content: center;
+  padding: 0;
+  width: 34px;
+}
+
+.organizations-back-button:hover,
+.organizations-back-button:focus {
+  background: #f8fafc;
+  border-color: #111827;
+  color: #000;
 }
 
 .organizations-page-header h1 {
-  font-size: clamp(2rem, 3vw, 2.45rem);
+  font-size: clamp(1.65rem, 2.35vw, 2.05rem);
   font-weight: 820;
   letter-spacing: 0;
   line-height: 1.05;
+  margin: 0;
 }
 
 .organizations-page-header .section-summary {
@@ -2628,6 +2674,20 @@ body {
 }
 
 @media (max-width: 767.98px) {
+  .app-header {
+    min-height: 50px;
+  }
+
+  .app-header .container-fluid {
+    min-height: 50px;
+  }
+
+  .app-header [data-lte-toggle="sidebar"] {
+    min-height: 36px;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
+
   .app-wrapper,
   .app-main,
   .app-content,
@@ -2963,12 +3023,22 @@ body {
   .organizations-page-header {
     gap: 8px;
     margin-bottom: 12px;
-    margin-top: 4px;
+    margin-top: clamp(12px, 4vw, 18px);
   }
 
   .organizations-page-header h1 {
-    font-size: 1.55rem;
+    font-size: 1.32rem;
     line-height: 1.05;
+  }
+
+  .organizations-page-titlebar {
+    gap: 8px;
+  }
+
+  .organizations-back-button {
+    flex-basis: 30px;
+    height: 30px;
+    width: 30px;
   }
 
   .organizations-page-header .section-summary {

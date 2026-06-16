@@ -10,9 +10,11 @@
     @Html.AntiForgeryToken()
 
     <div class="section-header organizations-page-header">
-        <div>
+        <div class="organizations-page-titlebar">
+            <button type="button" class="organizations-back-button d-none" data-organizations-back-to-list aria-label="Back to organization list">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            </button>
             <h1>Organizations</h1>
-            <p class="section-summary">Manage your customer, partner, and platform organizations. Monitor activity, plans, and user access.</p>
         </div>
         <div class="organizations-page-actions">
             <button type="button" class="ui-adv-btn ui-adv-btn-paper ui-adv-btn-sage" data-organizations-export>
