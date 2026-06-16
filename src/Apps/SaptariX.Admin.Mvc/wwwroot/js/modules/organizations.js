@@ -389,8 +389,10 @@
   }
 
   function scrollToOrganizationHeader() {
+    const appHeader = document.querySelector(".app-header");
+    const headerHeight = appHeader?.getBoundingClientRect().height || 0;
     const rect = root.getBoundingClientRect();
-    const targetTop = Math.max(0, window.scrollY + rect.top - 12);
+    const targetTop = Math.max(0, window.scrollY + rect.top - headerHeight - 14);
     window.scrollTo({ top: targetTop, behavior: "smooth" });
   }
 
