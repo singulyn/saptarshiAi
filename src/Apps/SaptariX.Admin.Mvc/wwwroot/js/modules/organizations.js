@@ -387,6 +387,12 @@
     });
   }
 
+  function scrollToOrganizationHeader() {
+    const rect = root.getBoundingClientRect();
+    const targetTop = Math.max(0, window.scrollY + rect.top - 12);
+    window.scrollTo({ top: targetTop, behavior: "smooth" });
+  }
+
   function updateStepper(options = {}) {
     if (!stepPanels.length) {
       return;
@@ -423,7 +429,7 @@
     updateReview();
 
     if (!options.noScroll && !formPanel?.classList.contains("d-none")) {
-      formPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      scrollToOrganizationHeader();
     }
   }
 
@@ -449,7 +455,7 @@
   function showFormPanel() {
     listPanel?.classList.add("d-none");
     formPanel?.classList.remove("d-none");
-    formPanel?.scrollIntoView({ behavior: "smooth", block: "start" });
+    scrollToOrganizationHeader();
   }
 
   function showCreateCancel() {
