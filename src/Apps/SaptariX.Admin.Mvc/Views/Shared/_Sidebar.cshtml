@@ -27,6 +27,9 @@
 }
 
 @functions {
+    private static readonly Guid DemoOrganizationId = Guid.Parse("00000000-0000-0000-0000-000000000101");
+    private static readonly Guid DemoUserId = Guid.Parse("00000000-0000-0000-0000-000000000201");
+
     private bool IsFontAwesomeIcon(string iconCssClass)
     {
         return iconCssClass.StartsWith("fa-", StringComparison.OrdinalIgnoreCase)
@@ -47,8 +50,8 @@
 
         return PermissionAuthorizationService
             .HasPermissionAsync(
-                CurrentUserService.UserId.GetValueOrDefault(),
-                CurrentOrganizationService.OrganizationId.GetValueOrDefault(),
+                CurrentUserService.UserId.GetValueOrDefault(DemoUserId),
+                CurrentOrganizationService.OrganizationId.GetValueOrDefault(DemoOrganizationId),
                 item.Permission)
             .GetAwaiter()
             .GetResult();
