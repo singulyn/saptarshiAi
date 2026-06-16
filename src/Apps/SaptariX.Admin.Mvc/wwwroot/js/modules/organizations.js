@@ -285,6 +285,7 @@
       error.dataset.organizationFieldError = "";
       error.id = errorId;
       error.setAttribute("role", "alert");
+      error.innerHTML = '<i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><span data-organization-field-error-text></span>';
 
       const shell = container.querySelector(".organization-input-shell");
       shell?.insertAdjacentElement("afterend", error);
@@ -303,7 +304,12 @@
 
     container.classList.add("is-invalid");
     field.setAttribute("aria-invalid", "true");
-    error.textContent = field.validationMessage || "Please complete this field.";
+    const errorText = error.querySelector("[data-organization-field-error-text]");
+    if (errorText) {
+      errorText.textContent = field.validationMessage || "Please complete this field.";
+    } else {
+      error.textContent = field.validationMessage || "Please complete this field.";
+    }
   }
 
   function clearFieldError(field) {
@@ -316,7 +322,12 @@
     field.removeAttribute("aria-invalid");
     const error = container.querySelector("[data-organization-field-error]");
     if (error) {
-      error.textContent = "";
+      const errorText = error.querySelector("[data-organization-field-error-text]");
+      if (errorText) {
+        errorText.textContent = "";
+      } else {
+        error.textContent = "";
+      }
     }
   }
 
@@ -406,7 +417,7 @@
     submitButton?.classList.toggle("d-none", !isReviewStep);
 
     if (nextStepButtonLabel && !isReviewStep) {
-      nextStepButtonLabel.textContent = `Next: ${stepLabel(state.activeStep + 1)}`;
+      nextStepButtonLabel.textContent = "Next";
     }
 
     updateReview();
