@@ -8,7 +8,9 @@ public sealed class InMemoryMenuRegistry : IMenuRegistry
 
     public void Add(MenuItemDefinition item)
     {
-        _items.RemoveAll(x => x.Url.Equals(item.Url, StringComparison.OrdinalIgnoreCase));
+        _items.RemoveAll(x =>
+            x.Text.Equals(item.Text, StringComparison.OrdinalIgnoreCase)
+            && string.Equals(x.Parent, item.Parent, StringComparison.OrdinalIgnoreCase));
         _items.Add(item);
     }
 
