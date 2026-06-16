@@ -3609,9 +3609,9 @@ body {
   }
 
   .user-permission-drawer {
-    --bs-offcanvas-width: 85vw;
-    max-width: 85vw;
-    width: 85vw;
+    --bs-offcanvas-width: 90vw;
+    max-width: 90vw;
+    width: 90vw;
   }
 
   .user-permission-header {
@@ -4271,13 +4271,13 @@ body {
   .organizations-page .organization-drawer,
   .organizations-page .organization-drawer-wide,
   .organizations-page .organization-modules-drawer {
-    --bs-offcanvas-width: 85vw;
+    --bs-offcanvas-width: 90vw;
     border-left: 1px solid #dfe6ee;
     display: flex;
     flex-direction: column;
     height: 100dvh;
-    max-width: 85vw;
-    width: 85vw;
+    max-width: 90vw;
+    width: 90vw;
   }
 
   .organizations-page .organization-drawer .offcanvas-header,

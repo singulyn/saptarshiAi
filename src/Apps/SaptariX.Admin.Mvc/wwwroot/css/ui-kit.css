@@ -1169,9 +1169,9 @@
   }
 
   .ui-drawer {
-    --bs-offcanvas-width: 85vw;
-    max-width: 85vw;
-    width: 85vw;
+    --bs-offcanvas-width: 90vw;
+    max-width: 90vw;
+    width: 90vw;
   }
 
   .ui-drawer-header {
