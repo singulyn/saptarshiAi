@@ -3038,11 +3038,13 @@ body {
   box-shadow: 0 12px 26px rgba(16, 24, 40, 0.06);
   max-width: 100%;
   min-width: 0;
-  overflow-x: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .organization-domains-table .sx-table {
-  min-width: 0;
+  min-width: 700px;
   table-layout: fixed;
   width: 100%;
 }
@@ -3056,34 +3058,41 @@ body {
   white-space: nowrap;
 }
 
+.organization-domains-table .sx-table th {
+  color: #344054;
+  font-size: 0.74rem;
+  font-weight: 820;
+  letter-spacing: 0;
+}
+
 .organization-domains-table .sx-table th:nth-child(1),
 .organization-domains-table .sx-table td:nth-child(1) {
-  width: 30%;
+  width: 190px;
 }
 
 .organization-domains-table .sx-table th:nth-child(2),
 .organization-domains-table .sx-table td:nth-child(2) {
-  width: 15%;
+  width: 105px;
 }
 
 .organization-domains-table .sx-table th:nth-child(3),
 .organization-domains-table .sx-table td:nth-child(3) {
-  width: 12%;
+  width: 92px;
 }
 
 .organization-domains-table .sx-table th:nth-child(4),
 .organization-domains-table .sx-table td:nth-child(4) {
-  width: 17%;
+  width: 128px;
 }
 
 .organization-domains-table .sx-table th:nth-child(5),
 .organization-domains-table .sx-table td:nth-child(5) {
-  width: 13%;
+  width: 94px;
 }
 
 .organization-domains-table .sx-table th:nth-child(6),
 .organization-domains-table .sx-table td:nth-child(6) {
-  width: 13%;
+  width: 80px;
 }
 
 .organization-domains-table .badge {
@@ -4456,8 +4465,8 @@ body {
 
   .organizations-page .organization-domains-table .sx-table th,
   .organizations-page .organization-domains-table .sx-table td {
-    font-size: 0.62rem;
-    padding: 8px 5px;
+    font-size: 0.68rem;
+    padding: 8px 7px;
   }
 
   .organizations-page .organization-domains-table .badge {
@@ -4517,8 +4526,8 @@ body {
 
   .organizations-page .organization-domains-table .sx-table th,
   .organizations-page .organization-domains-table .sx-table td {
-    font-size: 0.58rem;
-    padding-left: 4px;
-    padding-right: 4px;
+    font-size: 0.64rem;
+    padding-left: 6px;
+    padding-right: 6px;
   }
 }
