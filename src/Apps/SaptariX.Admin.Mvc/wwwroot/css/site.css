@@ -1539,6 +1539,7 @@ body {
   font-size: 1.25rem;
   height: 46px;
   justify-content: center;
+  position: relative;
   width: 46px;
 }
 
@@ -1546,10 +1547,10 @@ body {
 .organization-section-icon i {
   align-items: center;
   display: inline-flex;
-  height: 1em;
+  height: 100%;
   justify-content: center;
   line-height: 1;
-  width: 1em;
+  width: 100%;
 }
 
 .organization-stepper {
@@ -1680,6 +1681,7 @@ body {
   flex: 0 0 auto;
   height: 42px;
   justify-content: center;
+  position: relative;
   width: 42px;
 }
 
@@ -1734,6 +1736,37 @@ body {
   font-size: 0.76rem;
   line-height: 1.35;
   margin: 7px 0 0;
+}
+
+.organization-form-field.is-invalid .organization-input-shell {
+  border-color: var(--bs-form-invalid-border-color);
+}
+
+.organization-form-field.is-invalid .organization-input-shell:focus-within {
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.12);
+}
+
+.organization-field-error {
+  align-items: center;
+  color: var(--bs-form-invalid-color);
+  display: none;
+  font-size: 0.78rem;
+  font-weight: 680;
+  gap: 7px;
+  line-height: 1.35;
+  margin: 6px 0 0;
+}
+
+.organization-field-error::before {
+  content: "\f06a";
+  flex: 0 0 auto;
+  font-family: "Font Awesome 6 Free";
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.organization-form-field.is-invalid .organization-field-error {
+  display: flex;
 }
 
 .organization-input-shell {

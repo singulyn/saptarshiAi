@@ -267,15 +267,83 @@
       .filter((field) => !field.disabled && field.willValidate);
   }
 
+  function fieldContainer(field) {
+    return field?.closest(".organization-form-field") || null;
+  }
+
+  function ensureFieldError(field) {
+    const container = fieldContainer(field);
+    if (!container) {
+      return null;
+    }
+
+    let error = container.querySelector("[data-organization-field-error]");
+    if (!error) {
+      error = document.createElement("div");
+      const errorId = `${field.id || field.name || "organization-field"}-error`;
+      error.className = "organization-field-error";
+      error.dataset.organizationFieldError = "";
+      error.id = errorId;
+      error.setAttribute("role", "alert");
+
+      const shell = container.querySelector(".organization-input-shell");
+      shell?.insertAdjacentElement("afterend", error);
+      field.setAttribute("aria-describedby", [field.getAttribute("aria-describedby"), errorId].filter(Boolean).join(" "));
+    }
+
+    return error;
+  }
+
+  function showFieldError(field) {
+    const container = fieldContainer(field);
+    const error = ensureFieldError(field);
+    if (!container || !error) {
+      return;
+    }
+
+    container.classList.add("is-invalid");
+    field.setAttribute("aria-invalid", "true");
+    error.textContent = field.validationMessage || "Please complete this field.";
+  }
+
+  function clearFieldError(field) {
+    const container = fieldContainer(field);
+    if (!container) {
+      return;
+    }
+
+    container.classList.remove("is-invalid");
+    field.removeAttribute("aria-invalid");
+    const error = container.querySelector("[data-organization-field-error]");
+    if (error) {
+      error.textContent = "";
+    }
+  }
+
+  function clearAllFieldErrors() {
+    form?.querySelectorAll("input, select, textarea").forEach(clearFieldError);
+  }
+
   function focusField(field) {
     const customSelectControl = field.closest("[data-sx-select]")?.querySelector("[data-sx-select-control]");
     const focusTarget = customSelectControl || field;
-    focusTarget.focus({ preventScroll: true });
-    field.reportValidity();
+    fieldContainer(field)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    setTimeout(() => focusTarget.focus({ preventScroll: true }), 120);
   }
 
   function validateStep(index) {
-    const invalidField = stepFields(index).find((field) => !field.checkValidity());
+    let invalidField = null;
+
+    stepFields(index).forEach((field) => {
+      if (field.checkValidity()) {
+        clearFieldError(field);
+        return;
+      }
+
+      showFieldError(field);
+      invalidField = invalidField || field;
+    });
+
     if (!invalidField) {
       return true;
     }
@@ -444,6 +512,7 @@
 
     form.reset();
     form.classList.remove("was-validated");
+    clearAllFieldErrors();
     setField("Id", "");
     setField("Country", "India");
     setField("Currency", "INR");
@@ -465,6 +534,7 @@
   function setEditMode(organization) {
     state.mode = "edit";
     form.classList.remove("was-validated");
+    clearAllFieldErrors();
 
     setField("Id", organization.id);
     setField("Name", organization.name);
@@ -515,6 +585,7 @@
       form.classList.add("was-validated");
       state.activeStep = invalid.index;
       updateStepper({ noScroll: true });
+      showFieldError(invalid.field);
       setTimeout(() => focusField(invalid.field), 0);
       return;
     }
@@ -748,6 +819,28 @@
   nextStepButton?.addEventListener("click", () => goToStep(state.activeStep + 1));
   form?.addEventListener("input", updateReview);
   form?.addEventListener("change", updateReview);
+  form?.addEventListener("input", (event) => {
+    if (!event.target.matches("input, select, textarea")) {
+      return;
+    }
+
+    if (event.target.checkValidity()) {
+      clearFieldError(event.target);
+    } else if (fieldContainer(event.target)?.classList.contains("is-invalid")) {
+      showFieldError(event.target);
+    }
+  });
+  form?.addEventListener("change", (event) => {
+    if (!event.target.matches("input, select, textarea")) {
+      return;
+    }
+
+    if (event.target.checkValidity()) {
+      clearFieldError(event.target);
+    } else if (fieldContainer(event.target)?.classList.contains("is-invalid")) {
+      showFieldError(event.target);
+    }
+  });
   form?.addEventListener("submit", submitForm);
   resetButton?.addEventListener("click", () => {
     setTimeout(() => {
