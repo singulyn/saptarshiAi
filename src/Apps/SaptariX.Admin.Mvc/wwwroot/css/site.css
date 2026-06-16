@@ -1515,6 +1515,8 @@ body {
 .organizations-form-card {
   border: 1px solid #e2e8f0;
   border-radius: 8px;
+  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.12), 0 6px 18px rgba(15, 23, 42, 0.06);
+  overflow: visible;
 }
 
 .organizations-form-card .card-body {
@@ -1650,7 +1652,7 @@ body {
   background: #fff;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
-  box-shadow: 0 16px 42px rgba(16, 24, 40, 0.06);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.05);
   margin-bottom: 0;
   padding: 20px;
 }
@@ -1721,6 +1723,8 @@ body {
 }
 
 .organization-form-field {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
 }
 
@@ -1736,6 +1740,7 @@ body {
   font-size: 0.76rem;
   line-height: 1.35;
   margin: 7px 0 0;
+  order: 4;
 }
 
 .organization-form-field.is-invalid .organization-input-shell {
@@ -1755,6 +1760,7 @@ body {
   gap: 7px;
   line-height: 1.35;
   margin: 6px 0 0;
+  order: 3;
 }
 
 .organization-field-error::before {
@@ -1769,6 +1775,11 @@ body {
   display: flex;
 }
 
+.organizations-form .invalid-feedback,
+.organizations-form .valid-feedback {
+  display: none !important;
+}
+
 .organization-input-shell {
   align-items: center;
   background: #fff;
@@ -1781,6 +1792,7 @@ body {
   overflow: visible;
   padding: 0 12px;
   position: relative;
+  order: 2;
   transition: border-color 0.16s ease, box-shadow 0.16s ease;
 }
 
@@ -1857,22 +1869,12 @@ body {
   margin-left: auto;
 }
 
-.organizations-form.was-validated .organization-input-shell .form-control:valid,
-.organizations-form.was-validated .organization-input-shell .form-control:invalid,
-.organizations-form.was-validated .organization-input-shell .form-select:valid,
-.organizations-form.was-validated .organization-input-shell .form-select:invalid {
+.organizations-form .organization-input-shell .form-control:valid,
+.organizations-form .organization-input-shell .form-control:invalid,
+.organizations-form .organization-input-shell .form-select:valid,
+.organizations-form .organization-input-shell .form-select:invalid {
   background-image: none !important;
   padding-right: 0 !important;
-}
-
-.organizations-form.was-validated .organization-input-shell:has(.form-control:invalid),
-.organizations-form.was-validated .organization-input-shell:has(.form-select:invalid) {
-  border-color: var(--bs-form-invalid-border-color);
-}
-
-.organizations-form.was-validated .organization-input-shell:has(.form-control:invalid):focus-within,
-.organizations-form.was-validated .organization-input-shell:has(.form-select:invalid):focus-within {
-  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.12);
 }
 
 .organization-image-placeholder {

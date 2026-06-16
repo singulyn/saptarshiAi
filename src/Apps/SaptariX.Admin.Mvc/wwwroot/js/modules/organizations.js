@@ -348,7 +348,7 @@
       return true;
     }
 
-    form.classList.add("was-validated");
+    form.classList.remove("was-validated");
     if (state.activeStep !== index) {
       state.activeStep = index;
       updateStepper({ noScroll: true });
@@ -582,7 +582,7 @@
 
     const invalid = firstInvalidStep();
     if (invalid) {
-      form.classList.add("was-validated");
+      form.classList.remove("was-validated");
       state.activeStep = invalid.index;
       updateStepper({ noScroll: true });
       showFieldError(invalid.field);
