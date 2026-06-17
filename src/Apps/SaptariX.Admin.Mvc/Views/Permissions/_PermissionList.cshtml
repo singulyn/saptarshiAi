@@ -15,12 +15,12 @@
 }
 else
 {
-    <div class="table-responsive users-table-wrapper organizations-table-wrapper org-table-scroll">
-        <table class="table table-hover align-middle users-table organizations-table mb-0">
+    <div class="table-responsive users-table-wrapper organizations-table-wrapper org-table-scroll access-table-scroll">
+        <table class="table table-hover align-middle users-table organizations-table access-table access-permissions-table mb-0">
             <thead>
                 <tr>
-                    <th scope="col"><button type="button" class="users-sort-button" data-permissions-sort="Name">Permission</button></th>
-                    <th scope="col"><button type="button" class="users-sort-button" data-permissions-sort="Group">Group</button></th>
+                    <th scope="col"><button type="button" class="users-sort-button sx-sort-header" data-permissions-sort="Name">Permission</button></th>
+                    <th scope="col"><button type="button" class="users-sort-button sx-sort-header" data-permissions-sort="Group">Group</button></th>
                     <th scope="col">Description</th>
                     <th scope="col">Source</th>
                     <th scope="col" class="text-end">Actions</th>
@@ -30,7 +30,7 @@ else
                 @foreach (var permission in Model.Items)
                 {
                     <tr>
-                        <td>
+                        <td class="sx-action-cell">
                             <div class="users-person">
                                 <span class="users-avatar" aria-hidden="true"><i class="fa-solid fa-key" aria-hidden="true"></i></span>
                                 <div>
@@ -60,7 +60,7 @@ else
 }
 
 <div class="users-table-footer">
-    <span>@Model.TotalCount permission@(Model.TotalCount == 1 ? string.Empty : "s")</span>
+    <span data-permissions-count>@Model.TotalCount permission@(Model.TotalCount == 1 ? string.Empty : "s")</span>
     <div class="sx-pagination">
         <button type="button" class="btn btn-outline-secondary btn-sm" data-permissions-page="@(Model.PageNumber - 1)" @previousDisabled>Previous</button>
         <button type="button" class="btn btn-outline-secondary btn-sm active" aria-current="page">@Model.PageNumber</button>

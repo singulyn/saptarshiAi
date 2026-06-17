@@ -15,28 +15,28 @@
 }
 else
 {
-    <div class="table-responsive users-table-wrapper organizations-table-wrapper org-table-scroll">
-        <table class="table table-hover align-middle users-table organizations-table mb-0">
+    <div class="table-responsive users-table-wrapper organizations-table-wrapper org-table-scroll access-table-scroll">
+        <table class="table table-hover align-middle users-table organizations-table access-table access-users-table mb-0">
             <thead>
                 <tr>
                     <th scope="col">
-                        <button type="button" class="users-sort-button" data-users-sort="FullName">Full Name</button>
+                        <button type="button" class="users-sort-button sx-sort-header" data-users-sort="FullName">Full Name</button>
                     </th>
                     <th scope="col">
-                        <button type="button" class="users-sort-button" data-users-sort="Email">Email</button>
+                        <button type="button" class="users-sort-button sx-sort-header" data-users-sort="Email">Email</button>
                     </th>
                     <th scope="col">Mobile</th>
                     <th scope="col">
-                        <button type="button" class="users-sort-button" data-users-sort="Role">Role</button>
+                        <button type="button" class="users-sort-button sx-sort-header" data-users-sort="Role">Role</button>
                     </th>
                     <th scope="col">
-                        <button type="button" class="users-sort-button" data-users-sort="Status">Status</button>
+                        <button type="button" class="users-sort-button sx-sort-header" data-users-sort="Status">Status</button>
                     </th>
                     <th scope="col">
-                        <button type="button" class="users-sort-button" data-users-sort="CreatedDate">Created Date</button>
+                        <button type="button" class="users-sort-button sx-sort-header" data-users-sort="CreatedDate">Created Date</button>
                     </th>
                     <th scope="col">
-                        <button type="button" class="users-sort-button" data-users-sort="LastLogin">Last Login</button>
+                        <button type="button" class="users-sort-button sx-sort-header" data-users-sort="LastLogin">Last Login</button>
                     </th>
                     <th scope="col" class="text-end">Actions</th>
                 </tr>
@@ -60,7 +60,7 @@ else
                         <td><span class="badge @user.StatusBadgeClass">@user.Status</span></td>
                         <td class="users-nowrap">@user.CreatedDate</td>
                         <td class="users-nowrap">@user.LastLogin</td>
-                        <td>
+                        <td class="sx-action-cell">
                             <div class="users-actions organizations-actions">
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-users-action="edit" data-user-id="@user.Id" aria-label="Edit @user.FullName">
                                     <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
@@ -71,9 +71,19 @@ else
                                 <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-users-action="permissions" data-user-id="@user.Id" aria-label="Permissions for @user.FullName">
                                     <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-users-action="delete" data-user-id="@user.Id" aria-label="Delete @user.FullName">
-                                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                                </button>
+                                <div class="dropdown dropstart organizations-more-menu">
+                                    <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-bs-toggle="dropdown" data-bs-boundary="viewport" aria-expanded="false" aria-label="More actions for @user.FullName">
+                                        <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu organizations-action-menu">
+                                        <li>
+                                            <button type="button" class="dropdown-item text-danger" data-users-action="delete" data-user-id="@user.Id">
+                                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                                <span>Delete</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -84,7 +94,7 @@ else
 }
 
 <div class="users-table-footer">
-    <span>@Model.TotalCount user@(Model.TotalCount == 1 ? string.Empty : "s")</span>
+    <span data-users-count>@Model.TotalCount user@(Model.TotalCount == 1 ? string.Empty : "s")</span>
     <div class="sx-pagination">
         <button type="button" class="btn btn-outline-secondary btn-sm" data-users-page="@(Model.PageNumber - 1)" @previousDisabled>Previous</button>
         <button type="button" class="btn btn-outline-secondary btn-sm active" aria-current="page">@Model.PageNumber</button>

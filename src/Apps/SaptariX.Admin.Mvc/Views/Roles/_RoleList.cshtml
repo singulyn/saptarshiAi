@@ -15,15 +15,15 @@
 }
 else
 {
-    <div class="table-responsive users-table-wrapper organizations-table-wrapper org-table-scroll">
-        <table class="table table-hover align-middle users-table organizations-table mb-0">
+    <div class="table-responsive users-table-wrapper organizations-table-wrapper org-table-scroll access-table-scroll">
+        <table class="table table-hover align-middle users-table organizations-table access-table access-roles-table mb-0">
             <thead>
                 <tr>
-                    <th scope="col"><button type="button" class="users-sort-button" data-roles-sort="Name">Role</button></th>
+                    <th scope="col"><button type="button" class="users-sort-button sx-sort-header" data-roles-sort="Name">Role</button></th>
                     <th scope="col">Description</th>
-                    <th scope="col"><button type="button" class="users-sort-button" data-roles-sort="Status">Status</button></th>
-                    <th scope="col"><button type="button" class="users-sort-button" data-roles-sort="UserCount">Users</button></th>
-                    <th scope="col"><button type="button" class="users-sort-button" data-roles-sort="PermissionCount">Permissions</button></th>
+                    <th scope="col"><button type="button" class="users-sort-button sx-sort-header" data-roles-sort="Status">Status</button></th>
+                    <th scope="col"><button type="button" class="users-sort-button sx-sort-header" data-roles-sort="UserCount">Users</button></th>
+                    <th scope="col"><button type="button" class="users-sort-button sx-sort-header" data-roles-sort="PermissionCount">Permissions</button></th>
                     <th scope="col" class="text-end">Actions</th>
                 </tr>
             </thead>
@@ -31,7 +31,7 @@ else
                 @foreach (var role in Model.Items)
                 {
                     <tr>
-                        <td>
+                        <td class="sx-action-cell">
                             <div class="users-person">
                                 <span class="users-avatar" aria-hidden="true">@role.DisplayName.Substring(0, 1).ToUpperInvariant()</span>
                                 <div>
@@ -65,7 +65,7 @@ else
 }
 
 <div class="users-table-footer">
-    <span>@Model.TotalCount role@(Model.TotalCount == 1 ? string.Empty : "s")</span>
+    <span data-roles-count>@Model.TotalCount role@(Model.TotalCount == 1 ? string.Empty : "s")</span>
     <div class="sx-pagination">
         <button type="button" class="btn btn-outline-secondary btn-sm" data-roles-page="@(Model.PageNumber - 1)" @previousDisabled>Previous</button>
         <button type="button" class="btn btn-outline-secondary btn-sm active" aria-current="page">@Model.PageNumber</button>

@@ -1376,6 +1376,20 @@ body {
   width: 100%;
 }
 
+.organizations-page .access-list-filter {
+  grid-template-columns: minmax(320px, 2fr) minmax(190px, 1fr) minmax(220px, 300px);
+}
+
+.organizations-page .access-list-filter .organizations-filter-search,
+.organizations-page .access-list-filter .organizations-filter-actions {
+  grid-column: auto;
+}
+
+.organizations-page .access-list-filter .organizations-filter-actions {
+  justify-self: end;
+  max-width: 300px;
+}
+
 .organizations-page .ui-adv-btn {
   align-items: center;
   display: inline-flex;
@@ -1389,6 +1403,57 @@ body {
 .organizations-table {
   min-width: 1560px;
   width: 100%;
+}
+
+.access-page .access-table-scroll {
+  overflow-x: scroll;
+  scrollbar-gutter: stable both-edges;
+}
+
+.access-page .access-users-table {
+  min-width: 1720px;
+}
+
+.access-page .access-roles-table {
+  min-width: 1320px;
+}
+
+.access-page .access-permissions-table {
+  min-width: 1280px;
+}
+
+.access-users-table th:nth-child(1),
+.access-users-table td:nth-child(1) {
+  width: 320px;
+}
+
+.access-users-table th:nth-child(2),
+.access-users-table td:nth-child(2) {
+  width: 320px;
+}
+
+.access-users-table th:nth-child(3),
+.access-users-table td:nth-child(3) {
+  width: 190px;
+}
+
+.access-users-table th:nth-child(4),
+.access-users-table td:nth-child(4),
+.access-users-table th:nth-child(5),
+.access-users-table td:nth-child(5) {
+  width: 150px;
+}
+
+.access-users-table th:nth-child(6),
+.access-users-table td:nth-child(6),
+.access-users-table th:nth-child(7),
+.access-users-table td:nth-child(7) {
+  width: 180px;
+}
+
+.access-users-table th:nth-child(8),
+.access-users-table td:nth-child(8) {
+  width: 180px;
 }
 
 .organizations-table-wrapper {
@@ -3851,6 +3916,19 @@ body {
 
 /* Organizations tablet: two-column forms, wrapped filters, and wider drawers without body overflow. */
 @media (min-width: 768px) and (max-width: 1199.98px) {
+  .organizations-page .access-list-filter {
+    grid-template-columns: minmax(260px, 1fr) minmax(190px, 240px);
+  }
+
+  .organizations-page .access-list-filter .organizations-filter-search,
+  .organizations-page .access-list-filter .organizations-filter-actions {
+    grid-column: 1 / -1;
+  }
+
+  .organizations-page .access-list-filter .organizations-filter-actions {
+    max-width: 300px;
+  }
+
   .organizations-page .organization-fields-grid-four,
   .organizations-page .organization-brand-grid,
   .organizations-page .organization-review-grid {
@@ -3944,7 +4022,10 @@ body {
     padding: 6px 10px;
   }
 
-  .organizations-page .users-table-footer [data-organizations-count] {
+  .organizations-page .users-table-footer [data-organizations-count],
+  .organizations-page .users-table-footer [data-users-count],
+  .organizations-page .users-table-footer [data-roles-count],
+  .organizations-page .users-table-footer [data-permissions-count] {
     font-size: 0.75rem;
     min-width: 0;
     overflow: hidden;
@@ -3987,6 +4068,10 @@ body {
     padding: 10px;
   }
 
+  .organizations-page .access-list-filter {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .organizations-page .organizations-filter-search,
   .organizations-page .organizations-filter-date,
   .organizations-page .organizations-filter-actions {
@@ -3999,6 +4084,18 @@ body {
 
   .organizations-page .organizations-table {
     min-width: 900px;
+  }
+
+  .organizations-page .access-users-table {
+    min-width: 1120px;
+  }
+
+  .organizations-page .access-roles-table {
+    min-width: 980px;
+  }
+
+  .organizations-page .access-permissions-table {
+    min-width: 920px;
   }
 
   .organizations-page .organizations-form-card {
