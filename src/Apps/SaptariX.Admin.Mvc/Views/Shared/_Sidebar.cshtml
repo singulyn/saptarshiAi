@@ -1,15 +1,9 @@
 @using SaptariX.Plugin.Abstractions.Navigation
-@using SaptariX.Platform.AccessControl
-@using SaptariX.Plugin.Abstractions.Identity
-@using SaptariX.Plugin.Abstractions.Organization
 @inject IMenuRegistry MenuRegistry
-@inject IPermissionAuthorizationService PermissionAuthorizationService
-@inject ICurrentUserService CurrentUserService
-@inject ICurrentOrganizationService CurrentOrganizationService
 @{
     var activeMenu = ViewData["ActiveMenu"]?.ToString() ?? Context.Request.Path.Value ?? "/Dashboard";
     var allMenuItems = MenuRegistry.GetItems().ToList();
-    var visibleMenuItems = allMenuItems.Where(CanShow).ToList();
+    var visibleMenuItems = allMenuItems;
     var parentsWithVisibleChildren = visibleMenuItems
         .Where(x => !string.IsNullOrWhiteSpace(x.Parent))
         .Select(x => x.Parent!)
@@ -27,34 +21,10 @@
 }
 
 @functions {
-    private static readonly Guid DemoOrganizationId = Guid.Parse("00000000-0000-0000-0000-000000000101");
-    private static readonly Guid DemoUserId = Guid.Parse("00000000-0000-0000-0000-000000000201");
-
     private bool IsFontAwesomeIcon(string iconCssClass)
     {
         return iconCssClass.StartsWith("fa-", StringComparison.OrdinalIgnoreCase)
             || iconCssClass.Contains(" fa-", StringComparison.OrdinalIgnoreCase);
-    }
-
-    private bool CanShow(MenuItemDefinition item)
-    {
-        if (User.IsInRole("SuperAdmin") || User.IsInRole("Developer"))
-        {
-            return true;
-        }
-
-        if (string.IsNullOrWhiteSpace(item.Permission))
-        {
-            return true;
-        }
-
-        return PermissionAuthorizationService
-            .HasPermissionAsync(
-                CurrentUserService.UserId.GetValueOrDefault(DemoUserId),
-                CurrentOrganizationService.OrganizationId.GetValueOrDefault(DemoOrganizationId),
-                item.Permission)
-            .GetAwaiter()
-            .GetResult();
     }
 
     private bool IsActive(MenuItemDefinition item, string activeMenu)

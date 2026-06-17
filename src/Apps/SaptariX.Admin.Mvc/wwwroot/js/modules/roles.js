@@ -7,11 +7,15 @@
   const tokenInput = root.querySelector('input[name="__RequestVerificationToken"]');
   const token = tokenInput ? tokenInput.value : "";
   const listHost = root.querySelector("[data-roles-list-host]");
+  const listPanel = root.querySelector("[data-roles-list-panel]");
+  const formPanel = root.querySelector("[data-roles-form-panel]");
   const loadingState = root.querySelector("[data-roles-loading]");
   const filterForm = root.querySelector("[data-roles-filter-form]");
   const form = root.querySelector("[data-roles-form]");
   const formTab = document.getElementById("roles-form-tab");
   const listTab = document.getElementById("roles-list-tab");
+  const openCreateButton = root.querySelector("[data-roles-open-create]");
+  const backToListButton = root.querySelector("[data-roles-back-to-list]");
   const submitButton = root.querySelector("[data-roles-submit]");
   const resetButton = root.querySelector("[data-roles-reset]");
   const cancelEditButton = root.querySelector("[data-roles-cancel-edit]");
@@ -95,13 +99,51 @@
       .replaceAll("'", "&#039;");
   }
 
+  function showListPanel() {
+    if (listPanel) {
+      listPanel.classList.remove("d-none");
+    }
+    if (formPanel) {
+      formPanel.classList.add("d-none");
+    }
+    if (backToListButton) {
+      backToListButton.classList.add("d-none");
+    }
+    if (openCreateButton) {
+      openCreateButton.classList.remove("d-none");
+    }
+    if (listTab) {
+      bootstrap.Tab.getOrCreateInstance(listTab).show();
+    }
+  }
+
+  function showFormPanel() {
+    if (listPanel) {
+      listPanel.classList.add("d-none");
+    }
+    if (formPanel) {
+      formPanel.classList.remove("d-none");
+    }
+    if (backToListButton) {
+      backToListButton.classList.remove("d-none");
+    }
+    if (openCreateButton) {
+      openCreateButton.classList.add("d-none");
+    }
+    if (formTab) {
+      bootstrap.Tab.getOrCreateInstance(formTab).show();
+    }
+  }
+
   function setCreateMode() {
     state.mode = "create";
     form.reset();
     form.classList.remove("was-validated");
     form.querySelector("[data-roles-id]").value = "";
     nameInput.disabled = false;
-    formTab.textContent = "Create Role";
+    if (formTab) {
+      formTab.textContent = "Create Role";
+    }
     formHeading.textContent = "Create Role";
     submitButton.textContent = "Create Role";
     resetButton.classList.remove("d-none");
@@ -127,7 +169,9 @@
     form.querySelector('[name="Description"]').value = role.description || "";
     setSelectValue("Status", role.status || "Active");
     nameInput.disabled = true;
-    formTab.textContent = "Update Role";
+    if (formTab) {
+      formTab.textContent = "Update Role";
+    }
     formHeading.textContent = "Update Role";
     submitButton.textContent = "Update Role";
     resetButton.classList.add("d-none");
@@ -142,7 +186,7 @@
       }
       const role = await response.json();
       setEditMode(role);
-      bootstrap.Tab.getOrCreateInstance(formTab).show();
+      showFormPanel();
     } catch (error) {
       showAlert(error.message, "danger");
     }
@@ -173,7 +217,7 @@
       showAlert(result.message, "success");
       setCreateMode();
       await loadList();
-      bootstrap.Tab.getOrCreateInstance(listTab).show();
+      showListPanel();
     } catch (error) {
       showAlert(error.message, "danger");
     } finally {
@@ -388,16 +432,36 @@
     }
   });
 
+  if (openCreateButton) {
+    openCreateButton.addEventListener("click", () => {
+      setCreateMode();
+      showFormPanel();
+    });
+  }
+
+  if (backToListButton) {
+    backToListButton.addEventListener("click", () => {
+      setCreateMode();
+      showListPanel();
+    });
+  }
+
   form.addEventListener("submit", submitForm);
   resetButton.addEventListener("click", () => window.setTimeout(() => form.classList.remove("was-validated"), 0));
-  cancelEditButton.addEventListener("click", setCreateMode);
-  formTab.addEventListener("click", () => {
-    if (state.mode !== "edit") {
-      setCreateMode();
-    }
+  cancelEditButton.addEventListener("click", () => {
+    setCreateMode();
+    showListPanel();
   });
+  if (formTab) {
+    formTab.addEventListener("click", () => {
+      if (state.mode !== "edit") {
+        setCreateMode();
+      }
+    });
+  }
   confirmDeleteButton.addEventListener("click", softDeleteRole);
 
   setCreateMode();
+  showListPanel();
   loadList();
 })();

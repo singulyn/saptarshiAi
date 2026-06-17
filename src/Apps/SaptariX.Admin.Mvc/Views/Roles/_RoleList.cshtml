@@ -15,8 +15,8 @@
 }
 else
 {
-    <div class="table-responsive users-table-wrapper">
-        <table class="table table-hover align-middle users-table mb-0">
+    <div class="table-responsive users-table-wrapper organizations-table-wrapper org-table-scroll">
+        <table class="table table-hover align-middle users-table organizations-table mb-0">
             <thead>
                 <tr>
                     <th scope="col"><button type="button" class="users-sort-button" data-roles-sort="Name">Role</button></th>
@@ -45,14 +45,14 @@ else
                         <td>@role.UserCount</td>
                         <td>@role.PermissionCount</td>
                         <td>
-                            <div class="users-actions">
-                                <button type="button" class="btn btn-light btn-sm users-icon-button" data-roles-action="permissions" data-role-id="@role.Id" aria-label="Permissions for @role.DisplayName">
+                            <div class="users-actions organizations-actions">
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-roles-action="permissions" data-role-id="@role.Id" aria-label="Permissions for @role.DisplayName">
                                     <i class="fa-solid fa-key" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-light btn-sm users-icon-button" data-roles-action="edit" data-role-id="@role.Id" aria-label="Edit @role.DisplayName">
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-roles-action="edit" data-role-id="@role.Id" aria-label="Edit @role.DisplayName">
                                     <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-light btn-sm users-icon-button text-danger" data-roles-action="delete" data-role-id="@role.Id" aria-label="Delete @role.DisplayName" @(role.IsSystem ? "disabled" : string.Empty)>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-roles-action="delete" data-role-id="@role.Id" aria-label="Delete @role.DisplayName" @(role.IsSystem ? "disabled" : string.Empty)>
                                     <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                 </button>
                             </div>
@@ -66,9 +66,9 @@ else
 
 <div class="users-table-footer">
     <span>@Model.TotalCount role@(Model.TotalCount == 1 ? string.Empty : "s")</span>
-    <div class="users-pagination">
+    <div class="sx-pagination">
         <button type="button" class="btn btn-outline-secondary btn-sm" data-roles-page="@(Model.PageNumber - 1)" @previousDisabled>Previous</button>
-        <span>Page @Model.PageNumber of @totalPages</span>
+        <button type="button" class="btn btn-outline-secondary btn-sm active" aria-current="page">@Model.PageNumber</button>
         <button type="button" class="btn btn-outline-secondary btn-sm" data-roles-page="@(Model.PageNumber + 1)" @nextDisabled>Next</button>
     </div>
 </div>

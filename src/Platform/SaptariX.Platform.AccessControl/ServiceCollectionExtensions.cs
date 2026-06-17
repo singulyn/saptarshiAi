@@ -1,8 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
-using SaptariX.Platform.AccessControl.EffectivePermissions;
 using SaptariX.Platform.AccessControl.Permissions;
 using SaptariX.Platform.AccessControl.Roles;
 using SaptariX.Platform.AccessControl.UserRoles;
+using SaptariX.Platform.Identity.Users;
 using SaptariX.Plugin.Abstractions.Permissions;
 
 namespace SaptariX.Platform.AccessControl;
@@ -13,7 +13,11 @@ public static class ServiceCollectionExtensions
     {
         services.AddSingleton<IPermissionProvider, AccessControlPermissionProvider>();
         services.AddScoped<IPermissionAuthorizationService, PermissionAuthorizationService>();
-        services.AddScoped<IEffectivePermissionService, EffectivePermissionService>();
+        services.AddSingleton<InMemoryAccessControlStore>();
+        services.AddSingleton<IUserPermissionCatalog, AccessControlUserPermissionCatalog>();
+        services.AddScoped<IRoleRepository, InMemoryRoleRepository>();
+        services.AddScoped<IPermissionRepository, InMemoryPermissionRepository>();
+        services.AddScoped<IUserRoleRepository, InMemoryUserRoleRepository>();
         services.AddScoped<IPermissionService, PermissionService>();
         services.AddScoped<IRoleService, RoleService>();
         services.AddScoped<IUserRoleService, UserRoleService>();

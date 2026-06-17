@@ -36,11 +36,11 @@ Created in this run:
 - Fixed Admin MVC container publish by excluding DynamicForms module appsettings files from publish output.
 - Organization UI-only shell at `/Organizations` with list/create-update tabs, enterprise filter toolbar, sample organization table, Apps/Products drawer, Modules drawer, Domains drawer, Settings drawer, soft-delete modal, and `Advanced Buttons 5` elevated action styling.
 - `Organizations.*` permission constants and Font Awesome sidebar/menu icons.
-- AccessControl SQL Server schema/stored procedures/seed scripts under `database/sqlserver/004-access-control`.
-- AccessControl role, permission, user-role, role-permission, and effective-permission services/repositories.
+- Lightweight in-memory AccessControl role, permission, user-role, and role-permission services for the Admin MVC workflow.
 - Real Admin MVC Roles and Permissions pages with AJAX list/form flows.
 - Role Permissions drawer and User Roles drawer.
-- Sidebar User Management parent with dynamic child permission checks for Users, Roles, and Permissions.
+- Direct sidebar entries for Users, Roles, and Permissions without dynamic permission gating.
+- Users, Roles, and Permissions pages now reuse the Organization module page shell, filters, table wrappers, action buttons, and pagination styling.
 
 Working:
 
@@ -95,14 +95,13 @@ Working:
 - Admin MVC references the required core, infrastructure, platform, and DynamicForms projects.
 - SQL Server/Dapper registrations were verified in `SaptariX.Persistence.SqlServer` and `SaptariX.Admin.Mvc`.
 - Users repositories are registered in `SaptariX.Persistence.SqlServer`.
-- AccessControl repositories are registered in `SaptariX.Persistence.SqlServer`.
+- AccessControl in-memory repositories are registered by `SaptariX.Platform.AccessControl`.
 
 Needs testing:
 
 - SQL scripts against a local SQL Server container.
 - New Users stored procedures against SQL Server.
-- New AccessControl stored procedures against SQL Server.
-- Browser verification for `/Roles`, `/Permissions`, user-role drawer, role-permission drawer, and sidebar permission filtering.
+- Browser verification for `/Roles`, `/Permissions`, user-role drawer, role-permission drawer, and direct sidebar entries.
 - Organization backend functionality: SQL scripts, stored procedures, Dapper repositories, services, AJAX endpoints, and persistence validation.
 - UI Kit copy, toast, modal, drawer, row add/remove, and inline-create demos in a browser automation run.
 - Login form post and cookie sign-in.

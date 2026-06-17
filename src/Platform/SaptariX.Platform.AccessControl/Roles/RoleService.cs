@@ -85,9 +85,15 @@ public sealed partial class RoleService : IRoleService
         var stored = await _repository.GetPermissionsAsync(request.OrganizationId, request.RoleId, cancellationToken);
         var storedByName = stored.ToDictionary(x => x.PermissionName, StringComparer.OrdinalIgnoreCase);
 
-        var groups = _permissionRegistry.GetPermissions()
+        var catalog = _permissionRegistry.GetPermissions()
+            .Concat(stored.Select(permission => new PermissionDefinition(permission.PermissionName, permission.DisplayName, permission.ModuleName)))
+            .GroupBy(x => x.Name, StringComparer.OrdinalIgnoreCase)
+            .Select(x => x.First())
             .OrderBy(x => x.Group)
             .ThenBy(x => x.Name)
+            .ToList();
+
+        var groups = catalog
             .Select(permission => storedByName.TryGetValue(permission.Name, out var selected)
                 ? selected
                 : new RolePermissionItemDto

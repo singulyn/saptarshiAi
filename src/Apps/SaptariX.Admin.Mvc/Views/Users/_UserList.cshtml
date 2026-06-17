@@ -15,8 +15,8 @@
 }
 else
 {
-    <div class="table-responsive users-table-wrapper">
-        <table class="table table-hover align-middle users-table mb-0">
+    <div class="table-responsive users-table-wrapper organizations-table-wrapper org-table-scroll">
+        <table class="table table-hover align-middle users-table organizations-table mb-0">
             <thead>
                 <tr>
                     <th scope="col">
@@ -61,17 +61,17 @@ else
                         <td class="users-nowrap">@user.CreatedDate</td>
                         <td class="users-nowrap">@user.LastLogin</td>
                         <td>
-                            <div class="users-actions">
-                                <button type="button" class="btn btn-light btn-sm users-icon-button" data-users-action="edit" data-user-id="@user.Id" aria-label="Edit @user.FullName">
+                            <div class="users-actions organizations-actions">
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-users-action="edit" data-user-id="@user.Id" aria-label="Edit @user.FullName">
                                     <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-light btn-sm users-icon-button" data-users-action="roles" data-user-id="@user.Id" aria-label="Roles for @user.FullName">
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-users-action="roles" data-user-id="@user.Id" aria-label="Roles for @user.FullName">
                                     <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-light btn-sm users-icon-button" data-users-action="permissions" data-user-id="@user.Id" aria-label="Permissions for @user.FullName">
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-users-action="permissions" data-user-id="@user.Id" aria-label="Permissions for @user.FullName">
                                     <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-light btn-sm users-icon-button text-danger" data-users-action="delete" data-user-id="@user.Id" aria-label="Delete @user.FullName">
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-users-action="delete" data-user-id="@user.Id" aria-label="Delete @user.FullName">
                                     <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                 </button>
                             </div>
@@ -85,9 +85,9 @@ else
 
 <div class="users-table-footer">
     <span>@Model.TotalCount user@(Model.TotalCount == 1 ? string.Empty : "s")</span>
-    <div class="users-pagination">
+    <div class="sx-pagination">
         <button type="button" class="btn btn-outline-secondary btn-sm" data-users-page="@(Model.PageNumber - 1)" @previousDisabled>Previous</button>
-        <span>Page @Model.PageNumber of @totalPages</span>
+        <button type="button" class="btn btn-outline-secondary btn-sm active" aria-current="page">@Model.PageNumber</button>
         <button type="button" class="btn btn-outline-secondary btn-sm" data-users-page="@(Model.PageNumber + 1)" @nextDisabled>Next</button>
     </div>
 </div>

@@ -1,6 +1,6 @@
 # Project Status
 
-Current date: 2026-06-13
+Current date: 2026-06-17
 
 ## Completed
 
@@ -68,11 +68,11 @@ Current date: 2026-06-13
 - Installed Font Awesome Free runtime assets under `wwwroot/vendor/fontawesome-free`, loaded solid and regular styles globally, removed the custom SaptariX icon sprite assets, and restored `UI Components -> Icon Library` as a lightweight Font Awesome reference page.
 - Added a Coolify/GCP-ready Docker Compose deployment with an Admin MVC Dockerfile, private SQL Server/Redis services, persistent volumes, required SQL password configuration, reverse-proxy forwarded header support, and `/health` endpoint.
 - Fixed Admin MVC publish output for container builds by preventing the DynamicForms Web module `appsettings*.json` files from colliding with the Admin app settings during publish.
-- Added AccessControl SQL Server schema/stored procedures/seed scripts under `database/sqlserver/004-access-control`.
-- Added AccessControl services and Dapper repositories for roles, permissions, user-role mappings, role-permission mappings, and effective permission checks.
+- Simplified AccessControl to an in-memory Admin MVC workflow for roles, permissions, user-role mappings, and role-permission mappings without runtime RBAC enforcement.
 - Replaced static Roles and Permissions pages with real Admin MVC controllers, Razor views, AJAX list/form flows, and JavaScript modules.
-- Added Role Permissions right drawer and User Roles right drawer.
-- Grouped Users, Roles, and Permissions under the sidebar `User Management` parent with dynamic permission filtering.
+- Added Role Permissions right drawer and User Roles drawer.
+- Changed Users, Roles, and Permissions to direct sidebar entries with no dynamic sidebar permission gating.
+- Reused the Organization page shell, filter row, table wrappers, action button styling, and pagination for Users, Roles, and Permissions.
 
 ## In Progress
 
@@ -86,7 +86,6 @@ Current date: 2026-06-13
 - Real Redis provider implementation.
 - Full database migration runner.
 - SQL Server execution test for new Users stored procedures.
-- SQL Server execution test for new AccessControl stored procedures.
 - Deeper browser interaction tests for UI Kit copy/toast/drawer/modal and inline-create demos.
 - CI pipeline and integration test infrastructure.
 
@@ -126,6 +125,7 @@ Current date: 2026-06-13
 - Verified after the Organization UI-only shell that `dotnet build SaptariX.Platform.sln --no-restore` succeeds with 0 warnings and 0 errors.
 - Verified after the Font Awesome icon migration that `dotnet build SaptariX.Platform.sln --no-restore` succeeds with 0 warnings and 0 errors.
 - Verified after the Coolify compose update that `docker-compose config --quiet` renders successfully when `SAPTARIX_SQL_PASSWORD` is set, `dotnet publish src/Apps/SaptariX.Admin.Mvc/SaptariX.Admin.Mvc.csproj -c Release -o .tmp/publish-admin-mvc-check --no-restore` succeeds, and `dotnet build SaptariX.Platform.sln --no-restore` succeeds with 0 warnings and 0 errors.
+- Verified after simplifying AccessControl that `dotnet build src/Apps/SaptariX.Admin.Mvc/SaptariX.Admin.Mvc.csproj --no-restore` succeeds with 0 warnings and 0 errors.
 - The local machine has ASP.NET Core 10 installed but not the ASP.NET Core 8 shared runtime, so local startup uses `DOTNET_ROLL_FORWARD=Major` while projects remain targeted to `net8.0`.
 - A sandboxed package-list command attempted network restore and failed under restricted network rules; package references were verified directly from project files and the solution build succeeds.
 
@@ -134,7 +134,7 @@ Current date: 2026-06-13
 1. Apply SQL scripts to local SQL Server.
 2. Implement Organization backend persistence: SQL scripts, stored procedures, repositories, services, and controller endpoints.
 3. Validate the Users module against SQL Server stored procedures instead of the local fallback store.
-4. Validate Roles, Permissions, user-role drawer, role-permission drawer, and dynamic sidebar checks against SQL Server stored procedures.
+4. Browser-verify Roles, Permissions, user-role drawer, role-permission drawer, and the direct sidebar entries.
 5. Use the UI Kit inline-create table pattern for small master modules.
 6. Use the UI Kit input-table pattern in DynamicForms/AppBuilder module work.
 7. Replace workflow placeholder runtime with concrete Elsa integration.

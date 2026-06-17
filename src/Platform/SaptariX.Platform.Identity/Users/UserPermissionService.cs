@@ -20,15 +20,18 @@ public sealed class UserPermissionService : IUserPermissionService
     private readonly IUserRepository _userRepository;
     private readonly IUserPermissionRepository _permissionRepository;
     private readonly IPermissionRegistry _permissionRegistry;
+    private readonly IEnumerable<IUserPermissionCatalog> _permissionCatalogs;
 
     public UserPermissionService(
         IUserRepository userRepository,
         IUserPermissionRepository permissionRepository,
-        IPermissionRegistry permissionRegistry)
+        IPermissionRegistry permissionRegistry,
+        IEnumerable<IUserPermissionCatalog> permissionCatalogs)
     {
         _userRepository = userRepository;
         _permissionRepository = permissionRepository;
         _permissionRegistry = permissionRegistry;
+        _permissionCatalogs = permissionCatalogs;
     }
 
     public async Task<UserPermissionSetDto> GetPermissionsAsync(
@@ -41,6 +44,7 @@ public sealed class UserPermissionService : IUserPermissionService
 
         var registered = _permissionRegistry.GetPermissions()
             .Concat(RequiredPermissionExamples)
+            .Concat(_permissionCatalogs.SelectMany(catalog => catalog.GetPermissions()))
             .GroupBy(x => x.Name, StringComparer.OrdinalIgnoreCase)
             .Select(x => x.First())
             .OrderBy(x => x.Group)

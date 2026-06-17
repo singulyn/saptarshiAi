@@ -15,8 +15,8 @@
 }
 else
 {
-    <div class="table-responsive users-table-wrapper">
-        <table class="table table-hover align-middle users-table mb-0">
+    <div class="table-responsive users-table-wrapper organizations-table-wrapper org-table-scroll">
+        <table class="table table-hover align-middle users-table organizations-table mb-0">
             <thead>
                 <tr>
                     <th scope="col"><button type="button" class="users-sort-button" data-permissions-sort="Name">Permission</button></th>
@@ -43,11 +43,11 @@ else
                         <td>@permission.Description</td>
                         <td><span class="badge @(permission.IsSystem ? "text-bg-primary" : "text-bg-secondary")">@(permission.IsSystem ? "System" : "Custom")</span></td>
                         <td>
-                            <div class="users-actions">
-                                <button type="button" class="btn btn-light btn-sm users-icon-button" data-permissions-action="edit" data-permission-id="@permission.Id" aria-label="Edit @permission.Name" @(permission.IsSystem ? "disabled" : string.Empty)>
+                            <div class="users-actions organizations-actions">
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn" data-permissions-action="edit" data-permission-id="@permission.Id" aria-label="Edit @permission.Name" @(permission.IsSystem ? "disabled" : string.Empty)>
                                     <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-light btn-sm users-icon-button text-danger" data-permissions-action="delete" data-permission-id="@permission.Id" aria-label="Delete @permission.Name" @(permission.IsSystem ? "disabled" : string.Empty)>
+                                <button type="button" class="btn btn-light btn-sm fa-icon-btn text-danger" data-permissions-action="delete" data-permission-id="@permission.Id" aria-label="Delete @permission.Name" @(permission.IsSystem ? "disabled" : string.Empty)>
                                     <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                 </button>
                             </div>
@@ -61,9 +61,9 @@ else
 
 <div class="users-table-footer">
     <span>@Model.TotalCount permission@(Model.TotalCount == 1 ? string.Empty : "s")</span>
-    <div class="users-pagination">
+    <div class="sx-pagination">
         <button type="button" class="btn btn-outline-secondary btn-sm" data-permissions-page="@(Model.PageNumber - 1)" @previousDisabled>Previous</button>
-        <span>Page @Model.PageNumber of @totalPages</span>
+        <button type="button" class="btn btn-outline-secondary btn-sm active" aria-current="page">@Model.PageNumber</button>
         <button type="button" class="btn btn-outline-secondary btn-sm" data-permissions-page="@(Model.PageNumber + 1)" @nextDisabled>Next</button>
     </div>
 </div>

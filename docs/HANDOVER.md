@@ -64,7 +64,7 @@ AdminLTE v4 was fetched from the official ColorlibHQ/AdminLTE repository into `.
 
 `/Organizations` now renders the Organization foundation UI shell in Admin MVC. This pass is intentionally UI-only: it does not add Organization repositories, stored procedures, or server-side create/update/delete endpoints.
 
-The page uses the List + Create/Update tab pattern. `Organization List` is the default tab. `Create Organization` hosts the reusable form. Clicking the edit action fills the same form with preview data, switches the tab label to `Update Organization`, changes the submit button to `Update Organization`, and shows `Cancel Edit`.
+The page uses the List + Create/Update panel pattern. `Organization List` is the default panel. `Create Organization` hosts the reusable form. Clicking the edit action fills the same form with preview data, switches the heading/button text to `Update Organization`, and shows the back-to-list control.
 
 The list tab uses the existing enterprise table language with top search/filter controls, loading/empty states, pagination, compact action buttons, and sort-ready headers. Primary action buttons use the UI Kit `Advanced Buttons 5` elevated family (`ui-adv-btn ui-adv-btn-elevated`).
 
@@ -81,7 +81,7 @@ The delete action uses a Bootstrap confirmation modal and only performs a client
 
 The Users module is implemented in Admin MVC with thin controller actions in `UsersController`. Business behavior is in `SaptariX.Platform.Identity.Users` services and repository interfaces. SQL Server/Dapper implementations live in `SaptariX.Persistence.SqlServer` as `UserRepository` and `UserPermissionRepository`.
 
-The `/Users` page opens a tabbed AdminLTE layout. `User List` is the default tab. `Create User` hosts the shared form. Clicking the edit action fetches `/Users/GetById/{id}`, fills the same form, switches the form tab label to `Update User`, hides password fields, and changes the submit button to `Update User`. `Cancel Edit` clears the form and returns it to create mode.
+The `/Users` page reuses the Organization module page shell. The header action opens the form panel, the back arrow returns to the list, and the list uses the shared Organization filter/table/button classes. Clicking the edit action fetches `/Users/GetById/{id}`, fills the same form, hides password fields, and changes the submit button to `Update User`. `Cancel Edit` clears the form and returns to the list.
 
 The delete action opens the Bootstrap modal with the required confirmation text. Confirming calls `/Users/SoftDelete/{id}` and only marks `IsDeleted`, `DeletedAtUtc`, and `DeletedBy`; no hard-delete path exists.
 
@@ -101,23 +101,11 @@ The repositories call these stored procedures first. When SQL Server scripts hav
 
 ## Access Control Module
 
-Access Control now has a database-backed service layer for roles, permissions, user-role assignment, role-permission assignment, and effective permission checks.
+Access Control is intentionally lightweight in this phase. It provides simple in-memory role CRUD, permission CRUD, user-role assignment, and role-permission assignment for the Admin MVC workflow. It does not enforce runtime RBAC, does not gate sidebar visibility, and does not require AccessControl SQL scripts.
 
-SQL Server scripts live under `database/sqlserver/004-access-control`:
+Runtime service contracts live in `SaptariX.Platform.AccessControl`: `IRoleService`, `IPermissionService`, `IUserRoleService`, and `IPermissionAuthorizationService`. `PermissionAuthorizationService` currently allows access so the platform remains usable while product flow is being shaped.
 
-- `001-create-access-control-schema.sql`
-- `002-create-access-control-stored-procedures.sql`
-- `003-seed-access-control.sql`
-
-The scripts create the `[access]` schema, permissions, roles, user-role mappings, role-permission mappings, user direct permission overrides, stored procedures, and seed data for the demo organization and SuperAdmin user.
-
-Runtime service contracts live in `SaptariX.Platform.AccessControl`: `IRoleService`, `IPermissionService`, `IUserRoleService`, and `IEffectivePermissionService`.
-
-SQL Server/Dapper implementations live in `SaptariX.Persistence.SqlServer`: `RoleRepository`, `PermissionRepository`, and `UserRoleRepository`.
-
-The repositories call stored procedures first and fall back to seeded in-memory data when scripts have not been applied. The fallback is only for scaffold/demo verification and should not be treated as production persistence.
-
-Admin MVC routes now cover `/Roles`, `/Permissions`, `/Users/GetRoles/{userId}`, and `/Users/SaveRoles`. Sidebar structure groups `/Users`, `/Roles`, and `/Permissions` under `User Management`. Child menu entries remain permission-gated with `Users.View`, `Roles.View`, and `Permissions.View`; SuperAdmin and Developer roles continue to bypass sidebar permission checks.
+Admin MVC routes cover `/Users`, `/Roles`, `/Permissions`, `/Users/GetRoles/{userId}`, `/Users/SaveRoles`, `/Users/GetPermissions/{userId}`, and `/Users/SavePermissions`. `/Users`, `/Roles`, and `/Permissions` are direct sidebar menu entries and reuse the Organization module page shell, filters, table wrappers, action buttons, and pagination styling.
 
 ## UI Kit / Design System
 
@@ -171,12 +159,12 @@ Future modules should start from these patterns:
 - Use the inline create table pattern for small master modules.
 - Use the right drawer pattern for permission management and details panels.
 - Use the input-table pattern for DynamicForms/AppBuilder metadata editing.
-- Use the List/Create/Update tab pattern for CRUD modules that do not need separate edit pages.
+- Use the Organization-style List/Create/Update panel pattern for CRUD modules that do not need separate edit pages.
 
 Entity UI pattern decision:
 
 - Use Inline Create + Table when the entity is small, has two to five fields, and has no complex child data, permission matrix, workflow designer, or heavy validation.
-- Use List + Create/Update Tabs when the entity has a medium form and list/form workflows both matter, such as Users, Roles, and Organizations.
+- Use List + Create/Update Panels when the entity has a medium form and list/form workflows both matter, such as Users, Roles, and Organizations.
 - Use Right Drawer when the user edits secondary configuration, such as user permissions, role permissions, filters, and settings.
 - Use Modal when the action is short and temporary, such as confirm delete or quick status change.
 - Use Dedicated Page when the entity has complex builder/configuration behavior, such as DynamicForms, Workflow Designer, and Report Builder.

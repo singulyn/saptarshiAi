@@ -5,8 +5,8 @@ Immediate tasks:
 1. Apply SQL Server scripts in numeric order.
 2. Implement the Organization backend behind the new UI shell: SQL scripts, stored procedures, Dapper repositories, services, controller endpoints, anti-forgery AJAX saves, and persistence validation.
 3. In Coolify, set `SAPTARIX_SQL_PASSWORD`, assign the `admin-mvc` service domain to internal port `8080`, and apply SQL scripts after the first SQL Server start.
-4. Validate the Users and AccessControl modules against SQL Server-backed stored procedures.
-5. Browser-verify `/Roles`, `/Permissions`, user-role drawer, role-permission drawer, and dynamic sidebar visibility.
+4. Validate the Users module against SQL Server-backed stored procedures.
+5. Browser-verify `/Roles`, `/Permissions`, user-role drawer, role-permission drawer, and direct sidebar visibility.
 6. Use Inline Create + Table for small master modules.
 7. Use List/Create tabs for Users and other medium CRUD modules.
 8. Use the UI Kit drawer pattern for permission assignment and secondary configuration.

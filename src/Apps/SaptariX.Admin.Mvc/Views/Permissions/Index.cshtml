@@ -1,13 +1,13 @@
 @using SaptariX.Admin.Mvc.ViewModels.Permissions
-@using SaptariX.Platform.AccessControl.Permissions
 @model PermissionListViewModel
 @{
     ViewData["Title"] = "Permissions";
     ViewData["ActiveMenu"] = "/Permissions";
+    ViewData["HideBreadcrumb"] = true;
     var formModel = PermissionFormViewModel.Empty();
 }
 
-<section class="page-section users-page access-page"
+<section class="page-section users-page organizations-page access-page"
          data-permissions-root
          data-list-url="/Permissions/List"
          data-get-url="/Permissions/GetById"
@@ -16,51 +16,44 @@
          data-delete-url="/Permissions/Delete">
     @Html.AntiForgeryToken()
 
-    <div class="section-header">
-        <div>
-            <p class="section-kicker">Access Control</p>
+    <div class="section-header organizations-page-header">
+        <div class="organizations-page-titlebar">
+            <button type="button" class="organizations-back-button d-none" data-permissions-back-to-list aria-label="Back to permission list">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            </button>
             <h1>Permissions</h1>
-            <p class="section-summary">Review and manage platform permission keys used by roles and users.</p>
         </div>
-        <span class="permission-pill">@PlatformPermissions.PermissionsView</span>
+        <div class="organizations-page-actions">
+            <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" data-permissions-open-create>
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                <span>Create Permission</span>
+            </button>
+        </div>
     </div>
 
     <div class="users-alert-host" data-permissions-alert></div>
 
-    <ul class="nav nav-tabs users-tabs" id="permissionsTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="permissions-list-tab" data-bs-toggle="tab" data-bs-target="#permissions-list-pane" type="button" role="tab" aria-controls="permissions-list-pane" aria-selected="true">
-                Permission List
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="permissions-form-tab" data-bs-toggle="tab" data-bs-target="#permissions-form-pane" type="button" role="tab" aria-controls="permissions-form-pane" aria-selected="false">
-                Create Permission
-            </button>
-        </li>
-    </ul>
-
-    <div class="tab-content users-tab-content" id="permissionsTabsContent">
-        <div class="tab-pane fade show active" id="permissions-list-pane" role="tabpanel" aria-labelledby="permissions-list-tab" tabindex="0">
-            <div class="card users-card">
-                <div class="card-header users-card-header">
-                    <div>
-                        <h2 class="users-card-title">Permission List</h2>
-                        <p class="users-card-subtitle">Search, filter, and maintain permission definitions.</p>
-                    </div>
-                    <form class="users-filter sx-table-filter-row" data-permissions-filter-form>
-                        <div class="input-group input-group-sm users-search sx-table-filter-search">
-                            <span class="input-group-text"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
-                            <input class="form-control form-control-sm" type="search" name="Search" placeholder="Permission or group" autocomplete="off" />
+    <div class="organizations-content-stack">
+        <div data-permissions-list-panel>
+            <div class="card users-card organizations-card">
+                <div class="card-body organizations-list-body p-0">
+                    <form class="organizations-filter sx-form-compact" data-permissions-filter-form>
+                        <div class="organizations-filter-field organizations-filter-search">
+                            <label class="visually-hidden" for="PermissionsSearch">Search permissions</label>
+                            <div class="input-group input-group-sm sx-table-filter-search">
+                                <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                <input class="form-control form-control-sm" id="PermissionsSearch" type="search" name="Search" placeholder="Search by permission or group" autocomplete="off" />
+                            </div>
                         </div>
-                        <input class="form-control form-control-sm sx-table-filter-select" type="text" name="Group" placeholder="Group" autocomplete="off" />
-                        <div class="sx-table-filter-actions">
-                            <button class="btn btn-primary btn-sm" type="submit"><i class="fa-solid fa-filter" aria-hidden="true"></i> Apply</button>
-                            <button class="btn btn-outline-secondary btn-sm" type="button" data-permissions-clear-filters>Reset</button>
+                        <div class="organizations-filter-field">
+                            <label class="visually-hidden" for="PermissionsGroup">Group</label>
+                            <input class="form-control form-control-sm sx-table-filter-select" id="PermissionsGroup" type="text" name="Group" placeholder="Group" autocomplete="off" />
+                        </div>
+                        <div class="sx-table-filter-actions organizations-filter-actions">
+                            <button class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" type="submit"><i class="fa-solid fa-filter" aria-hidden="true"></i><span>Apply</span></button>
+                            <button class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-orange" type="button" data-permissions-clear-filters><i class="fa-solid fa-rotate-left" aria-hidden="true"></i><span>Reset</span></button>
                         </div>
                     </form>
-                </div>
-                <div class="card-body p-0">
                     <div class="users-loading-state d-none" data-permissions-loading>
                         <div class="spinner-border spinner-border-sm text-primary" role="status" aria-hidden="true"></div>
                         <span>Loading permissions</span>
@@ -72,7 +65,7 @@
             </div>
         </div>
 
-        <div class="tab-pane fade" id="permissions-form-pane" role="tabpanel" aria-labelledby="permissions-form-tab" tabindex="0">
+        <div class="d-none" data-permissions-form-panel>
             <partial name="_PermissionForm" model="formModel" />
         </div>
     </div>

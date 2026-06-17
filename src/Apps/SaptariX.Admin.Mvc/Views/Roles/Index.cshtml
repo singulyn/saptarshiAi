@@ -1,14 +1,14 @@
 @using SaptariX.Admin.Mvc.ViewModels.Roles
-@using SaptariX.Platform.AccessControl.Permissions
 @model RoleListViewModel
 @{
     ViewData["Title"] = "Roles";
     ViewData["ActiveMenu"] = "/Roles";
+    ViewData["HideBreadcrumb"] = true;
     var formModel = RoleFormViewModel.Empty(Model.OrganizationId);
     var permissionsModel = RolePermissionViewModel.Empty(Model.OrganizationId);
 }
 
-<section class="page-section users-page access-page"
+<section class="page-section users-page organizations-page access-page"
          data-roles-root
          data-organization-id="@Model.OrganizationId"
          data-list-url="/Roles/List"
@@ -20,55 +20,48 @@
          data-save-permissions-url="/Roles/SavePermissions">
     @Html.AntiForgeryToken()
 
-    <div class="section-header">
-        <div>
-            <p class="section-kicker">Access Control</p>
+    <div class="section-header organizations-page-header">
+        <div class="organizations-page-titlebar">
+            <button type="button" class="organizations-back-button d-none" data-roles-back-to-list aria-label="Back to role list">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            </button>
             <h1>Roles</h1>
-            <p class="section-summary">Manage organization roles and the permissions attached to each role.</p>
         </div>
-        <span class="permission-pill">@PlatformPermissions.RolesView</span>
+        <div class="organizations-page-actions">
+            <button type="button" class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" data-roles-open-create>
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                <span>Create Role</span>
+            </button>
+        </div>
     </div>
 
     <div class="users-alert-host" data-roles-alert></div>
 
-    <ul class="nav nav-tabs users-tabs" id="rolesTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="roles-list-tab" data-bs-toggle="tab" data-bs-target="#roles-list-pane" type="button" role="tab" aria-controls="roles-list-pane" aria-selected="true">
-                Role List
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="roles-form-tab" data-bs-toggle="tab" data-bs-target="#roles-form-pane" type="button" role="tab" aria-controls="roles-form-pane" aria-selected="false">
-                Create Role
-            </button>
-        </li>
-    </ul>
-
-    <div class="tab-content users-tab-content" id="rolesTabsContent">
-        <div class="tab-pane fade show active" id="roles-list-pane" role="tabpanel" aria-labelledby="roles-list-tab" tabindex="0">
-            <div class="card users-card">
-                <div class="card-header users-card-header">
-                    <div>
-                        <h2 class="users-card-title">Role List</h2>
-                        <p class="users-card-subtitle">Search, filter, sort, and manage role access surfaces.</p>
-                    </div>
-                    <form class="users-filter sx-table-filter-row" data-roles-filter-form>
-                        <div class="input-group input-group-sm users-search sx-table-filter-search">
-                            <span class="input-group-text"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
-                            <input class="form-control form-control-sm" type="search" name="Search" placeholder="Name or description" autocomplete="off" />
+    <div class="organizations-content-stack">
+        <div data-roles-list-panel>
+            <div class="card users-card organizations-card">
+                <div class="card-body organizations-list-body p-0">
+                    <form class="organizations-filter sx-form-compact" data-roles-filter-form>
+                        <div class="organizations-filter-field organizations-filter-search">
+                            <label class="visually-hidden" for="RolesSearch">Search roles</label>
+                            <div class="input-group input-group-sm sx-table-filter-search">
+                                <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                <input class="form-control form-control-sm" id="RolesSearch" type="search" name="Search" placeholder="Search by role or description" autocomplete="off" />
+                            </div>
                         </div>
-                        <select class="form-select form-select-sm users-status-filter sx-table-filter-select" name="Status" aria-label="Status filter">
-                            <option value="">All statuses</option>
-                            <option value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
-                        </select>
-                        <div class="sx-table-filter-actions">
-                            <button class="btn btn-primary btn-sm" type="submit"><i class="fa-solid fa-filter" aria-hidden="true"></i> Apply</button>
-                            <button class="btn btn-outline-secondary btn-sm" type="button" data-roles-clear-filters>Reset</button>
+                        <div class="organizations-filter-field">
+                            <label class="visually-hidden" for="RolesStatus">Status</label>
+                            <select class="form-select form-select-sm sx-table-filter-select" id="RolesStatus" name="Status" aria-label="Status filter" data-sx-select-minimal>
+                                <option value="">All statuses</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="sx-table-filter-actions organizations-filter-actions">
+                            <button class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-graphite" type="submit"><i class="fa-solid fa-filter" aria-hidden="true"></i><span>Apply</span></button>
+                            <button class="ui-adv-btn ui-adv-btn-elevated ui-adv-btn-orange" type="button" data-roles-clear-filters><i class="fa-solid fa-rotate-left" aria-hidden="true"></i><span>Reset</span></button>
                         </div>
                     </form>
-                </div>
-                <div class="card-body p-0">
                     <div class="users-loading-state d-none" data-roles-loading>
                         <div class="spinner-border spinner-border-sm text-primary" role="status" aria-hidden="true"></div>
                         <span>Loading roles</span>
@@ -80,7 +73,7 @@
             </div>
         </div>
 
-        <div class="tab-pane fade" id="roles-form-pane" role="tabpanel" aria-labelledby="roles-form-tab" tabindex="0">
+        <div class="d-none" data-roles-form-panel>
             <partial name="_RoleForm" model="formModel" />
         </div>
     </div>

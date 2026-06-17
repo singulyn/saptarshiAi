@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\SaptariX.Plugin.Abstractions\SaptariX.Plugin.Abstractions.csproj" />
+    <ProjectReference Include="..\SaptariX.Platform.Identity\SaptariX.Platform.Identity.csproj" />
   </ItemGroup>
 
   <ItemGroup>
